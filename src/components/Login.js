@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/UserService";
 import styles from "./Login.module.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent form refresh
+
+    try {
+      const user = await loginUser(email, password);
+
+      if (user) {
+        setError("");
+        navigate("/home");
+        return; // Prevent further execution
+      }
+
+      setError("Invalid credentials or server error.");
+    } catch (err) {
+      setError("Invalid credentials or server error.");
+    }
+  };
+
   return (
     <div className={styles.container}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleLogin}>
         <div className={styles.outer}>
           <div className={styles.inner}>
-            <img src="image/login.png"></img>
+            <img src="image/login.png" alt="Login" />
           </div>
           <div className={styles.boxWrapper}>
             <h2>Login</h2>
@@ -20,7 +43,9 @@ const Login = () => {
                   <input
                     type="email"
                     className={styles.input}
+                    value={email}
                     placeholder="Enter your email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -30,7 +55,9 @@ const Login = () => {
                   <input
                     type="password"
                     className={styles.input}
+                    value={password}
                     placeholder="Enter your password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
@@ -44,6 +71,7 @@ const Login = () => {
           </div>
         </div>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
