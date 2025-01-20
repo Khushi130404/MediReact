@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/UserService";
+import { loginDoctor } from "../services/DoctorService";
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -10,17 +11,20 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent form refresh
-
+    e.preventDefault();
     try {
+      const doctor = await loginDoctor(email, password);
+      if (doctor) {
+        setError("");
+        navigate("/home");
+        return;
+      }
       const user = await loginUser(email, password);
-
       if (user) {
         setError("");
         navigate("/home");
-        return; // Prevent further execution
+        return;
       }
-
       setError("Invalid credentials or server error.");
     } catch (err) {
       setError("Invalid credentials or server error.");
