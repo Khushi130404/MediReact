@@ -1,6 +1,14 @@
 class UserInfo {
+  userId = 0;
+  userName = "";
+  userMail = "";
+  userPass = "";
+  userAge = 0;
+  userGender = "male";
+  userMobile = "";
+  userAddress = "";
+
   constructor(
-    userId,
     userName,
     userMail,
     userPass,
@@ -9,7 +17,6 @@ class UserInfo {
     userMobile,
     userAddress
   ) {
-    this.userId = userId;
     this.userName = userName;
     this.userMail = userMail;
     this.userPass = userPass;
