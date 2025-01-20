@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../services/UserService";
+import UserInfo from "../model/UserInfo";
 import styles from "./Registration.module.css";
 
 const Registration = () => {
@@ -6,25 +9,49 @@ const Registration = () => {
     name: "",
     email: "",
     age: "",
-    gender: "",
+    gender: "male",
     address: "",
     contacts: "",
     password: "",
     confirmPassword: "",
   });
 
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-    } else {
-      console.log(formData);
-      alert("Form Submitted Successfully!");
+      setError("Passwords do not match.");
+      return;
+    }
+
+    const newUser = new UserInfo(
+      formData.name,
+      formData.email,
+      formData.password,
+      parseInt(formData.age),
+      formData.gender,
+      formData.contacts,
+      formData.address
+    );
+
+    try {
+      const response = await registerUser(newUser);
+      setError("");
+      navigate("/home");
+    } catch (err) {
+      console.error("Registration error:", err);
+      setError(err.response ? err.response.data : "Something went wrong!");
     }
   };
 
@@ -129,6 +156,7 @@ const Registration = () => {
         <a className={styles.loginLink} href="/login">
           <div>Already a user? Click here to Login...</div>
         </a>
+        {error && <p>{error}</p>}
       </form>
     </div>
   );

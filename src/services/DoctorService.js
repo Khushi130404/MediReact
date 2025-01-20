@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8080";
-const DOCTOR_LOGIN_API = `${BASE_URL}/user/login_user`;
+const DOCTOR_LOGIN_API = `${BASE_URL}/doctor/login_doctor`;
 
 export const loginDoctor = async (mail, pass) => {
   try {
