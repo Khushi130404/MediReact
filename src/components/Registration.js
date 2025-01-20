@@ -31,7 +31,7 @@ const Registration = () => {
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h2>Registration Form</h2>
+        <h2>Registration</h2>
         <div className={styles.formGrid}>
           <div className={styles.formGroup}>
             <label>Name</label>
