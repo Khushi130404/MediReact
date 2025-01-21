@@ -31,7 +31,7 @@ const AppointmentTable = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.app_tab}>
       <h2>Doctor's Appointment Timetable</h2>
       <table className={styles.timetable}>
         <thead>

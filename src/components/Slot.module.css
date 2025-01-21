@@ -1,10 +1,11 @@
 .slot .break {
-  background-color: #ffeb3b;
+  background-color: #9bbec8;
+  color: white;
   font-weight: bold;
 }
 
 .slot td {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 3px;
   text-align: center;
 }
