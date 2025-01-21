@@ -4,6 +4,7 @@ import styles from "./AppointmentTable.module.css";
 
 const AppointmentTable = () => {
   const [timeSlots, setTimeSlots] = useState([]);
+  const [weekdays, setWeekdays] = useState([]);
 
   useEffect(() => {
     const generateTimeSlots = () => {
@@ -15,7 +16,7 @@ const AppointmentTable = () => {
 
       for (let hour = startHour; hour < endHour; hour++) {
         if (hour === breakStart) {
-          slots.push({ time: "1:00 - 2:00 PM", isBreak: true });
+          slots.push({ time: "13:00 - 14:00", isBreak: true });
           continue;
         }
         let miniSlots = ["00", "15", "30", "45"].map((min) => `${hour}:${min}`);
@@ -28,6 +29,14 @@ const AppointmentTable = () => {
     };
 
     setTimeSlots(generateTimeSlots());
+
+    const currentDay = new Date().getDay();
+    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    const rotatedDays = [
+      ...days.slice(currentDay - 1),
+      ...days.slice(0, currentDay - 1),
+    ];
+    setWeekdays(rotatedDays);
   }, []);
 
   return (
@@ -37,11 +46,11 @@ const AppointmentTable = () => {
         <thead>
           <tr>
             <th>Time</th>
-            <th colSpan="4">Monday</th>
-            <th colSpan="4">Tuesday</th>
-            <th colSpan="4">Wednesday</th>
-            <th colSpan="4">Thursday</th>
-            <th colSpan="4">Friday</th>
+            {weekdays.map((day, index) => (
+              <th key={index} colSpan="4">
+                {day}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>

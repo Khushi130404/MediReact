@@ -12,8 +12,9 @@
 
 .timetable {
   width: 90%;
-  margin: 35px auto;
+  margin: 30px auto;
   border-collapse: collapse;
+  margin-top: 20px;
   background: white;
   border-radius: 15px;
   overflow: hidden;
@@ -22,21 +23,21 @@
 .timetable th,
 .timetable td {
   border: 1px solid #ccc;
-  padding: 10px 1px;
+  padding: 11px 1px;
   text-align: center;
 }
 
 .timetable thead td,
 .timetable thead th {
   border: 1px solid #ccc;
-  padding: 10px 1px;
+  padding: 11px 2px;
   text-align: center;
   width: 120px;
 }
 
 .timetable th {
   background-color: #164863ce;
-  padding: 5px 1px;
+  padding: 5px 3px;
   color: white;
 }
 
