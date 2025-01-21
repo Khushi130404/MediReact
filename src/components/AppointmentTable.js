@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slot from "./Slot";
 import styles from "./AppointmentTable.module.css";
 
-const Appointment = () => {
+const AppointmentTable = () => {
   const [timeSlots, setTimeSlots] = useState([]);
 
   useEffect(() => {
@@ -54,4 +54,4 @@ const Appointment = () => {
   );
 };
 
-export default Appointment;
+export default AppointmentTable;

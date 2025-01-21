@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./AppointmentTable.module.css";
+import styles from "./Slot.module.css"; // Import the Slot-specific styles
 
 const Slot = ({ slot }) => {
   return (
-    <tr>
+    <tr className={styles.slot}>
       <td>{slot.time}</td>
       {slot.isBreak ? (
         <td className={styles.break} colSpan="20">
