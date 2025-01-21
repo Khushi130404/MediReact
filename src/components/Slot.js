@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Appointment.module.css";
+import styles from "./AppointmentTable.module.css";
 
 const Slot = ({ slot }) => {
   return (

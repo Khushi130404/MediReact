@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Slot from "./Slot";
+import styles from "./AppointmentTable.module.css";
 
-const AppointmentTable = () => {
+const Appointment = () => {
   const [timeSlots, setTimeSlots] = useState([]);
 
   useEffect(() => {
@@ -28,31 +30,10 @@ const AppointmentTable = () => {
     setTimeSlots(generateTimeSlots());
   }, []);
 
-  const renderTableRows = () => {
-    return timeSlots.map((slot, index) => {
-      return (
-        <tr key={index}>
-          <td>{slot.time}</td>
-          {slot.isBreak ? (
-            <td className="break" colSpan="20">
-              Lunch Break
-            </td>
-          ) : (
-            Array.from({ length: 5 }).map((_, i) =>
-              slot.miniSlots.map((time, idx) => (
-                <td key={`${i}-${idx}`}>{time}</td>
-              ))
-            )
-          )}
-        </tr>
-      );
-    });
-  };
-
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Doctor's Appointment Timetable</h2>
-      <table className="timetable">
+      <table className={styles.timetable}>
         <thead>
           <tr>
             <th>Time</th>
@@ -63,33 +44,14 @@ const AppointmentTable = () => {
             <th colSpan="4">Friday</th>
           </tr>
         </thead>
-        <tbody>{renderTableRows()}</tbody>
+        <tbody>
+          {timeSlots.map((slot, index) => (
+            <Slot key={index} slot={slot} />
+          ))}
+        </tbody>
       </table>
-
-      <style jsx>{`
-        .timetable {
-          width: 90%;
-          margin: 20px auto;
-          border-collapse: collapse;
-          background: white;
-        }
-        .timetable th,
-        .timetable td {
-          border: 1px solid #ccc;
-          padding: 10px;
-          text-align: center;
-        }
-        .timetable th {
-          background-color: #4caf50;
-          color: white;
-        }
-        .break {
-          background-color: #ffeb3b;
-          font-weight: bold;
-        }
-      `}</style>
     </div>
   );
 };
 
-export default AppointmentTable;
+export default Appointment;

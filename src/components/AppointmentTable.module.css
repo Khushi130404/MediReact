@@ -1,0 +1,29 @@
+.container {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.timetable {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: white;
+}
+
+.timetable th,
+.timetable td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.timetable th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.break {
+  background-color: #ffeb3b;
+  font-weight: bold;
+}
