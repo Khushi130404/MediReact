@@ -4,7 +4,7 @@ import DocList from "./DocList";
 
 const Welcome = () => {
   const [showDocList, setShowDocList] = useState(false);
-  const doctors = ["Dr. Smith", "Dr. Johnson", "Dr. Brown"];
+  const docList = ["Dr. Smith", "Dr. Johnson", "Dr. Brown"]; // Example doctors
 
   return (
     <div>
@@ -25,20 +25,16 @@ const Welcome = () => {
                 className={styles.containerBook}
                 onClick={() => setShowDocList(true)}
               >
-                <a href="#" style={{ textDecoration: "none" }}>
-                  <p className={styles.animatedWord}>Book An Appointment</p>
-                </a>
+                <p className={styles.animatedWord}>Book An Appointment</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Render DocList when showDocList is true */}
       {showDocList && (
-        <DocList
-          docList={doctors}
-          onSelect={(doctor) => alert(`Selected: ${doctor}`)}
-        />
+        <DocList docList={docList} onSelect={() => setShowDocList(false)} />
       )}
     </div>
   );
