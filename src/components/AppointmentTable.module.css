@@ -1,0 +1,47 @@
+.container {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.app_tab h2 {
+  margin-top: 25px;
+  width: 100%;
+  text-align: center;
+}
+
+.timetable {
+  width: 90%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.timetable th,
+.timetable td {
+  border: 1px solid #ccc;
+  padding: 11px 1px;
+  text-align: center;
+}
+
+.timetable thead td,
+.timetable thead th {
+  border: 1px solid #ccc;
+  padding: 11px 2px;
+  text-align: center;
+  width: 120px;
+}
+
+.timetable th {
+  background-color: #164863ce;
+  padding: 5px 3px;
+  color: white;
+}
+
+.break {
+  background-color: #709ba7;
+  font-weight: bold;
+}
