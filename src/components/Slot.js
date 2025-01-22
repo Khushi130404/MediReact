@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Slot.module.css"; // Import the Slot-specific styles
+import styles from "./Slot.module.css";
 
-const Slot = ({ slot }) => {
+const Slot = ({ slot, bookedSlots }) => {
   return (
     <tr className={styles.slot}>
       <td>{slot.time}</td>
@@ -11,7 +11,17 @@ const Slot = ({ slot }) => {
         </td>
       ) : (
         Array.from({ length: 5 }).map((_, i) =>
-          slot.miniSlots.map((time, idx) => <td key={`${i}-${idx}`}>{time}</td>)
+          slot.miniSlots.map((time, idx) => {
+            const isBooked = bookedSlots.has(time);
+            return (
+              <td
+                key={`${i}-${idx}`}
+                className={isBooked ? styles.booked : styles.available}
+              >
+                {time}
+              </td>
+            );
+          })
         )
       )}
     </tr>

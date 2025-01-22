@@ -1,17 +1,35 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Slot from "./Slot";
 import styles from "./AppointmentTable.module.css";
+
+const BASE_URL = "http://localhost:8080";
+const GET_APPOINTMENT_API = `${BASE_URL}/appointment/show`;
 
 const AppointmentTable = () => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [weekdays, setWeekdays] = useState([]);
+  const [bookedSlots, setBookedSlots] = useState(new Set());
 
   useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get(GET_APPOINTMENT_API);
+        const booked = new Set(
+          response.data.map((appointment) => appointment.time)
+        );
+        setBookedSlots(booked);
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      }
+    };
+
+    fetchAppointments();
+
     const generateTimeSlots = () => {
       const startHour = 9;
       const endHour = 19;
       const breakStart = 13;
-      const breakEnd = 14;
       let slots = [];
 
       for (let hour = startHour; hour < endHour; hour++) {
@@ -55,7 +73,7 @@ const AppointmentTable = () => {
         </thead>
         <tbody>
           {timeSlots.map((slot, index) => (
-            <Slot key={index} slot={slot} />
+            <Slot key={index} slot={slot} bookedSlots={bookedSlots} />
           ))}
         </tbody>
       </table>

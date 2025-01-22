@@ -4,7 +4,17 @@
   font-weight: bold;
 }
 
-.slot td {
+.booked {
+  background-color: green;
+  color: white;
+  border: 1px solid #ccc;
+  padding: 3px;
+  text-align: center;
+}
+
+.available {
+  background-color: red;
+  color: white;
   border: 1px solid #ccc;
   padding: 3px;
   text-align: center;
