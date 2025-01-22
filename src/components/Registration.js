@@ -56,7 +56,7 @@ const Registration = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.register}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2>Registration</h2>
         <div className={styles.formGrid}>

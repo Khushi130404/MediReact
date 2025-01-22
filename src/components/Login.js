@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.login}>
       <form className={styles.form} onSubmit={handleLogin}>
         <div className={styles.outer}>
           <div className={styles.inner}>

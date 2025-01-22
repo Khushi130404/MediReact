@@ -1,12 +1,17 @@
-.container {
+.app_tab {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   text-align: center;
+  margin: 0;
+  padding-top: 40px;
+  background-color: #f2f2f2;
+  height: 83vh;
 }
 
 .app_tab h2 {
-  margin-top: 25px;
+  margin: 0;
   width: 100%;
+  margin-bottom: 25px;
+  color: #04364a;
   text-align: center;
 }
 
@@ -16,21 +21,21 @@
   border-collapse: collapse;
   margin-top: 20px;
   background: white;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
 .timetable th,
 .timetable td {
-  border: 1px solid #ccc;
-  padding: 11px 1px;
+  border: 1.2px solid white;
+  padding: 10px 1px;
   text-align: center;
 }
 
 .timetable thead td,
 .timetable thead th {
-  border: 1px solid #ccc;
-  padding: 11px 2px;
+  border: 1px solid white;
+  padding: 10px 2px;
   text-align: center;
   width: 120px;
 }
@@ -39,9 +44,4 @@
   background-color: #164863ce;
   padding: 5px 3px;
   color: white;
-}
-
-.break {
-  background-color: #709ba7;
-  font-weight: bold;
 }
