@@ -61,9 +61,6 @@ const AppointmentTable = () => {
         "Friday",
       ];
 
-      let currentDayIndex = currentDate.getDay();
-
-      let weekdayCounter = 0;
       let dateCounter = 0;
       while (weekdaysWithDates.length < 5) {
         const newDate = new Date(currentDate);
@@ -109,7 +106,9 @@ const AppointmentTable = () => {
             <th>Time</th>
             {weekdays.map((weekday, index) => (
               <th key={index} colSpan="4">
-                {weekday.day} ({weekday.date})
+                {weekday.date}
+                <br />
+                {weekday.day}
               </th>
             ))}
           </tr>

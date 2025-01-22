@@ -1,13 +1,13 @@
 .booked {
-  background-color: #df8079;
-  color: white;
+  background-color: #f0dbd9;
+  color: #be1300;
   text-align: center;
   padding: 5px;
 }
 
 .available {
-  background-color: #a9d7bb;
-  color: white;
+  background-color: #dbf0e3;
+  color: #00a83e;
   text-align: center;
   padding: 5px;
 }
