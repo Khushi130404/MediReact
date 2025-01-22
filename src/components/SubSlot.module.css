@@ -1,0 +1,16 @@
+/* SubSlot.module.css */
+.booked {
+  background-color: #f44336; /* Red for booked slots */
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.available {
+  background-color: #4caf50; /* Green for available slots */
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}
