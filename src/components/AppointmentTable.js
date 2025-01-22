@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { getAppointment } from "../services/AppointmentService";
 import Slot from "./Slot";
 import styles from "./AppointmentTable.module.css";
-
-const BASE_URL = "http://localhost:8080";
-const GET_APPOINTMENT_API = `${BASE_URL}/appointment/show`;
 
 const AppointmentTable = () => {
   const [timeSlots, setTimeSlots] = useState([]);
@@ -14,9 +11,11 @@ const AppointmentTable = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get(GET_APPOINTMENT_API);
+        const response = await getAppointment();
+        console.log(response);
+
         const booked = new Set(
-          response.data.map((appointment) => appointment.time)
+          response.map((appointment) => appointment.startTime)
         );
         setBookedSlots(booked);
       } catch (error) {
@@ -48,13 +47,56 @@ const AppointmentTable = () => {
 
     setTimeSlots(generateTimeSlots());
 
-    const currentDay = new Date().getDay();
-    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-    const rotatedDays = [
-      ...days.slice(currentDay - 1),
-      ...days.slice(0, currentDay - 1),
-    ];
-    setWeekdays(rotatedDays);
+    const getNextWeekdays = () => {
+      const currentDate = new Date();
+      const weekdaysWithDates = [];
+      const daysOfWeek = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+      ];
+
+      let currentDayIndex = currentDate.getDay(); // Get today's day index (0-6)
+
+      // Loop to collect the next 5 weekdays (skipping Saturday and Sunday)
+      let weekdayCounter = 0;
+      let dateCounter = 0; // Start from today's date
+      while (weekdaysWithDates.length < 5) {
+        const newDate = new Date(currentDate);
+        newDate.setDate(currentDate.getDate() + dateCounter); // Increment the date
+
+        const dayOfWeek = newDate.getDay(); // Get the day of the week (0-6)
+
+        if (dayOfWeek === 6 || dayOfWeek === 0) {
+          // Skip Saturday (6) and Sunday (0)
+          dateCounter++;
+          continue;
+        }
+
+        const weekdayName = daysOfWeek[dayOfWeek - 1]; // Get corresponding weekday name
+
+        const formattedDate = `${String(newDate.getDate()).padStart(
+          2,
+          "0"
+        )}-${String(newDate.getMonth() + 1).padStart(
+          2,
+          "0"
+        )}-${newDate.getFullYear()}`;
+
+        weekdaysWithDates.push({
+          day: weekdayName,
+          date: formattedDate,
+        });
+
+        dateCounter++;
+      }
+
+      setWeekdays(weekdaysWithDates);
+    };
+
+    getNextWeekdays();
   }, []);
 
   return (
@@ -64,9 +106,9 @@ const AppointmentTable = () => {
         <thead>
           <tr>
             <th>Time</th>
-            {weekdays.map((day, index) => (
+            {weekdays.map((weekday, index) => (
               <th key={index} colSpan="4">
-                {day}
+                {weekday.day} ({weekday.date})
               </th>
             ))}
           </tr>
