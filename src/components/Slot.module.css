@@ -1,20 +1,11 @@
 .slot .break {
   background-color: #9bbec8;
   color: white;
+  column-span: all;
   font-weight: bold;
 }
 
-.booked {
-  background-color: green;
-  color: white;
-  border: 1px solid #ccc;
-  padding: 3px;
-  text-align: center;
-}
-
-.available {
-  background-color: red;
-  color: white;
+.slot td {
   border: 1px solid #ccc;
   padding: 3px;
   text-align: center;

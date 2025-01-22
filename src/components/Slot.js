@@ -1,28 +1,30 @@
 import React from "react";
+import SubSlot from "./SubSlot";
 import styles from "./Slot.module.css";
 
-const Slot = ({ slot, bookedSlots }) => {
+const Slot = ({ slot, bookedSlots, weekdays }) => {
   return (
     <tr className={styles.slot}>
       <td>{slot.time}</td>
       {slot.isBreak ? (
-        <td className={styles.break} colSpan="20">
+        <td className={styles.break} colSpan={weekdays.length * 4}>
           Lunch Break
         </td>
       ) : (
-        Array.from({ length: 5 }).map((_, i) =>
-          slot.miniSlots.map((time, idx) => {
-            const isBooked = bookedSlots.has(time);
+        weekdays.map((weekday, idx) => {
+          return slot.miniSlots.map((time, subIdx) => {
+            const key = `${weekday.date}-${time}`;
+            const isBooked = bookedSlots.has(key);
+
             return (
-              <td
-                key={`${i}-${idx}`}
-                className={isBooked ? styles.booked : styles.available}
-              >
-                {time}
-              </td>
+              <SubSlot
+                key={`${idx}-${subIdx}`}
+                time={time}
+                isBooked={isBooked}
+              />
             );
-          })
-        )
+          });
+        })
       )}
     </tr>
   );

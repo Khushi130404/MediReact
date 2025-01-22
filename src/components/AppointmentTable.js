@@ -6,7 +6,7 @@ import styles from "./AppointmentTable.module.css";
 const AppointmentTable = () => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [weekdays, setWeekdays] = useState([]);
-  const [bookedSlots, setBookedSlots] = useState(new Set());
+  const [bookedSlots, setBookedSlots] = useState(new Map());
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -14,9 +14,12 @@ const AppointmentTable = () => {
         const response = await getAppointment();
         console.log(response);
 
-        const booked = new Set(
-          response.map((appointment) => appointment.startTime)
-        );
+        const booked = new Map();
+        response.forEach((appointment) => {
+          const { startTime, date } = appointment;
+          const key = `${date}-${startTime}`;
+          booked.set(key, true);
+        });
         setBookedSlots(booked);
       } catch (error) {
         console.error("Error fetching appointments:", error);
@@ -58,24 +61,22 @@ const AppointmentTable = () => {
         "Friday",
       ];
 
-      let currentDayIndex = currentDate.getDay(); // Get today's day index (0-6)
+      let currentDayIndex = currentDate.getDay();
 
-      // Loop to collect the next 5 weekdays (skipping Saturday and Sunday)
       let weekdayCounter = 0;
-      let dateCounter = 0; // Start from today's date
+      let dateCounter = 0;
       while (weekdaysWithDates.length < 5) {
         const newDate = new Date(currentDate);
-        newDate.setDate(currentDate.getDate() + dateCounter); // Increment the date
+        newDate.setDate(currentDate.getDate() + dateCounter);
 
-        const dayOfWeek = newDate.getDay(); // Get the day of the week (0-6)
+        const dayOfWeek = newDate.getDay();
 
         if (dayOfWeek === 6 || dayOfWeek === 0) {
-          // Skip Saturday (6) and Sunday (0)
           dateCounter++;
           continue;
         }
 
-        const weekdayName = daysOfWeek[dayOfWeek - 1]; // Get corresponding weekday name
+        const weekdayName = daysOfWeek[dayOfWeek - 1];
 
         const formattedDate = `${String(newDate.getDate()).padStart(
           2,
@@ -115,7 +116,12 @@ const AppointmentTable = () => {
         </thead>
         <tbody>
           {timeSlots.map((slot, index) => (
-            <Slot key={index} slot={slot} bookedSlots={bookedSlots} />
+            <Slot
+              key={index}
+              slot={slot}
+              bookedSlots={bookedSlots}
+              weekdays={weekdays}
+            />
           ))}
         </tbody>
       </table>
