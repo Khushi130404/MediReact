@@ -11,3 +11,73 @@
   text-align: center;
   padding: 5px;
 }
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 300px;
+  text-align: center;
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.popup p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.confirmBtn,
+.cancelBtn {
+  width: 100px;
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmBtn {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancelBtn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.confirmBtn:hover {
+  background-color: #218838;
+}
+
+.cancelBtn:hover {
+  background-color: #c82333;
+}
+
+/* Background Overlay */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

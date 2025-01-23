@@ -42,7 +42,7 @@ const SubSlot = ({ time, isBooked, date, docId }) => {
 
     try {
       const response = await bookAppointment(bookingData);
-      alert("Slot booked successfully!");
+
       console.log(response.data);
       setShowConfirm(false);
     } catch (error) {
@@ -61,24 +61,30 @@ const SubSlot = ({ time, isBooked, date, docId }) => {
       </td>
 
       {showConfirm && (
-        <div className={styles.popup}>
-          <div className={styles.popupContent}>
-            <h3>Confirm Booking</h3>
-            <p>
-              Are you sure you want to book this slot on <b>{date}</b> at{" "}
-              <b>{time}</b>?
-            </p>
-            <button className={styles.confirmBtn} onClick={handleBooking}>
-              Confirm
-            </button>
-            <button
-              className={styles.cancelBtn}
-              onClick={() => setShowConfirm(false)}
-            >
-              Cancel
-            </button>
+        <>
+          <div
+            className={styles.popupOverlay}
+            onClick={() => setShowConfirm(false)}
+          />
+          <div className={styles.popup}>
+            <div className={styles.popupContent}>
+              <h3>Confirm Booking</h3>
+              <p>
+                Are you sure you want to book this slot on <b>{date}</b> at{" "}
+                <b>{time}</b>?
+              </p>
+              <button className={styles.confirmBtn} onClick={handleBooking}>
+                Confirm
+              </button>
+              <button
+                className={styles.cancelBtn}
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );
