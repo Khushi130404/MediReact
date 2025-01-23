@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { showDoctor } from "../services/DoctorService";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import styles from "./DocList.module.css";
 
 const DocList = ({ onSelect }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [docList, setDocList] = useState([]);
 
+  const navigate = useNavigate(); // Initialize navigate from useNavigate
+
   useEffect(() => {
     const fetchDoctors = async () => {
       const doctors = await showDoctor();
-      console.log("Fetched doctors:", doctors);
-      console.log(
-        "Type of doctors:",
-        typeof doctors,
-        "Is Array:",
-        Array.isArray(doctors)
-      ); 
-
       if (Array.isArray(doctors)) {
         setDocList(doctors);
       } else if (
@@ -24,7 +19,7 @@ const DocList = ({ onSelect }) => {
         typeof doctors === "object" &&
         Object.keys(doctors).length > 0
       ) {
-        setDocList([doctors]); 
+        setDocList([doctors]);
       } else {
         console.error("Unexpected response format:", doctors);
         setDocList([]);
@@ -41,6 +36,7 @@ const DocList = ({ onSelect }) => {
       const event = new CustomEvent("doctorSelected", { detail: doctor });
       window.dispatchEvent(event);
       onSelect(doctor);
+      navigate("/appointment", { state: { doctor } });
     }
   };
 
@@ -56,7 +52,7 @@ const DocList = ({ onSelect }) => {
         <ul className={styles.menuList}>
           {docList.map((doctor, index) => (
             <li
-              key={doctor.doctorId || index} 
+              key={doctor.doctorId || index}
               className={styles.menuItem}
               onClick={() => handleSelect(doctor)}
             >
