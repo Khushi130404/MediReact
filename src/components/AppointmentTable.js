@@ -3,7 +3,7 @@ import { getAppointment } from "../services/AppointmentService";
 import Slot from "./Slot";
 import styles from "./AppointmentTable.module.css";
 
-const AppointmentTable = () => {
+const AppointmentTable = ({ doctor }) => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [weekdays, setWeekdays] = useState([]);
   const [bookedSlots, setBookedSlots] = useState(new Map());
@@ -12,14 +12,18 @@ const AppointmentTable = () => {
     const fetchAppointments = async () => {
       try {
         const response = await getAppointment();
-        console.log(response);
 
         const booked = new Map();
+
         response.forEach((appointment) => {
-          const { startTime, date } = appointment;
-          const key = `${date}-${startTime}`;
-          booked.set(key, true);
+          if (appointment.docId == doctor.doctorId) {
+            const { startTime, date } = appointment;
+            const key = `${date}-${startTime}`;
+            booked.set(key, true);
+          }
         });
+        console.log(doctor);
+
         setBookedSlots(booked);
       } catch (error) {
         console.error("Error fetching appointments:", error);

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { showDoctor } from "../services/DoctorService";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import styles from "./DocList.module.css";
 
 const DocList = ({ onSelect }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [docList, setDocList] = useState([]);
 
-  const navigate = useNavigate(); // Initialize navigate from useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -36,6 +36,7 @@ const DocList = ({ onSelect }) => {
       const event = new CustomEvent("doctorSelected", { detail: doctor });
       window.dispatchEvent(event);
       onSelect(doctor);
+      console.log(doctor);
       navigate("/appointment", { state: { doctor } });
     }
   };

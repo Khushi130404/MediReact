@@ -1,11 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  useLocation,
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
 import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import Appointment from "./components/Appointment";
 
 function App() {
+  const AppointmentWrapper = () => {
+    const location = useLocation();
+    const doctor = location.state?.doctor;
+    return <Appointment doctor={doctor} />;
+  };
+
   return (
     <Router>
       <div>
@@ -19,7 +30,6 @@ function App() {
           <Route path="/login" element={<LoginForm></LoginForm>} />
         </Routes>
       </div>
-      {/* <HomePage></HomePage> */}
     </Router>
   );
 }
