@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { bookAppointment } from "../services/AppointmentService";
 import styles from "./SubSlot.module.css";
 
-const SubSlot = ({ time, isBooked, date, docId }) => {
+const SubSlot = ({ time, isBooked, date, userId, docId }) => {
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
   const [showConfirm, setShowConfirm] = useState(false);
+  const slotRef = useRef(null); // Reference to td element
 
   const calculateEndTime = (startTime) => {
     let [hours, minutes] = startTime.split(":").map(Number);
@@ -28,7 +29,6 @@ const SubSlot = ({ time, isBooked, date, docId }) => {
     }
 
     const startTime = time;
-    const [hours, minutes] = startTime.split(".").map(Number);
     const endTime = calculateEndTime(startTime);
 
     const bookingData = {
@@ -42,9 +42,12 @@ const SubSlot = ({ time, isBooked, date, docId }) => {
 
     try {
       const response = await bookAppointment(bookingData);
-
-      console.log(response.data);
       setShowConfirm(false);
+
+      // ✅ Update class dynamically after booking
+      if (slotRef.current) {
+        slotRef.current.className = styles.my_slot;
+      }
     } catch (error) {
       console.error("Error booking slot:", error);
       alert("Failed to book the slot. Please try again.");
@@ -54,7 +57,14 @@ const SubSlot = ({ time, isBooked, date, docId }) => {
   return (
     <>
       <td
-        className={isBooked ? styles.booked : styles.available}
+        ref={slotRef} // ✅ Attach ref to td element
+        className={
+          isBooked
+            ? loggedUser?.userId === userId
+              ? styles.my_slot
+              : styles.booked
+            : styles.available
+        }
         onClick={!isBooked ? () => setShowConfirm(true) : null}
       >
         {time}

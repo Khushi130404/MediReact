@@ -11,9 +11,9 @@ const Welcome = () => {
     const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
 
     if (!loggedUser) {
-      navigate("/login"); // Redirect to login if not logged in
+      navigate("/login");
     } else {
-      setShowDocList(true); // Show the doctor list if logged in
+      setShowDocList(true);
     }
   };
 

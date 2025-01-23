@@ -21,6 +21,7 @@ const Slot = ({ slot, bookedSlots, weekdays, docId }) => {
                 key={`${idx}-${subIdx}`}
                 docId={docId}
                 time={time}
+                userId={bookedSlots.get(key)}
                 date={weekday.date}
                 isBooked={isBooked}
               />
