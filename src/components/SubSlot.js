@@ -2,10 +2,10 @@ import React, { useState, useRef } from "react";
 import { bookAppointment } from "../services/AppointmentService";
 import styles from "./SubSlot.module.css";
 
-const SubSlot = ({ time, isBooked, date, userId, docId }) => {
+const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
   const [showConfirm, setShowConfirm] = useState(false);
-  const slotRef = useRef(null); // Reference to td element
+  const slotRef = useRef(null);
 
   const calculateEndTime = (startTime) => {
     let [hours, minutes] = startTime.split(":").map(Number);
@@ -44,7 +44,6 @@ const SubSlot = ({ time, isBooked, date, userId, docId }) => {
       const response = await bookAppointment(bookingData);
       setShowConfirm(false);
 
-      // ✅ Update class dynamically after booking
       if (slotRef.current) {
         slotRef.current.className = styles.my_slot;
       }
@@ -57,10 +56,10 @@ const SubSlot = ({ time, isBooked, date, userId, docId }) => {
   return (
     <>
       <td
-        ref={slotRef} // ✅ Attach ref to td element
+        ref={slotRef}
         className={
           isBooked
-            ? loggedUser?.userId === userId
+            ? loggedUser?.userId === appObj.userId
               ? styles.my_slot
               : styles.booked
             : styles.available
