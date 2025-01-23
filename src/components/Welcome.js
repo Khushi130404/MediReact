@@ -1,10 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Welcome.module.css";
 import DocList from "./DocList";
 
 const Welcome = () => {
   const [showDocList, setShowDocList] = useState(false);
-  const docList = ["Dr. Smith", "Dr. Johnson", "Dr. Brown"]; // Example doctors
+  const navigate = useNavigate();
+
+  const handleBookingClick = () => {
+    const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
+
+    if (!loggedUser) {
+      navigate("/login");
+    } else {
+      setShowDocList(true);
+    }
+  };
 
   return (
     <div>
@@ -23,7 +34,7 @@ const Welcome = () => {
             <div className={styles.buttons}>
               <div
                 className={styles.containerBook}
-                onClick={() => setShowDocList(true)}
+                onClick={handleBookingClick}
               >
                 <p className={styles.animatedWord}>Book An Appointment</p>
               </div>

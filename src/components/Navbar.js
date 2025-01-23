@@ -28,9 +28,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li onClick={() => setShowDocList(true)}>
-            <Link to="/appointment" className={styles.navItem}>
-              Appointment
-            </Link>
+            <Link className={styles.navItem}>Appointment</Link>
           </li>
 
           <li>

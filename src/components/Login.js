@@ -15,12 +15,14 @@ const Login = () => {
     try {
       const doctor = await loginDoctor(email, password);
       if (doctor) {
+        localStorage.setItem("logged_doctor", JSON.stringify(doctor));
         setError("");
         navigate("/home");
         return;
       }
       const user = await loginUser(email, password);
       if (user) {
+        localStorage.setItem("logged_user", JSON.stringify(user));
         setError("");
         navigate("/home");
         return;

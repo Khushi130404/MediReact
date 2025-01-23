@@ -19,7 +19,7 @@ const AppointmentTable = ({ doctor }) => {
           if (appointment.docId == doctor.doctorId) {
             const { startTime, date } = appointment;
             const key = `${date}-${startTime}`;
-            booked.set(key, true);
+            booked.set(key, appointment.userId);
           }
         });
         console.log(doctor);
@@ -121,6 +121,7 @@ const AppointmentTable = ({ doctor }) => {
           {timeSlots.map((slot, index) => (
             <Slot
               key={index}
+              docId={doctor.doctorId}
               slot={slot}
               bookedSlots={bookedSlots}
               weekdays={weekdays}
