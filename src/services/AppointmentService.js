@@ -3,6 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:8080";
 const GET_APPOINTMENT_API = `${BASE_URL}/appointment/show`;
 const BOOK_APPOINTMENT_API = `${BASE_URL}/appointment/add`;
+const DELET_APPOINTMENT_API = `${BASE_URL}/appointment/delete`;
 
 export const getAppointment = async () => {
   try {
@@ -31,6 +32,15 @@ export const bookAppointment = async (appInfo) => {
     console.log(appInfo);
     const response = await axios.post(BOOK_APPOINTMENT_API, appInfo);
     console.log("Hello");
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : "Something went wrong!";
+  }
+};
+
+export const deleteAppointment = async (appId) => {
+  try {
+    const response = await axios.post(`${DELET_APPOINTMENT_API}/${appId}`);
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : "Something went wrong!";

@@ -19,7 +19,7 @@ const AppointmentTable = ({ doctor }) => {
           if (appointment.docId == doctor.doctorId) {
             const { startTime, date } = appointment;
             const key = `${date}-${startTime}`;
-            booked.set(key, appointment.userId);
+            booked.set(key, appointment);
           }
         });
         console.log(doctor);

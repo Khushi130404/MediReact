@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import DocList from "./DocList";
 
 const Navbar = () => {
   const [showDocList, setShowDocList] = useState(false);
-  const docList = ["Dr. Smith", "Dr. Johnson", "Dr. Brown"]; // Example doctors
+  const navigate = useNavigate();
 
+  const handleBookingClick = () => {
+    const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
+
+    if (!loggedUser) {
+      navigate("/login");
+    } else {
+      setShowDocList(true);
+    }
+  };
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContainer}>
@@ -27,7 +36,7 @@ const Navbar = () => {
               Profile
             </Link>
           </li>
-          <li onClick={() => setShowDocList(true)}>
+          <li onClick={handleBookingClick}>
             <Link className={styles.navItem}>Appointment</Link>
           </li>
 
