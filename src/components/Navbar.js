@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Navbar.module.css"; // Import styles
+import styles from "./Navbar.module.css";
+import DocList from "./DocList";
 
 const Navbar = () => {
+  const [showDocList, setShowDocList] = useState(false);
+  const docList = ["Dr. Smith", "Dr. Johnson", "Dr. Brown"]; // Example doctors
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContainer}>
@@ -23,7 +27,7 @@ const Navbar = () => {
               Profile
             </Link>
           </li>
-          <li>
+          <li onClick={() => setShowDocList(true)}>
             <Link to="/appointment" className={styles.navItem}>
               Appointment
             </Link>
@@ -46,6 +50,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      {showDocList && <DocList onSelect={() => setShowDocList(false)} />}
     </nav>
   );
 };

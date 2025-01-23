@@ -1,45 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { showDoctor } from "../services/DoctorService";
+import { useNavigate } from "react-router-dom";
 import styles from "./DocList.module.css";
 
 const DocList = ({ onSelect }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [docList, setDocList] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchDoctors = async () => {
       const doctors = await showDoctor();
       if (Array.isArray(doctors)) {
         setDocList(doctors);
+      } else if (
+        doctors &&
+        typeof doctors === "object" &&
+        Object.keys(doctors).length > 0
+      ) {
+        setDocList([doctors]);
       } else {
-        console.error("Fetched doctors are not an array:", doctors);
-        setDocList([]); // Default to an empty array
+        console.error("Unexpected response format:", doctors);
+        setDocList([]);
       }
-      console.log("Fetched doctors:", doctors);
     };
 
     fetchDoctors();
-
-    const handleSelection = (event) => {
-      console.log("Doctor selected:", event.detail);
-    };
-
-    window.addEventListener("doctorSelected", handleSelection);
-    return () => {
-      window.removeEventListener("doctorSelected", handleSelection);
-    };
   }, []);
-
-  // Ensure docList is an array and visible before rendering
-  if (!Array.isArray(docList) || !isVisible) return null;
 
   const handleSelect = (doctor) => {
     if (doctor === null) {
-      setIsVisible(false);
+      onSelect(false);
     } else {
       const event = new CustomEvent("doctorSelected", { detail: doctor });
       window.dispatchEvent(event);
       onSelect(doctor);
+      console.log(doctor);
+      navigate("/appointment", { state: { doctor } });
     }
   };
 
@@ -53,9 +51,9 @@ const DocList = ({ onSelect }) => {
           ✖
         </button>
         <ul className={styles.menuList}>
-          {docList.map((doctor) => (
+          {docList.map((doctor, index) => (
             <li
-              key={doctor.doctorId}
+              key={doctor.doctorId || index}
               className={styles.menuItem}
               onClick={() => handleSelect(doctor)}
             >
