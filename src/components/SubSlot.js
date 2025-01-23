@@ -6,6 +6,21 @@ const SubSlot = ({ time, isBooked, date, docId }) => {
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
   const [showConfirm, setShowConfirm] = useState(false);
 
+  const calculateEndTime = (startTime) => {
+    let [hours, minutes] = startTime.split(":").map(Number);
+
+    minutes += 15;
+    if (minutes >= 60) {
+      hours += 1;
+      minutes -= 60;
+    }
+
+    const formattedHours = hours.toString().padStart(2, "0");
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+
+    return `${formattedHours}:${formattedMinutes}`;
+  };
+
   const handleBooking = async () => {
     if (!loggedUser) {
       alert("Please login to book a slot.");
@@ -14,7 +29,7 @@ const SubSlot = ({ time, isBooked, date, docId }) => {
 
     const startTime = time;
     const [hours, minutes] = startTime.split(".").map(Number);
-    const endTime = `${hours}.${(minutes + 15) % 60}`;
+    const endTime = calculateEndTime(startTime);
 
     const bookingData = {
       appId: 0,
