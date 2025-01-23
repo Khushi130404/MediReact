@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Welcome.module.css";
+import DocList from "./DocList";
 
 const Welcome = () => {
+  const [showDocList, setShowDocList] = useState(false);
+  const docList = ["Dr. Smith", "Dr. Johnson", "Dr. Brown"]; // Example doctors
+
   return (
     <div>
       <div className={styles.box}>
@@ -17,15 +21,17 @@ const Welcome = () => {
               </p>
             </div>
             <div className={styles.buttons}>
-              <div className={styles.containerBook}>
-                <a href="home.html" style={{ textDecoration: "none" }}>
-                  <p className={styles.animatedWord}>Book An Appointment</p>
-                </a>
+              <div
+                className={styles.containerBook}
+                onClick={() => setShowDocList(true)}
+              >
+                <p className={styles.animatedWord}>Book An Appointment</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {showDocList && <DocList onSelect={() => setShowDocList(false)} />}
     </div>
   );
 };
