@@ -2,6 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8080";
 const GET_APPOINTMENT_API = `${BASE_URL}/appointment/show`;
+const BOOK_APPOINTMENT_API = `${BASE_URL}/appointment/add`;
 
 export const getAppointment = async () => {
   try {
@@ -22,5 +23,16 @@ export const getAppointment = async () => {
       console.error("Error Setting Up Request:", error.message);
       throw new Error("Request setup failed.");
     }
+  }
+};
+
+export const bookAppointment = async (appInfo) => {
+  try {
+    console.log(appInfo);
+    const response = await axios.post(BOOK_APPOINTMENT_API, appInfo);
+    console.log("Hello");
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : "Something went wrong!";
   }
 };
