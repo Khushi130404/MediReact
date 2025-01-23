@@ -2,7 +2,7 @@ import React from "react";
 import SubSlot from "./SubSlot";
 import styles from "./Slot.module.css";
 
-const Slot = ({ slot, bookedSlots, weekdays }) => {
+const Slot = ({ slot, bookedSlots, weekdays, docId }) => {
   return (
     <tr className={styles.slot}>
       <td>{slot.time}</td>
@@ -19,7 +19,9 @@ const Slot = ({ slot, bookedSlots, weekdays }) => {
             return (
               <SubSlot
                 key={`${idx}-${subIdx}`}
+                docId={docId}
                 time={time}
+                date={weekday.date}
                 isBooked={isBooked}
               />
             );

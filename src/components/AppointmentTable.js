@@ -121,6 +121,7 @@ const AppointmentTable = ({ doctor }) => {
           {timeSlots.map((slot, index) => (
             <Slot
               key={index}
+              docId={doctor.doctorId}
               slot={slot}
               bookedSlots={bookedSlots}
               weekdays={weekdays}
