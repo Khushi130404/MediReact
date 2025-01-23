@@ -9,13 +9,17 @@ const DocList = ({ onSelect }) => {
   useEffect(() => {
     const fetchDoctors = async () => {
       const doctors = await showDoctor();
+      console.log("Fetched doctors:", doctors);
+
       if (Array.isArray(doctors)) {
         setDocList(doctors);
+      } else if (doctors && typeof doctors === "object") {
+        // Convert the object to an array if needed
+        setDocList([doctors]);
       } else {
-        console.error("Fetched doctors are not an array:", doctors);
-        setDocList([]); // Default to an empty array
+        console.error("Unexpected response format:", doctors);
+        setDocList([]);
       }
-      console.log("Fetched doctors:", doctors);
     };
 
     fetchDoctors();
@@ -30,12 +34,9 @@ const DocList = ({ onSelect }) => {
     };
   }, []);
 
-  // Ensure docList is an array and visible before rendering
-  if (!Array.isArray(docList) || !isVisible) return null;
-
   const handleSelect = (doctor) => {
     if (doctor === null) {
-      setIsVisible(false);
+      onSelect(false);
     } else {
       const event = new CustomEvent("doctorSelected", { detail: doctor });
       window.dispatchEvent(event);
