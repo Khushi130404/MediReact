@@ -87,3 +87,17 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
+
+.deleteBtn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.deleteBtn:hover {
+  background-color: darkred;
+}
