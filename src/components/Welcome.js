@@ -31,11 +31,7 @@ const Welcome = () => {
           </div>
         </div>
       </div>
-
-      {/* Render DocList when showDocList is true */}
-      {showDocList && (
-        <DocList docList={docList} onSelect={() => setShowDocList(false)} />
-      )}
+      {showDocList && <DocList onSelect={() => setShowDocList(false)} />}
     </div>
   );
 };

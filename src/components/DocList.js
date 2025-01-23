@@ -1,10 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { showDoctor } from "../services/DoctorService";
 import styles from "./DocList.module.css";
 
-const DocList = ({ docList, onSelect }) => {
+const DocList = ({ onSelect }) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [docList, setDocList] = useState([]);
 
   useEffect(() => {
+    const fetchDoctors = async () => {
+      const doctors = await showDoctor();
+      if (Array.isArray(doctors)) {
+        setDocList(doctors);
+      } else {
+        console.error("Fetched doctors are not an array:", doctors);
+        setDocList([]); // Default to an empty array
+      }
+      console.log("Fetched doctors:", doctors);
+    };
+
+    fetchDoctors();
+
     const handleSelection = (event) => {
       console.log("Doctor selected:", event.detail);
     };
@@ -15,12 +30,17 @@ const DocList = ({ docList, onSelect }) => {
     };
   }, []);
 
-  if (!docList || docList.length === 0 || !isVisible) return null;
+  // Ensure docList is an array and visible before rendering
+  if (!Array.isArray(docList) || !isVisible) return null;
 
   const handleSelect = (doctor) => {
-    const event = new CustomEvent("doctorSelected", { detail: doctor });
-    window.dispatchEvent(event);
-    onSelect(doctor);
+    if (doctor === null) {
+      setIsVisible(false);
+    } else {
+      const event = new CustomEvent("doctorSelected", { detail: doctor });
+      window.dispatchEvent(event);
+      onSelect(doctor);
+    }
   };
 
   return (
@@ -33,13 +53,13 @@ const DocList = ({ docList, onSelect }) => {
           ✖
         </button>
         <ul className={styles.menuList}>
-          {docList.map((doctor, index) => (
+          {docList.map((doctor) => (
             <li
-              key={index}
+              key={doctor.doctorId}
               className={styles.menuItem}
               onClick={() => handleSelect(doctor)}
             >
-              {doctor}
+              {doctor.doctorName} - {doctor.specialist}
             </li>
           ))}
         </ul>
