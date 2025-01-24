@@ -1,6 +1,7 @@
 .booked {
   background-color: #f0dbd9;
   color: #be1300;
+  overflow: hidden;
   text-align: center;
   padding: 5px;
 }
@@ -10,12 +11,14 @@
   color: #00a83e;
   text-align: center;
   padding: 5px;
+  overflow: hidden;
 }
 
 .my_slot {
   background-color: #cce1e6;
   color: #06637a;
   text-align: center;
+  overflow: hidden;
   padding: 5px;
 }
 

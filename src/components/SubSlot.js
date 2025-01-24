@@ -31,7 +31,6 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
       setPopupType("delete");
       setShowPopup(true);
     }
-    // If booked by another user, do nothing
   };
 
   const handleBooking = async () => {

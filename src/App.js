@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import Appointment from "./components/Appointment";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const AppointmentWrapper = () => {
@@ -28,7 +29,7 @@ function App() {
             path="/appointment"
             element={<AppointmentWrapper></AppointmentWrapper>}
           />
-          <Route path="/profile" element={<h2>User Profile</h2>} />
+          <Route path="/profile" element={<UserProfile></UserProfile>} />
           <Route path="/register" element={<RegisterForm></RegisterForm>} />
           <Route path="/login" element={<LoginForm></LoginForm>} />
         </Routes>
