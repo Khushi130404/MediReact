@@ -1,10 +1,34 @@
 import { useEffect, useState } from "react";
 import { getAppointment } from "../services/AppointmentService";
 import FutureAppointment from "./FutureAppointment";
+import styles from "./FutureAppointmentList.module.css";
 
 const FutureAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
+  const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = 3;
+  const [autoSlide, setAutoSlide] = useState(null);
+
+  const nextSlide = () => {
+    setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
+    resetAutoSlide();
+  };
+
+  const prevSlide = () => {
+    setStartIndex(
+      (prevIndex) => (prevIndex - 1 + appointments.length) % appointments.length
+    );
+    resetAutoSlide();
+  };
+
+  const resetAutoSlide = () => {
+    if (autoSlide) clearInterval(autoSlide);
+    const interval = setInterval(() => {
+      setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
+    }, 7000);
+    setAutoSlide(interval);
+  };
 
   const parseDate = (dateStr) => {
     if (!dateStr) return null;
@@ -20,7 +44,6 @@ const FutureAppointmentList = () => {
 
         const futureAppointments = allAppointments.filter((appointment) => {
           const appointmentDate = parseDate(appointment.date);
-
           return (
             appointment.userId === loggedUser.userId &&
             appointmentDate &&
@@ -29,7 +52,6 @@ const FutureAppointmentList = () => {
         });
 
         setAppointments(futureAppointments);
-        console.log(futureAppointments);
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }
@@ -38,17 +60,46 @@ const FutureAppointmentList = () => {
     fetchAppointments();
   }, [loggedUser.userId]);
 
+  useEffect(() => {
+    resetAutoSlide();
+
+    return () => {
+      if (autoSlide) clearInterval(autoSlide);
+    };
+  }, [appointments.length]);
+
   return (
-    <div>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>Upcoming Appointments</h2>
       {appointments.length > 0 ? (
-        appointments.map((appointment) => (
-          <FutureAppointment
-            key={appointment.appId}
-            appointment={appointment}
-          />
-        ))
+        <>
+          <div className={styles.appointmentsWrapper}>
+            {appointments
+              .slice(startIndex, startIndex + visibleCount)
+              .concat(
+                appointments.slice(
+                  0,
+                  Math.max(0, startIndex + visibleCount - appointments.length)
+                )
+              )
+              .map((appointment) => (
+                <FutureAppointment
+                  key={appointment.appId}
+                  appointment={appointment}
+                />
+              ))}
+          </div>
+          <div className={styles.buttonWrapper}>
+            <button onClick={prevSlide} className={styles.navButton}>
+              ⬅ Prev
+            </button>
+            <button onClick={nextSlide} className={styles.navButton}>
+              Next ➡
+            </button>
+          </div>
+        </>
       ) : (
-        <p>No future appointments found.</p>
+        <p className={styles.noAppointments}>No future appointments found.</p>
       )}
     </div>
   );
