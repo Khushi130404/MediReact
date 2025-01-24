@@ -29,6 +29,7 @@ const FutureAppointmentList = () => {
         });
 
         setAppointments(futureAppointments);
+        console.log(futureAppointments);
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }
@@ -41,7 +42,10 @@ const FutureAppointmentList = () => {
     <div>
       {appointments.length > 0 ? (
         appointments.map((appointment) => (
-          <FutureAppointment key={appointment.id} appointment={appointment} />
+          <FutureAppointment
+            key={appointment.appId}
+            appointment={appointment}
+          />
         ))
       ) : (
         <p>No future appointments found.</p>

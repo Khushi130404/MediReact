@@ -1,0 +1,17 @@
+.appointmentCard {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.appointmentText {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}

@@ -7,8 +7,10 @@ const UserProfile = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <ProfileSidebar></ProfileSidebar>
-      <ProfileContent></ProfileContent>
+      <div>
+        <ProfileSidebar></ProfileSidebar>
+        <ProfileContent></ProfileContent>
+      </div>
       <Footer></Footer>
     </div>
   );
