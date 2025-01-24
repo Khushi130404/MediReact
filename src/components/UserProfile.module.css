@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  flex-direction: column;
+}
+
+.contentWrapper {
+  display: flex;
+  background-color: white;
+  height: 89vh;
+  width: 100%;
+}
+
+.sidebar {
+  width: 30%;
+  padding: 20px;
+  background-color: white;
+}
+
+.profileContent {
+  flex-grow: 1;
+  width: 70%;
+  background-color: white;
+}

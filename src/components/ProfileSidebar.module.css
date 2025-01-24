@@ -7,9 +7,10 @@
   background-color: #04364a14;
   color: #04364a;
   padding: 20px;
-  height: 89vh;
+  border-radius: 20px;
+  height: 100%;
   box-sizing: border-box;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
@@ -22,7 +23,7 @@
   height: 100px;
   border-radius: 50%;
   background-color: #fff;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +51,7 @@
 }
 
 .formGroup {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -68,7 +69,7 @@
 .formGroup select {
   width: 90%;
   align-self: center;
-  padding: 5px 10px;
+  padding: 3px 10px;
   border: none;
   border-radius: 20px;
   background-color: white;
