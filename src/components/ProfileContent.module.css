@@ -1,6 +1,5 @@
 .profileContent {
   flex-grow: 1;
-  width: 100vh;
   height: 89vh;
   overflow-y: auto;
   background-color: #ffffff;
