@@ -42,16 +42,29 @@ const FutureAppointmentList = () => {
         const allAppointments = await getAppointment();
         const today = new Date();
 
-        const futureAppointments = allAppointments.filter((appointment) => {
-          const appointmentDate = parseDate(appointment.date);
-          return (
-            appointment.userId === loggedUser.userId &&
-            appointmentDate &&
-            appointmentDate > today
-          );
-        });
+        const futureAppointments = allAppointments
+          .filter((appointment) => {
+            const appointmentDate = parseDate(appointment.date);
+            return (
+              appointment.userId === loggedUser.userId &&
+              appointmentDate &&
+              appointmentDate > today
+            );
+          })
+          .sort((a, b) => {
+            const dateA = parseDate(a.date);
+            const dateB = parseDate(b.date);
+            if (dateA.getTime() !== dateB.getTime()) {
+              return dateA - dateB;
+            }
+            return a.startTime.localeCompare(b.startTime);
+          });
 
         setAppointments(futureAppointments);
+
+        if (futureAppointments.length > 1) {
+          resetAutoSlide();
+        }
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }
@@ -61,12 +74,10 @@ const FutureAppointmentList = () => {
   }, [loggedUser.userId]);
 
   useEffect(() => {
-    resetAutoSlide();
-
     return () => {
       if (autoSlide) clearInterval(autoSlide);
     };
-  }, [appointments.length]);
+  }, [autoSlide]);
 
   return (
     <div className={styles.container}>
