@@ -1,20 +1,31 @@
+import { useEffect, useState } from "react";
 import styles from "./FutureAppointment.module.css";
+import { getDoctorById } from "../services/DoctorService";
 
-const FutureAppointment = ({ key, appointment }) => {
+const FutureAppointment = ({ appointment }) => {
+  const [doctor, setDoctor] = useState(null);
+
+  useEffect(() => {
+    const fetchDoctor = async () => {
+      const doctorData = await getDoctorById(appointment.docId);
+      setDoctor(doctorData);
+    };
+
+    fetchDoctor();
+  }, [appointment.docId]);
+
   return (
     <div className={styles.appointmentCard}>
-      <p className={styles.appointmentText}>
-        <span className={styles.bold}>Doctor ID:</span> {appointment.docId}
-      </p>
-      <p className={styles.appointmentText}>
-        <span className={styles.bold}>Date:</span> {appointment.date}
-      </p>
-      <p className={styles.appointmentText}>
-        <span className={styles.bold}>Start Time:</span> {appointment.startTime}
-      </p>
-      <p className={styles.appointmentText}>
-        <span className={styles.bold}>End Time:</span> {appointment.endTime}
-      </p>
+      <div className={styles.header}>
+        <strong>{doctor ? doctor.doctorName : "Loading..."}</strong>
+        <span className={styles.specialist}>
+          {doctor ? doctor.specialist : "Loading..."}
+        </span>
+      </div>
+      <div className={styles.details}>
+        <span>📅 {appointment.date}</span>
+        <span>🕒 {appointment.startTime}</span>
+      </div>
     </div>
   );
 };
