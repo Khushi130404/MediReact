@@ -17,9 +17,13 @@
   font-weight: bold;
 }
 
+.header strong {
+  color: #04364a;
+}
+
 .specialist {
   font-size: 13px;
-  color: #666;
+  color: #04364a7e;
 }
 
 .details {

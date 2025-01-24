@@ -11,6 +11,7 @@
   font-size: 20px;
   font-weight: bold;
   margin: 0;
+  color: #04364a;
   margin-bottom: 15px;
   text-align: center;
 }
@@ -43,7 +44,7 @@
 
 .noAppointments {
   font-size: 16px;
-  color: gray;
+  color: rgb(140, 144, 145);
 }
 
 .navButton img {

@@ -10,7 +10,6 @@
   border-radius: 20px;
   height: 100%;
   box-sizing: border-box;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
