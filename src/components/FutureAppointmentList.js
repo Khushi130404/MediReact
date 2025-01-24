@@ -26,7 +26,7 @@ const FutureAppointmentList = () => {
     if (autoSlide) clearInterval(autoSlide);
     const interval = setInterval(() => {
       setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
-    }, 7000);
+    }, 10000);
     setAutoSlide(interval);
   };
 
@@ -61,7 +61,6 @@ const FutureAppointmentList = () => {
           });
 
         setAppointments(futureAppointments);
-
         if (futureAppointments.length > 1) {
           resetAutoSlide();
         }
@@ -83,32 +82,35 @@ const FutureAppointmentList = () => {
     <div className={styles.container}>
       <h2 className={styles.heading}>Upcoming Appointments</h2>
       {appointments.length > 0 ? (
-        <>
-          <div className={styles.appointmentsWrapper}>
-            {appointments
-              .slice(startIndex, startIndex + visibleCount)
-              .concat(
-                appointments.slice(
-                  0,
-                  Math.max(0, startIndex + visibleCount - appointments.length)
-                )
+        <div className={styles.appointmentsWrapper}>
+          <button
+            onClick={prevSlide}
+            className={`${styles.navButton} ${styles.prevButton}`}
+          >
+            <img src="image/prev.svg"></img>
+          </button>
+          {appointments
+            .slice(startIndex, startIndex + visibleCount)
+            .concat(
+              appointments.slice(
+                0,
+                Math.max(0, startIndex + visibleCount - appointments.length)
               )
-              .map((appointment) => (
-                <FutureAppointment
-                  key={appointment.appId}
-                  appointment={appointment}
-                />
-              ))}
-          </div>
-          <div className={styles.buttonWrapper}>
-            <button onClick={prevSlide} className={styles.navButton}>
-              ⬅ Prev
-            </button>
-            <button onClick={nextSlide} className={styles.navButton}>
-              Next ➡
-            </button>
-          </div>
-        </>
+            )
+            .map((appointment) => (
+              <FutureAppointment
+                key={appointment.appId}
+                appointment={appointment}
+                className={styles.appointmentCard}
+              />
+            ))}
+          <button
+            onClick={nextSlide}
+            className={`${styles.navButton} ${styles.nextButton}`}
+          >
+            <img src="image/next.svg"></img>
+          </button>
+        </div>
       ) : (
         <p className={styles.noAppointments}>No future appointments found.</p>
       )}

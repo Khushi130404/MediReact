@@ -1,12 +1,11 @@
 .appointmentCard {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #f9f9f9;
-  max-width: 280px; /* Adjust as needed */
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: white;
+  width: 200px;
   font-size: 14px;
 }
 
@@ -14,17 +13,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
 }
 
 .specialist {
-  font-size: 12px;
+  font-size: 13px;
   color: #666;
 }
 
 .details {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 13px;
 }
