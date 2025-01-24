@@ -84,7 +84,6 @@
 .formGroup select:disabled {
   background-color: #04364a28;
   color: white;
-  cursor: not-allowed;
 }
 
 .formGroup select:disabled {
@@ -94,8 +93,6 @@
 .formGroup input:focus,
 .formGroup select:focus {
   outline: none;
-  background-color: white;
-  border-color: #427d9d;
 }
 
 .editProfile {
