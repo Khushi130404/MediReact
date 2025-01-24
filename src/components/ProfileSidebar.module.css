@@ -64,7 +64,8 @@
   color: #04364a;
 }
 
-.formGroup input {
+.formGroup input,
+.formGroup select {
   width: 90%;
   align-self: center;
   padding: 5px 10px;
@@ -75,12 +76,23 @@
   transition: border-color 0.3s ease;
 }
 
-.formGroup input[readonly] {
-  background-color: #04364a28;
-  color: white;
+.formGroup select {
+  width: 95%;
 }
 
-.formGroup input:focus {
+.formGroup input[readonly],
+.formGroup select:disabled {
+  background-color: #04364a28;
+  color: white;
+  cursor: not-allowed;
+}
+
+.formGroup select:disabled {
+  opacity: 1;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
   outline: none;
   border-color: #427d9d;
 }
