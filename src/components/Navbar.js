@@ -32,7 +32,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/about" className={styles.navItem}>
+            <Link to="/profile" className={styles.navItem}>
               Profile
             </Link>
           </li>
@@ -51,7 +51,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/profile" className={styles.navItem}>
+            <Link to="/about" className={styles.navItem}>
               About Us
             </Link>
           </li>

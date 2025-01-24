@@ -13,7 +13,7 @@ const ProfileSidebar = () => {
       <div className={styles.profilePic}>
         <img src="placeholder.png" alt="Profile Picture" />
       </div>
-      <form>
+      <form className={styles.form}>
         <div className={styles.formGroup}>
           <label htmlFor="name">Name</label>
           <input

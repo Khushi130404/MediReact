@@ -1,9 +1,20 @@
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   width: 30vw;
-  background-color: #f4f4f4;
+  background-color: #04364a14;
   color: #04364a;
   padding: 20px;
-  height: 100vh;
+  height: 89vh;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.sidebar:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .profilePic {
@@ -11,42 +22,67 @@
   height: 100px;
   border-radius: 50%;
   background-color: #fff;
-  margin: 0 auto 20px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .profilePic img {
-  width: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-h2 {
-  margin-bottom: 20px;
+.form {
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #04364a;
 }
 
 .formGroup {
-  margin-bottom: 15px;
-  margin-right: 15px;
+  margin-bottom: 12px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .formGroup label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   font-weight: bold;
+  margin-left: 15px;
+  color: #04364a;
 }
 
 .formGroup input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f1f1f1;
+  width: 90%;
+  align-self: center;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 .formGroup input[readonly] {
-  background-color: #e9e9e9;
+  background-color: #04364a28;
+  color: white;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #427d9d;
 }
 
 .editProfile {
@@ -55,13 +91,18 @@ h2 {
   width: 100%;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
-  background-color: #427d9dcd;
+  border-radius: 20px;
+  background-color: #427d9d;
   color: white;
-  margin-top: 50px;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .editProfile:hover {
-  background-color: #427d9d;
+  background-color: #226284;
+  transform: translateY(-2px);
+}
+
+.editProfile:active {
+  transform: translateY(0);
 }
