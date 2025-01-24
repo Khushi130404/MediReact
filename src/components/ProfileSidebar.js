@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styles from "./ProfileSidebar.module.css";
+import { updateUser } from "../services/UserService";
 
 const ProfileSidebar = () => {
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
 
-  // Add state for each field to allow editing
   const [isEditable, setIsEditable] = useState(false);
   const [userName, setUserName] = useState(loggedUser.userName);
   const [userMail, setUserMail] = useState(loggedUser.userMail);
@@ -13,8 +13,24 @@ const ProfileSidebar = () => {
   const [userAddress, setUserAddress] = useState(loggedUser.userAddress);
   const [userGender, setUserGender] = useState(loggedUser.userGender);
 
-  const toggleEdit = () => {
-    setIsEditable(!isEditable);
+  const handleSave = async () => {
+    try {
+      const updatedUser = {
+        userId: loggedUser.userId,
+        userName,
+        userMail,
+        userAge,
+        userMobile,
+        userAddress,
+        userGender,
+      };
+      await updateUser(updatedUser);
+      localStorage.setItem("logged_user", JSON.stringify(updatedUser));
+      setIsEditable(false);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      alert("An error occurred while updating the profile.");
+    }
   };
 
   return (
@@ -81,12 +97,15 @@ const ProfileSidebar = () => {
             onChange={(e) => setUserGender(e.target.value)}
             disabled={!isEditable}
           >
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
       </form>
-      <button className={styles.editProfile} onClick={toggleEdit}>
+      <button
+        className={styles.editProfile}
+        onClick={isEditable ? handleSave : () => setIsEditable(true)}
+      >
         {isEditable ? "Save Profile" : "Edit Profile"}
       </button>
     </div>
