@@ -48,7 +48,7 @@ const PastAppointmentList = () => {
             return (
               appointment.userId === loggedUser.userId &&
               appointmentDate &&
-              appointmentDate > today
+              appointmentDate < today
             );
           })
           .sort((a, b) => {
