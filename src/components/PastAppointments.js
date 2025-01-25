@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import styles from "./FutureAppointment.module.css";
+import styles from "./PastAppointment.module.css";
 import { getDoctorById } from "../services/DoctorService";
 
-const FutureAppointment = ({ appointment }) => {
+const PastAppointment = ({ appointment }) => {
   const [doctor, setDoctor] = useState(null);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const FutureAppointment = ({ appointment }) => {
   );
 };
 
-export default FutureAppointment;
+export default PastAppointment;
