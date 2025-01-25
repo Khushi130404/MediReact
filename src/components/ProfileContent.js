@@ -5,8 +5,12 @@ import styles from "./ProfileContent.module.css";
 const ProfileContent = () => {
   return (
     <div className={styles.profileContent}>
-      <FutureAppointmentList></FutureAppointmentList>
-      <PastAppointmentList></PastAppointmentList>
+      <div className={styles.profContentDiv}>
+        <FutureAppointmentList></FutureAppointmentList>
+      </div>
+      <div className={styles.profContentDiv}>
+        <PastAppointmentList></PastAppointmentList>
+      </div>
     </div>
   );
 };

@@ -11,22 +11,27 @@ const PastAppointmentList = () => {
   const [autoSlide, setAutoSlide] = useState(null);
 
   const nextSlide = () => {
-    setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
-    resetAutoSlide();
+    if (appointments.length > 0) {
+      setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
+      resetAutoSlide();
+    }
   };
 
   const prevSlide = () => {
-    setStartIndex(
-      (prevIndex) => (prevIndex - 1 + appointments.length) % appointments.length
-    );
-    resetAutoSlide();
+    if (appointments.length > 0) {
+      setStartIndex(
+        (prevIndex) =>
+          (prevIndex - 1 + appointments.length) % appointments.length
+      );
+      resetAutoSlide();
+    }
   };
 
   const resetAutoSlide = () => {
     if (autoSlide) clearInterval(autoSlide);
     const interval = setInterval(() => {
       setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
-    }, 10000);
+    }, 7000);
     setAutoSlide(interval);
   };
 
@@ -55,7 +60,7 @@ const PastAppointmentList = () => {
             const dateA = parseDate(a.date);
             const dateB = parseDate(b.date);
             if (dateA.getTime() !== dateB.getTime()) {
-              return dateA - dateB;
+              return dateB - dateA;
             }
             return a.startTime.localeCompare(b.startTime);
           });
@@ -73,14 +78,14 @@ const PastAppointmentList = () => {
   }, [loggedUser.userId]);
 
   useEffect(() => {
-    return () => {
-      if (autoSlide) clearInterval(autoSlide);
-    };
-  }, [autoSlide]);
+    if (appointments.length > 1) {
+      resetAutoSlide();
+    }
+  }, [appointments.length]);
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Upcoming Appointments</h2>
+      <h2 className={styles.heading}>Past Appointments</h2>
       {appointments.length > 0 ? (
         <div className={styles.appointmentsWrapper}>
           <button

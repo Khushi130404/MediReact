@@ -11,22 +11,27 @@ const FutureAppointmentList = () => {
   const [autoSlide, setAutoSlide] = useState(null);
 
   const nextSlide = () => {
-    setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
-    resetAutoSlide();
+    if (appointments.length > 0) {
+      setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
+      resetAutoSlide();
+    }
   };
 
   const prevSlide = () => {
-    setStartIndex(
-      (prevIndex) => (prevIndex - 1 + appointments.length) % appointments.length
-    );
-    resetAutoSlide();
+    if (appointments.length > 0) {
+      setStartIndex(
+        (prevIndex) =>
+          (prevIndex - 1 + appointments.length) % appointments.length
+      );
+      resetAutoSlide();
+    }
   };
 
   const resetAutoSlide = () => {
     if (autoSlide) clearInterval(autoSlide);
     const interval = setInterval(() => {
       setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
-    }, 10000);
+    }, 7000);
     setAutoSlide(interval);
   };
 
@@ -73,10 +78,10 @@ const FutureAppointmentList = () => {
   }, [loggedUser.userId]);
 
   useEffect(() => {
-    return () => {
-      if (autoSlide) clearInterval(autoSlide);
-    };
-  }, [autoSlide]);
+    if (appointments.length > 1) {
+      resetAutoSlide();
+    }
+  }, [appointments.length]);
 
   return (
     <div className={styles.container}>
