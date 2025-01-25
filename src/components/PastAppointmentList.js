@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAppointment } from "../services/AppointmentService";
-import FutureAppointment from "./FutureAppointment";
-import styles from "./FutureAppointmentList.module.css";
+import PastAppointment from "./PastAppointment";
+import styles from "./PastAppointmentList.module.css";
 
-const FutureAppointmentList = () => {
+const PastAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
   const [startIndex, setStartIndex] = useState(0);
@@ -47,26 +47,26 @@ const FutureAppointmentList = () => {
         const allAppointments = await getAppointment();
         const today = new Date();
 
-        const futureAppointments = allAppointments
+        const PastAppointments = allAppointments
           .filter((appointment) => {
             const appointmentDate = parseDate(appointment.date);
             return (
               appointment.userId === loggedUser.userId &&
               appointmentDate &&
-              appointmentDate > today
+              appointmentDate < today
             );
           })
           .sort((a, b) => {
             const dateA = parseDate(a.date);
             const dateB = parseDate(b.date);
             if (dateA.getTime() !== dateB.getTime()) {
-              return dateA - dateB;
+              return dateB - dateA;
             }
             return a.startTime.localeCompare(b.startTime);
           });
 
-        setAppointments(futureAppointments);
-        if (futureAppointments.length > 1) {
+        setAppointments(PastAppointments);
+        if (PastAppointments.length > 1) {
           resetAutoSlide();
         }
       } catch (error) {
@@ -85,7 +85,7 @@ const FutureAppointmentList = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Upcoming Appointments</h2>
+      <h2 className={styles.heading}>Past Appointments</h2>
       {appointments.length > 0 ? (
         <div className={styles.appointmentsWrapper}>
           <button
@@ -103,7 +103,7 @@ const FutureAppointmentList = () => {
               )
             )
             .map((appointment) => (
-              <FutureAppointment
+              <PastAppointment
                 key={appointment.appId}
                 appointment={appointment}
                 className={styles.appointmentCard}
@@ -117,10 +117,10 @@ const FutureAppointmentList = () => {
           </button>
         </div>
       ) : (
-        <p className={styles.noAppointments}>No future appointments found.</p>
+        <p className={styles.noAppointments}>No Past appointments found.</p>
       )}
     </div>
   );
 };
 
-export default FutureAppointmentList;
+export default PastAppointmentList;

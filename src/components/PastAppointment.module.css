@@ -1,0 +1,33 @@
+.appointmentCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: white;
+  width: 200px;
+  font-size: 14px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.header strong {
+  color: #04364a;
+}
+
+.specialist {
+  font-size: 13px;
+  color: #04364a7e;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
