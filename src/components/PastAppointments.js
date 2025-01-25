@@ -31,3 +31,4 @@ const PastAppointment = ({ appointment }) => {
 };
 
 export default PastAppointment;
+
