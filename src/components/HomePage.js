@@ -3,12 +3,12 @@ import Footer from "./Footer";
 import Welcome from "./Welcome";
 import Menu from "./Menu";
 import HerosWithCape from "./HerosWithoutCape";
-import UserNavbar from "./UserNavbar";
+import Navbar from "./Navbar";
 
-const UserHomePage = () => {
+const HomePage = () => {
   return (
     <div>
-      <UserNavbar></UserNavbar>
+      <Navbar></Navbar>
       <Welcome></Welcome>
       <Menu></Menu>
       <HerosWithCape></HerosWithCape>
@@ -17,4 +17,4 @@ const UserHomePage = () => {
   );
 };
 
-export default UserHomePage;
+export default HomePage;

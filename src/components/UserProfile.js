@@ -2,12 +2,12 @@ import Footer from "./Footer";
 import ProfileSidebar from "./ProfileSidebar";
 import ProfileContent from "./ProfileContent";
 import styles from "./UserProfile.module.css";
-import UserNavbar from "./UserNavbar";
+import Navbar from "./Navbar";
 
 const UserProfile = () => {
   return (
     <div className={styles.container}>
-      <UserNavbar></UserNavbar>
+      <Navbar></Navbar>
       <div className={styles.contentWrapper}>
         <div className={styles.sidebar}>
           <ProfileSidebar />

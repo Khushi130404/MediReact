@@ -1,7 +1,7 @@
 import Footer from "./Footer";
 import AppointmentTable from "./AppointmentTable";
 import { useLocation } from "react-router-dom";
-import UserNavbar from "./UserNavbar";
+import Navbar from "./Navbar";
 
 const Appointment = () => {
   const location = useLocation();
@@ -9,7 +9,7 @@ const Appointment = () => {
 
   return (
     <div>
-      <UserNavbar></UserNavbar>
+      <Navbar></Navbar>
       <AppointmentTable doctor={doctor}></AppointmentTable>
       <Footer></Footer>
     </div>

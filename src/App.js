@@ -6,7 +6,7 @@ import {
   Routes,
 } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
-import UserHomePage from "./components/UserHomePage";
+import HomePage from "./components/HomePage";
 import RegisterForm from "./components/RegisterForm";
 import Appointment from "./components/Appointment";
 import UserProfile from "./components/UserProfile";
@@ -22,8 +22,8 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<UserHomePage></UserHomePage>} />
-          <Route path="/home" element={<UserHomePage></UserHomePage>} />
+          <Route path="/" element={<HomePage></HomePage>} />
+          <Route path="/home" element={<HomePage></HomePage>} />
           <Route path="/about" element={<h2>About Us</h2>} />
           <Route
             path="/appointment"
@@ -32,8 +32,8 @@ function App() {
           <Route path="/profile" element={<UserProfile></UserProfile>} />
           <Route path="/register" element={<RegisterForm></RegisterForm>} />
           <Route path="/login" element={<LoginForm></LoginForm>} />
-          <Route path="/user" element={<UserHomePage></UserHomePage>} />
-          <Route path="/user/home" element={<UserHomePage></UserHomePage>} />
+          <Route path="/user" element={<HomePage></HomePage>} />
+          <Route path="/user/home" element={<HomePage></HomePage>} />
           <Route path="/user/about" element={<h2>About Us</h2>} />
           <Route
             path="/user/appointment"
@@ -45,8 +45,8 @@ function App() {
             element={<RegisterForm></RegisterForm>}
           />
           <Route path="/user/login" element={<LoginForm></LoginForm>} />
-          <Route path="/doctor" element={<UserHomePage></UserHomePage>} />
-          <Route path="/doctor/home" element={<UserHomePage></UserHomePage>} />
+          <Route path="/doctor" element={<HomePage></HomePage>} />
+          <Route path="/doctor/home" element={<HomePage></HomePage>} />
           <Route path="/doctor/about" element={<h2>About Us</h2>} />
           <Route
             path="/doctor/appointment"
