@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./Navbar.module.css";
+import styles from "./DoctorNavbar.module.css";
 import DocList from "./DocList";
 
-const Navbar = () => {
+const DoctorNavbar = () => {
   const [showDocList, setShowDocList] = useState(false);
   const navigate = useNavigate();
 
   const handleBookingClick = () => {
-    const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
+    const loggedDoctor = JSON.parse(localStorage.getItem("logged_Doctor"));
 
-    if (!loggedUser) {
+    if (!loggedDoctor) {
       navigate("/login");
     } else {
       setShowDocList(true);
@@ -62,4 +62,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default DoctorNavbar;

@@ -37,7 +37,7 @@ const DocList = ({ onSelect }) => {
       window.dispatchEvent(event);
       onSelect(doctor);
       console.log(doctor);
-      navigate("/appointment", { state: { doctor } });
+      navigate("/user/appointment", { state: { doctor } });
     }
   };
 

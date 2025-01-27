@@ -66,9 +66,9 @@ const PastAppointmentList = () => {
           });
 
         setAppointments(PastAppointments);
-        if (PastAppointments.length > 1) {
-          resetAutoSlide();
-        }
+        // if (PastAppointments.length > 1) {
+        //   resetAutoSlide();
+        // }
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }
