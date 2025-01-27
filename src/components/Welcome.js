@@ -31,7 +31,7 @@ const Welcome = () => {
                 Assumenda, voluptatum!
               </p>
             </div>
-            {loggedUser && (
+            {!loggedDoc && (
               <div className={styles.buttons}>
                 <div
                   className={styles.containerBook}
