@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./Menu.module.css";
 
 const Menu = () => {
+  const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
+  const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
+
   return (
     <div className={styles.menu}>
       <div className={styles.content3}>
@@ -90,30 +93,60 @@ const Menu = () => {
           </div>
 
           {/* Appointment Section */}
-          <div className={styles.divWrapper}>
-            <div className={styles.text2}>
-              <div className={styles.icon}>
-                <div className={styles.overlapGroup2}>
-                  <div className={styles.ellipse}></div>
-                  <img
-                    className={styles.timesheet}
-                    src="image/schedule.svg"
-                    alt="Appointment Icon"
-                  />
+          {loggedUser && (
+            <div className={styles.divWrapper}>
+              <div className={styles.text2}>
+                <div className={styles.icon}>
+                  <div className={styles.overlapGroup2}>
+                    <div className={styles.ellipse}></div>
+                    <img
+                      className={styles.timesheet}
+                      src="image/schedule.svg"
+                      alt="Appointment Icon"
+                    />
+                  </div>
+                </div>
+                <div className={styles.text3}>
+                  <div className={styles.textWrapper7}>Appointment</div>
+                  <p className={styles.textWrapper8}>
+                    Not feeling well?&nbsp;&nbsp;Don’t worry, Book an
+                    appointment now!
+                  </p>
+                </div>
+                <div className={styles.buttonBase}>
+                  <button className={styles.pageLink}>
+                    Book An Appointment
+                  </button>
                 </div>
               </div>
-              <div className={styles.text3}>
-                <div className={styles.textWrapper7}>Appointment</div>
-                <p className={styles.textWrapper8}>
-                  Not feeling well?&nbsp;&nbsp;Don’t worry, Book an appointment
-                  now!
-                </p>
-              </div>
-              <div className={styles.buttonBase}>
-                <button className={styles.pageLink}>Book An Appointment</button>
+            </div>
+          )}
+          {loggedDoc && (
+            <div className={styles.divWrapper}>
+              <div className={styles.text2}>
+                <div className={styles.icon}>
+                  <div className={styles.overlapGroup2}>
+                    <div className={styles.ellipse}></div>
+                    <img
+                      className={styles.timesheet}
+                      src="image/schedule.svg"
+                      alt="Appointment Icon"
+                    />
+                  </div>
+                </div>
+                <div className={styles.text3}>
+                  <div className={styles.textWrapper7}>Schedule</div>
+                  <p className={styles.textWrapper8}>
+                    Not feeling well?&nbsp;&nbsp;Don’t worry, Book an
+                    appointment now!
+                  </p>
+                </div>
+                <div className={styles.buttonBase}>
+                  <button className={styles.pageLink}>Doctor's Schedule</button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
