@@ -10,6 +10,8 @@ import HomePage from "./components/HomePage";
 import RegisterForm from "./components/RegisterForm";
 import Appointment from "./components/Appointment";
 import UserProfile from "./components/UserProfile";
+import Schedule from "./components/Schedule";
+import DoctorProfile from "./components/DoctorProfile";
 
 function App() {
   const AppointmentWrapper = () => {
@@ -48,11 +50,11 @@ function App() {
           <Route path="/doctor" element={<HomePage></HomePage>} />
           <Route path="/doctor/home" element={<HomePage></HomePage>} />
           <Route path="/doctor/about" element={<h2>About Us</h2>} />
+          <Route path="/doctor/schedule" element={<Schedule></Schedule>} />
           <Route
-            path="/doctor/appointment"
-            element={<AppointmentWrapper></AppointmentWrapper>}
+            path="/doctor/profile"
+            element={<DoctorProfile></DoctorProfile>}
           />
-          <Route path="/doctor/profile" element={<UserProfile></UserProfile>} />
           <Route
             path="/doctor/register"
             element={<RegisterForm></RegisterForm>}

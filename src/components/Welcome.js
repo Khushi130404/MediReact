@@ -6,10 +6,10 @@ import DocList from "./DocList";
 const Welcome = () => {
   const [showDocList, setShowDocList] = useState(false);
   const navigate = useNavigate();
+  const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
+  const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
 
   const handleBookingClick = () => {
-    const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
-
     if (!loggedUser) {
       navigate("/login");
     } else {
@@ -31,14 +31,26 @@ const Welcome = () => {
                 Assumenda, voluptatum!
               </p>
             </div>
-            <div className={styles.buttons}>
-              <div
-                className={styles.containerBook}
-                onClick={handleBookingClick}
-              >
-                <p className={styles.animatedWord}>Book An Appointment</p>
+            {loggedUser && (
+              <div className={styles.buttons}>
+                <div
+                  className={styles.containerBook}
+                  onClick={handleBookingClick}
+                >
+                  <p className={styles.animatedWord}>Book An Appointment</p>
+                </div>
               </div>
-            </div>
+            )}
+            {loggedDoc && (
+              <div className={styles.buttons}>
+                <div
+                  className={styles.containerBook}
+                  onClick={handleBookingClick}
+                >
+                  <p className={styles.animatedWord}>Doctor's Schedule</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
