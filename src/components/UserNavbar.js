@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./Navbar.module.css";
+import styles from "./UserNavbar.module.css";
 import DocList from "./DocList";
 
-const Navbar = () => {
+const UserNavbar = () => {
   const [showDocList, setShowDocList] = useState(false);
   const navigate = useNavigate();
 
@@ -62,4 +62,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default UserNavbar;

@@ -66,9 +66,9 @@ const FutureAppointmentList = () => {
           });
 
         setAppointments(futureAppointments);
-        if (futureAppointments.length > 1) {
-          resetAutoSlide();
-        }
+        // if (futureAppointments.length > 1) {
+        //   resetAutoSlide();
+        // }
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }

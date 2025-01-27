@@ -1,12 +1,12 @@
 import React from "react";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Registration from "./Registration";
+import UserNavbar from "./UserNavbar";
 
 const RegisterForm = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      <UserNavbar></UserNavbar>
       <Registration></Registration>
       <Footer></Footer>
     </div>
