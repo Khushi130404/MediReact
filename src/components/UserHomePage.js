@@ -5,7 +5,7 @@ import Menu from "./Menu";
 import HerosWithCape from "./HerosWithoutCape";
 import UserNavbar from "./UserNavbar";
 
-const HomePage = () => {
+const UserHomePage = () => {
   return (
     <div>
       <UserNavbar></UserNavbar>
@@ -17,4 +17,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default UserHomePage;

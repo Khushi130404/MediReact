@@ -17,14 +17,14 @@ const Login = () => {
       if (doctor) {
         localStorage.setItem("logged_doctor", JSON.stringify(doctor));
         setError("");
-        navigate("/home");
+        navigate("/doctor/home");
         return;
       }
       const user = await loginUser(email, password);
       if (user) {
         localStorage.setItem("logged_user", JSON.stringify(user));
         setError("");
-        navigate("/home");
+        navigate("/user/home");
         return;
       }
       setError("Invalid credentials or server error.");
