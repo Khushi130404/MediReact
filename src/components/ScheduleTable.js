@@ -1,30 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { getAppointment } from "../services/AppointmentService";
+import { getDoctorAppointment } from "../services/AppointmentService";
 import Slot from "./Slot";
-import styles from "./AppointmentTable.module.css";
+import styles from "./ScheduleTable.module.css";
 
 const ScheduleTable = () => {
-  const doctor = 1;
+  const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
   const [timeSlots, setTimeSlots] = useState([]);
   const [weekdays, setWeekdays] = useState([]);
   const [bookedSlots, setBookedSlots] = useState(new Map());
 
   useEffect(() => {
+    console.log("Khushi : " + loggedDoc);
     const fetchAppointments = async () => {
       try {
-        const response = await getAppointment();
-
+        const response = await getDoctorAppointment(loggedDoc.doctorId);
         const booked = new Map();
-
         response.forEach((appointment) => {
-          if (appointment.docId == doctor.doctorId) {
-            const { startTime, date } = appointment;
-            const key = `${date}-${startTime}`;
-            booked.set(key, appointment);
-          }
+          const { startTime, date } = appointment;
+          const key = `${date}-${startTime}`;
+          booked.set(key, appointment);
         });
-        console.log(doctor);
-
         setBookedSlots(booked);
       } catch (error) {
         console.error("Error fetching appointments:", error);
@@ -122,7 +117,7 @@ const ScheduleTable = () => {
           {timeSlots.map((slot, index) => (
             <Slot
               key={index}
-              docId={doctor.doctorId}
+              docId={loggedDoc.doctorId}
               slot={slot}
               bookedSlots={bookedSlots}
               weekdays={weekdays}
