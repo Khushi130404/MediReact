@@ -10,10 +10,12 @@ const Welcome = () => {
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
 
   const handleBookingClick = () => {
-    if (!loggedUser) {
-      navigate("/login");
-    } else {
+    if (loggedUser) {
       setShowDocList(true);
+    } else if (loggedDoc) {
+      navigate("/doctor/schedule");
+    } else {
+      navigate("/login");
     }
   };
 

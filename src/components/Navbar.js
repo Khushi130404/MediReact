@@ -63,9 +63,9 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link onClick={handleBookingClick} className={styles.navItem}>
+                <button onClick={handleBookingClick} className={styles.navItem}>
                   Appointment
-                </Link>
+                </button>
               </li>
             </>
           )}
@@ -93,9 +93,9 @@ const Navbar = () => {
 
           {isUserLoggedIn || isDocLoggedIn ? (
             <li>
-              <Link onClick={handleLogout} className={styles.navItem}>
+              <button onClick={handleLogout} className={styles.navItem}>
                 Logout
-              </Link>
+              </button>
             </li>
           ) : (
             <>
