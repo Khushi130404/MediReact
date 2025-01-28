@@ -3,6 +3,7 @@ import {
   bookAppointment,
   deleteAppointment,
 } from "../services/AppointmentService";
+import { findUserById } from "../services/UserService";
 import styles from "./SubSlot.module.css";
 
 const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
@@ -11,6 +12,7 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
   const [showPopupUser, setShowPopupUser] = useState(false);
   const [showPopupDoc, setShowPopupDoc] = useState(false);
   const [popupType, setPopupType] = useState("");
+  const [user, setUser] = useState(null);
   const slotRef = useRef(null);
 
   const calculateEndTime = (startTime) => {
@@ -39,6 +41,10 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
         const user = setShowPopupDoc(true);
       }
     }
+  };
+
+  const displayAppointmentData = () => {
+    user = findUserById(appObj.userId);
   };
 
   const handleBooking = async () => {
@@ -108,7 +114,7 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
                 <>
                   <h3>Confirm Booking</h3>
                   <p>
-                    Are you sure you want to book this slot on <b>{date}</b> at{" "}
+                    Are you sure you want to book this slot on <b>{date}</b> at
                     <b>{time}</b>?
                   </p>
                   <button className={styles.confirmBtn} onClick={handleBooking}>
@@ -119,7 +125,7 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
                 <>
                   <h3>Confirm Deletion</h3>
                   <p>
-                    Are you sure you want to <b>delete</b> your appointment on{" "}
+                    Are you sure you want to <b>delete</b> your appointment on
                     <b>{date}</b> at <b>{time}</b>?
                   </p>
                   <button className={styles.confirmBtn} onClick={handleDelete}>
@@ -147,7 +153,7 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
             <div className={styles.popupContent}>
               <h3>Appointment Details</h3>
               <p>
-                <b>User ID:</b> {appObj?.userId}
+                <b>User ID:</b> {user?.userId}
               </p>
               <p>
                 <b>Start Time:</b> {appObj?.startTime}
