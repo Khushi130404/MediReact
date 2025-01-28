@@ -36,7 +36,7 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
       }
     } else if (loggedDoc) {
       if (isBooked) {
-        setShowPopupDoc(true);
+        const user = setShowPopupDoc(true);
       }
     }
   };
