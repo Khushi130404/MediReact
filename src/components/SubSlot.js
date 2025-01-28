@@ -156,16 +156,16 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
             onClick={() => setShowPopupDoc(false)}
           />
           <div className={styles.popup}>
-            <div className={styles.popupContent}>
+            <div className={styles.popupContentDoc}>
               <h3>Appointment Details</h3>
               <p>
-                <b>User Name:</b> {user?.userName}
-              </p>
-              <p>
-                <b>Duration:</b> {appObj?.startTime} to {appObj?.endTime}
+                <b>Patient :</b> {user?.userName}
               </p>
               <p>
                 <b>Contact Info: </b> {user?.userMobile}
+              </p>
+              <p>
+                <b>Duration:</b> {appObj?.startTime} to {appObj?.endTime}
               </p>
               <p>
                 <b>Date:</b> {appObj?.date}
