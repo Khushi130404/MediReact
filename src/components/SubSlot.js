@@ -38,13 +38,19 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
       }
     } else if (loggedDoc) {
       if (isBooked) {
-        const user = setShowPopupDoc(true);
+        displayAppointmentData();
       }
     }
   };
 
-  const displayAppointmentData = () => {
-    user = findUserById(appObj.userId);
+  const displayAppointmentData = async () => {
+    try {
+      const userTemp = await findUserById(appObj.userId);
+      setUser(userTemp);
+      setShowPopupDoc(true);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
   };
 
   const handleBooking = async () => {
@@ -153,13 +159,13 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
             <div className={styles.popupContent}>
               <h3>Appointment Details</h3>
               <p>
-                <b>User ID:</b> {user?.userId}
+                <b>User Name:</b> {user?.userName}
               </p>
               <p>
-                <b>Start Time:</b> {appObj?.startTime}
+                <b>Duration:</b> {appObj?.startTime} to {appObj?.endTime}
               </p>
               <p>
-                <b>End Time:</b> {appObj?.endTime}
+                <b>Contact Info: </b> {user?.userMobile}
               </p>
               <p>
                 <b>Date:</b> {appObj?.date}
