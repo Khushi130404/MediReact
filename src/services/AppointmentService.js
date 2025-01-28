@@ -4,6 +4,7 @@ const BASE_URL = "http://localhost:8080";
 const GET_APPOINTMENT_API = `${BASE_URL}/appointment/show`;
 const BOOK_APPOINTMENT_API = `${BASE_URL}/appointment/add`;
 const DELET_APPOINTMENT_API = `${BASE_URL}/appointment/delete`;
+const DOCID_APPOINTMENT_API = `${BASE_URL}/appointment/docApp`;
 
 export const getAppointment = async () => {
   try {
@@ -41,6 +42,15 @@ export const bookAppointment = async (appInfo) => {
 export const deleteAppointment = async (appId) => {
   try {
     const response = await axios.post(`${DELET_APPOINTMENT_API}/${appId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : "Something went wrong!";
+  }
+};
+
+export const getDoctorAppointment = async (docId) => {
+  try {
+    const response = await axios.post(`${DOCID_APPOINTMENT_API}/${docId}`);
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : "Something went wrong!";
