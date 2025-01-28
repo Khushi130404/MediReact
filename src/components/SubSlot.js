@@ -7,8 +7,10 @@ import styles from "./SubSlot.module.css";
 
 const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupType, setPopupType] = useState(""); // "book" or "delete"
+  const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
+  const [showPopupUser, setShowPopupUser] = useState(false);
+  const [showPopupDoc, setShowPopupDoc] = useState(false);
+  const [popupType, setPopupType] = useState("");
   const slotRef = useRef(null);
 
   const calculateEndTime = (startTime) => {
@@ -24,47 +26,53 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
   };
 
   const handleSlotClick = () => {
-    if (!isBooked) {
-      setPopupType("book");
-      setShowPopup(true);
-    } else if (loggedUser?.userId === appObj?.userId) {
-      setPopupType("delete");
-      setShowPopup(true);
+    if (loggedUser) {
+      if (!isBooked) {
+        setPopupType("book");
+        setShowPopupUser(true);
+      } else if (loggedUser?.userId === appObj?.userId) {
+        setPopupType("delete");
+        setShowPopupUser(true);
+      }
+    } else if (loggedDoc) {
+      if (isBooked) {
+        setShowPopupDoc(true);
+      }
     }
   };
 
   const handleBooking = async () => {
-    if (!loggedUser) {
+    if (loggedUser) {
+      const startTime = time;
+      const endTime = calculateEndTime(startTime);
+
+      const bookingData = {
+        appId: 0,
+        docId: docId,
+        userId: loggedUser.userId,
+        startTime: startTime,
+        endTime: endTime,
+        date: date,
+      };
+
+      try {
+        await bookAppointment(bookingData);
+        setShowPopupUser(false);
+        if (slotRef.current) slotRef.current.className = styles.my_slot;
+      } catch (error) {
+        console.error("Error booking slot:", error);
+        alert("Failed to book the slot. Please try again.");
+      }
+    } else {
       alert("Please login to book a slot.");
       return;
-    }
-
-    const startTime = time;
-    const endTime = calculateEndTime(startTime);
-
-    const bookingData = {
-      appId: 0,
-      docId: docId,
-      userId: loggedUser.userId,
-      startTime: startTime,
-      endTime: endTime,
-      date: date,
-    };
-
-    try {
-      await bookAppointment(bookingData);
-      setShowPopup(false);
-      if (slotRef.current) slotRef.current.className = styles.my_slot;
-    } catch (error) {
-      console.error("Error booking slot:", error);
-      alert("Failed to book the slot. Please try again.");
     }
   };
 
   const handleDelete = async () => {
     try {
       await deleteAppointment(appObj.appId);
-      setShowPopup(false);
+      setShowPopupUser(false);
       if (slotRef.current) slotRef.current.className = styles.available;
     } catch (error) {
       console.error("Error deleting slot:", error);
@@ -88,11 +96,11 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
         {time}
       </td>
 
-      {showPopup && (
+      {showPopupUser && (
         <>
           <div
             className={styles.popupOverlay}
-            onClick={() => setShowPopup(false)}
+            onClick={() => setShowPopupUser(false)}
           />
           <div className={styles.popup}>
             <div className={styles.popupContent}>
@@ -121,9 +129,40 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
               )}
               <button
                 className={styles.cancelBtn}
-                onClick={() => setShowPopup(false)}
+                onClick={() => setShowPopupUser(false)}
               >
                 Cancel
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+      {showPopupDoc && (
+        <>
+          <div
+            className={styles.popupOverlay}
+            onClick={() => setShowPopupDoc(false)}
+          />
+          <div className={styles.popup}>
+            <div className={styles.popupContent}>
+              <h3>Appointment Details</h3>
+              <p>
+                <b>User ID:</b> {appObj?.userId}
+              </p>
+              <p>
+                <b>Start Time:</b> {appObj?.startTime}
+              </p>
+              <p>
+                <b>End Time:</b> {appObj?.endTime}
+              </p>
+              <p>
+                <b>Date:</b> {appObj?.date}
+              </p>
+              <button
+                className={styles.cancelBtn}
+                onClick={() => setShowPopupDoc(false)}
+              >
+                Close
               </button>
             </div>
           </div>
