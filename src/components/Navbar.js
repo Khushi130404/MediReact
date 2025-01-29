@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import DocList from "./DocList";
 
@@ -33,10 +33,10 @@ const Navbar = () => {
     navigate("/home");
   };
 
-  const getPath = (path) => {
-    if (isDocLoggedIn) return `/doctor${path}`;
-    if (isUserLoggedIn) return `/user${path}`;
-    return path;
+  const handleNavigate = (path) => {
+    if (isDocLoggedIn) navigate(`/doctor${path}`);
+    else if (isUserLoggedIn) navigate(`/user${path}`);
+    else navigate(path);
   };
 
   return (
@@ -50,17 +50,23 @@ const Navbar = () => {
         </h1>
         <ul className={styles.navLinks}>
           <li>
-            <Link to={getPath("/home")} className={styles.navItem}>
+            <button
+              onClick={() => handleNavigate("/home")}
+              className={styles.navItem}
+            >
               Home
-            </Link>
+            </button>
           </li>
 
           {isUserLoggedIn && (
             <>
               <li>
-                <Link to={getPath("/profile")} className={styles.navItem}>
+                <button
+                  onClick={() => handleNavigate("/profile")}
+                  className={styles.navItem}
+                >
                   Profile
-                </Link>
+                </button>
               </li>
               <li>
                 <button onClick={handleBookingClick} className={styles.navItem}>
@@ -73,22 +79,31 @@ const Navbar = () => {
           {isDocLoggedIn && (
             <>
               <li>
-                <Link to={getPath("/profile")} className={styles.navItem}>
+                <button
+                  onClick={() => handleNavigate("/profile")}
+                  className={styles.navItem}
+                >
                   Profile
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to={getPath("/schedule")} className={styles.navItem}>
+                <button
+                  onClick={() => handleNavigate("/schedule")}
+                  className={styles.navItem}
+                >
                   Schedule
-                </Link>
+                </button>
               </li>
             </>
           )}
 
           <li>
-            <Link to={getPath("/about")} className={styles.navItem}>
+            <button
+              onClick={() => handleNavigate("/about")}
+              className={styles.navItem}
+            >
               About Us
-            </Link>
+            </button>
           </li>
 
           {isUserLoggedIn || isDocLoggedIn ? (
@@ -100,14 +115,20 @@ const Navbar = () => {
           ) : (
             <>
               <li>
-                <Link to="/register" className={styles.navItem}>
+                <button
+                  onClick={() => navigate("/register")}
+                  className={styles.navItem}
+                >
                   Register
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/login" className={styles.navItem}>
+                <button
+                  onClick={() => navigate("/login")}
+                  className={styles.navItem}
+                >
                   Login
-                </Link>
+                </button>
               </li>
             </>
           )}
