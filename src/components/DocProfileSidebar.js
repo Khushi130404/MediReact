@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import styles from "./DocProfileSidebar.module.css";
-// import { updatedoc } from "../services/docService";
+import { updateDoctor } from "../services/DoctorService";
 
 const DocProfileSidebar = () => {
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
 
   const [isEditable, setIsEditable] = useState(false);
   const [docName, setdocName] = useState(loggedDoc.doctorName);
-  const [docSpecial, setDocSpecial] = useState(loggedDoc.specialist);
+  const [docSpecial, setdocSpecial] = useState(loggedDoc.specialist);
+  const [docPass, setdocPass] = useState(loggedDoc.doctorPass);
   const [docMail, setdocMail] = useState(loggedDoc.doctorMail);
   const [docAge, setdocAge] = useState(loggedDoc.doctorAge);
   const [docMobile, setdocMobile] = useState(loggedDoc.doctorMobile);
@@ -17,16 +18,18 @@ const DocProfileSidebar = () => {
   const handleSave = async () => {
     try {
       const updatedDoc = {
-        docId: loggedDoc.docId,
-        docName,
-        docMail,
-        docAge,
-        docMobile,
-        docAddress,
-        docGender,
+        doctorId: loggedDoc.doctorId,
+        doctorName: docName,
+        doctorMail: docMail,
+        doctorPass: docPass,
+        doctorAge: docAge,
+        doctorGender: docGender,
+        doctorMobile: docMobile,
+        doctorAddress: docAddress,
+        specialist: docSpecial,
       };
-      //   await updatedoc(updatedDoc);
-      localStorage.setItem("logged_doc", JSON.stringify(updatedDoc));
+      await updateDoctor(updatedDoc);
+      localStorage.setItem("logged_doctor", JSON.stringify(updatedDoc));
       setIsEditable(false);
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -56,7 +59,7 @@ const DocProfileSidebar = () => {
             type="text"
             id="special"
             value={docSpecial}
-            onChange={(e) => setdocName(e.target.value)}
+            onChange={(e) => setdocSpecial(e.target.value)}
             readOnly={!isEditable}
           />
         </div>
