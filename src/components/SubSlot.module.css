@@ -104,3 +104,29 @@
 .deleteBtn:hover {
   background-color: darkred;
 }
+
+.popupContentDoc p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.popupContentDoc h3 {
+  margin-bottom: 20px;
+}
+
+.popupContentDoc {
+  padding: 15px;
+}
+
+.popupContent p {
+  margin: 4px 0; 
+  font-size: 14px; 
+}
+
+.popupContent h3 {
+  margin-bottom: 8px; 
+}
+
+.popupContentDoc button {
+  margin-top: 15px;
+}
