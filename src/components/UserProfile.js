@@ -1,6 +1,6 @@
 import Footer from "./Footer";
-import ProfileSidebar from "./UserProfileSidebar";
-import ProfileContent from "./UserProfileContent";
+import UserProfileSidebar from "./UserProfileSidebar";
+import UserProfileContent from "./UserProfileContent";
 import styles from "./UserProfile.module.css";
 import Navbar from "./Navbar";
 
@@ -10,10 +10,10 @@ const UserProfile = () => {
       <Navbar></Navbar>
       <div className={styles.contentWrapper}>
         <div className={styles.sidebar}>
-          <ProfileSidebar />
+          <UserProfileSidebar />
         </div>
         <div className={styles.profileContent}>
-          <ProfileContent />
+          <UserProfileContent />
         </div>
       </div>
       <Footer />
