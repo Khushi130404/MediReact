@@ -13,16 +13,15 @@
   transition: all 0.3s ease;
 }
 
-.sidebar:hover {
+/* .sidebar:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
+} */
 
 .profilePic {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   background-color: #fff;
-  margin-bottom: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,8 +29,8 @@
 }
 
 .profilePic img {
-  width: 50px;
-  height: 50px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -42,7 +41,7 @@
 }
 
 .sidebar h2 {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: center;
   font-size: 1.4rem;
   font-weight: 600;
@@ -50,7 +49,7 @@
 }
 
 .formGroup {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -68,7 +67,7 @@
 .formGroup select {
   width: 90%;
   align-self: center;
-  padding: 3px 10px;
+  padding: 2.5px 10px;
   border: none;
   border-radius: 20px;
   background-color: white;
@@ -96,7 +95,7 @@
 }
 
 .editProfile {
-  padding: 10px 0;
+  padding: 8px 0;
   font-size: 16px;
   width: 100%;
   border: none;
@@ -104,7 +103,7 @@
   border-radius: 20px;
   background-color: #427d9d;
   color: white;
-  margin-top: 10px;
+  margin-top: 8px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 

@@ -6,12 +6,13 @@ const DocProfileSidebar = () => {
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
 
   const [isEditable, setIsEditable] = useState(false);
-  const [docName, setdocName] = useState(loggedDoc.docName);
-  const [docMail, setdocMail] = useState(loggedDoc.docMail);
-  const [docAge, setdocAge] = useState(loggedDoc.docAge);
-  const [docMobile, setdocMobile] = useState(loggedDoc.docMobile);
-  const [docAddress, setdocAddress] = useState(loggedDoc.docAddress);
-  const [docGender, setdocGender] = useState(loggedDoc.docGender);
+  const [docName, setdocName] = useState(loggedDoc.doctorName);
+  const [docSpecial, setDocSpecial] = useState(loggedDoc.specialist);
+  const [docMail, setdocMail] = useState(loggedDoc.doctorMail);
+  const [docAge, setdocAge] = useState(loggedDoc.doctorAge);
+  const [docMobile, setdocMobile] = useState(loggedDoc.doctorMobile);
+  const [docAddress, setdocAddress] = useState(loggedDoc.doctorAddress);
+  const [docGender, setdocGender] = useState(loggedDoc.doctorGender);
 
   const handleSave = async () => {
     try {
@@ -45,6 +46,16 @@ const DocProfileSidebar = () => {
             type="text"
             id="name"
             value={docName}
+            onChange={(e) => setdocName(e.target.value)}
+            readOnly={!isEditable}
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="special">Specialist</label>
+          <input
+            type="text"
+            id="special"
+            value={docSpecial}
             onChange={(e) => setdocName(e.target.value)}
             readOnly={!isEditable}
           />
