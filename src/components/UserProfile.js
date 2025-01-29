@@ -1,6 +1,6 @@
 import Footer from "./Footer";
-import ProfileSidebar from "./ProfileSidebar";
-import ProfileContent from "./ProfileContent";
+import ProfileSidebar from "./UserProfileSidebar";
+import ProfileContent from "./UserProfileContent";
 import styles from "./UserProfile.module.css";
 import Navbar from "./Navbar";
 

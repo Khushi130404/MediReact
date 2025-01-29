@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "./ProfileSidebar.module.css";
+import styles from "./UserProfileSidebar.module.css";
 import { updateUser } from "../services/UserService";
 
-const ProfileSidebar = () => {
+const UserProfileSidebar = () => {
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
 
   const [isEditable, setIsEditable] = useState(false);
@@ -112,4 +112,4 @@ const ProfileSidebar = () => {
   );
 };
 
-export default ProfileSidebar;
+export default UserProfileSidebar;

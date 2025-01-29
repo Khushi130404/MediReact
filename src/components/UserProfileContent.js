@@ -1,8 +1,8 @@
 import FutureAppointmentList from "./FutureAppointmentList";
 import PastAppointmentList from "./PastAppointmentList";
-import styles from "./ProfileContent.module.css";
+import styles from "./UserProfileContent.module.css";
 
-const ProfileContent = () => {
+const UserProfileContent = () => {
   return (
     <div className={styles.profileContent}>
       <div className={styles.profContentDiv}>
@@ -15,4 +15,4 @@ const ProfileContent = () => {
   );
 };
 
-export default ProfileContent;
+export default UserProfileContent;
