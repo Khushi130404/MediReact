@@ -2,6 +2,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import styles from "./DoctorProfile.module.css";
 import DocProfileSidebar from "./DocProfileSidebar";
+import DoctorProfileContent from "./DoctorProfileContent";
 
 const DoctorProfile = () => {
   return (
@@ -11,9 +12,9 @@ const DoctorProfile = () => {
         <div className={styles.sidebar}>
           <DocProfileSidebar></DocProfileSidebar>
         </div>
-        {/* <div className={styles.profileContent}>
-          <ProfileContent />
-        </div> */}
+        <div className={styles.profileContent}>
+          <DoctorProfileContent />
+        </div>
       </div>
       <Footer />
     </div>
