@@ -4,7 +4,7 @@ import {
   getFutureDocAppointment,
 } from "../services/AppointmentService";
 import FutureSchedule from "./FutureSchedule";
-import styles from "./FutureSchedule.module.css";
+import styles from "./FutureScheduleList.module.css";
 
 const FutureScheduleList = () => {
   const [appointments, setAppointments] = useState([]);
@@ -38,27 +38,26 @@ const FutureScheduleList = () => {
     setAutoSlide(interval);
   };
 
-  const parseDate = (dateStr) => {
-    if (!dateStr) return null;
-    const [day, month, year] = dateStr.split("-").map(Number);
-    return new Date(year, month - 1, day);
-  };
+  //   const parseDate = (dateStr) => {
+  //     if (!dateStr) return null;
+  //     const [day, month, year] = dateStr.split("-").map(Number);
+  //     return new Date(year, month - 1, day);
+  //   };
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
         const today = new Date();
-        const futureAppointments = getFutureDocAppointment(loggedDoc.doctorId);
-        // .sort((a, b) => {
-        //   const dateA = parseDate(a.date);
-        //   const dateB = parseDate(b.date);
-        //   if (dateA.getTime() !== dateB.getTime()) {
-        //     return dateA - dateB;
-        //   }
-        //   return a.startTime.localeCompare(b.startTime);
-        // });
-
+        const futureAppointments = await getFutureDocAppointment(
+          loggedDoc.doctorId
+        );
+        // Here there is a Bug
+        // Data in futureApp but not in simple App
+        // SetApp not working
         setAppointments(futureAppointments);
+
+        console.log(futureAppointments);
+        console.log(appointments);
         // if (futureAppointments.length > 1) {
         //   resetAutoSlide();
         // }
@@ -68,7 +67,7 @@ const FutureScheduleList = () => {
     };
 
     fetchAppointments();
-  }, [loggedDoc.doctorId]);
+  }, []);
 
   useEffect(() => {
     if (appointments.length > 1) {

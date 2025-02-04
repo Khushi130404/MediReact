@@ -11,6 +11,7 @@ const FutureAppointment = ({ appointment }) => {
       setUser(userData);
     };
 
+    console.log(appointment);
     fetchUser();
   }, [appointment.userId]);
 
