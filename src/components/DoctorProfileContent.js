@@ -1,5 +1,3 @@
-import FutureAppointmentList from "./FutureAppointmentList";
-import PastAppointmentList from "./PastAppointmentList";
 import styles from "./DoctorProfileContent.module.css";
 import FutureScheduleList from "./FutureScheduleList";
 

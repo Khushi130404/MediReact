@@ -48,16 +48,15 @@ const FutureScheduleList = () => {
     const fetchAppointments = async () => {
       try {
         const today = new Date();
-        const futureAppointments = getFutureDocAppointment(
-          loggedDoc.doctorId
-        ).sort((a, b) => {
-          const dateA = parseDate(a.date);
-          const dateB = parseDate(b.date);
-          if (dateA.getTime() !== dateB.getTime()) {
-            return dateA - dateB;
-          }
-          return a.startTime.localeCompare(b.startTime);
-        });
+        const futureAppointments = getFutureDocAppointment(loggedDoc.doctorId);
+        // .sort((a, b) => {
+        //   const dateA = parseDate(a.date);
+        //   const dateB = parseDate(b.date);
+        //   if (dateA.getTime() !== dateB.getTime()) {
+        //     return dateA - dateB;
+        //   }
+        //   return a.startTime.localeCompare(b.startTime);
+        // });
 
         setAppointments(futureAppointments);
         // if (futureAppointments.length > 1) {
