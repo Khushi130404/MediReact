@@ -1,12 +1,13 @@
 import FutureAppointmentList from "./FutureAppointmentList";
 import PastAppointmentList from "./PastAppointmentList";
 import styles from "./DoctorProfileContent.module.css";
+import FutureScheduleList from "./FutureScheduleList";
 
 const DoctorProfileContent = () => {
   return (
     <div className={styles.profileContent}>
       <div className={styles.profContentDiv}>
-        {/* <FutureAppointmentList></FutureAppointmentList> */}
+        <FutureScheduleList></FutureScheduleList>
       </div>
       <div className={styles.profContentDiv}>
         {/* <PastAppointmentList></PastAppointmentList> */}

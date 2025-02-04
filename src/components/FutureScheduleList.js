@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { getAppointment } from "../services/AppointmentService";
-import FutureAppointment from "./FutureAppointment";
+import {
+  getPastDocAppointment,
+  getFutureDocAppointment,
+} from "../services/AppointmentService";
+import FutureSchedule from "./FutureSchedule";
 import styles from "./FutureSchedule.module.css";
 
 const FutureScheduleList = () => {
@@ -44,26 +47,17 @@ const FutureScheduleList = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const allAppointments = await getAppointment();
         const today = new Date();
-
-        const futureAppointments = allAppointments
-          .filter((appointment) => {
-            const appointmentDate = parseDate(appointment.date);
-            return (
-              appointment.userId === loggedUser.userId &&
-              appointmentDate &&
-              appointmentDate > today
-            );
-          })
-          .sort((a, b) => {
-            const dateA = parseDate(a.date);
-            const dateB = parseDate(b.date);
-            if (dateA.getTime() !== dateB.getTime()) {
-              return dateA - dateB;
-            }
-            return a.startTime.localeCompare(b.startTime);
-          });
+        const futureAppointments = getFutureDocAppointment(
+          loggedDoc.doctorId
+        ).sort((a, b) => {
+          const dateA = parseDate(a.date);
+          const dateB = parseDate(b.date);
+          if (dateA.getTime() !== dateB.getTime()) {
+            return dateA - dateB;
+          }
+          return a.startTime.localeCompare(b.startTime);
+        });
 
         setAppointments(futureAppointments);
         // if (futureAppointments.length > 1) {
@@ -75,7 +69,7 @@ const FutureScheduleList = () => {
     };
 
     fetchAppointments();
-  }, [loggedUser.userId]);
+  }, [loggedDoc.doctorId]);
 
   useEffect(() => {
     if (appointments.length > 1) {
@@ -103,7 +97,7 @@ const FutureScheduleList = () => {
               )
             )
             .map((appointment) => (
-              <FutureAppointment
+              <FutureSchedule
                 key={appointment.appId}
                 appointment={appointment}
                 className={styles.appointmentCard}
