@@ -101,6 +101,9 @@ const PastScheduleList = () => {
       ) : (
         <p className={styles.noAppointments}>No past appointments found.</p>
       )}
+      <a className={styles.moreAppLink}>
+        Checkout all past appointments here...
+      </a>
     </div>
   );
 };
