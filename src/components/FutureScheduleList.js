@@ -11,56 +11,62 @@ const FutureScheduleList = () => {
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doc"));
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 3;
+
+  // Calculate visible appointments, if the total appointments are less than visibleCount, show all appointments
+  const visibleAppointments =
+    appointments.length > visibleCount
+      ? [
+          ...appointments.slice(startIndex, startIndex + visibleCount),
+          ...appointments.slice(
+            0,
+            Math.max(0, startIndex + visibleCount - appointments.length)
+          ),
+        ]
+      : appointments;
+
   const [autoSlide, setAutoSlide] = useState(null);
 
+  // Next slide function, adjusts the start index
   const nextSlide = () => {
-    if (appointments.length > 0) {
+    if (appointments.length > visibleCount) {
       setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
-      resetAutoSlide();
     }
   };
 
+  // Previous slide function, adjusts the start index
   const prevSlide = () => {
-    if (appointments.length > 0) {
+    if (appointments.length > visibleCount) {
       setStartIndex(
         (prevIndex) =>
           (prevIndex - 1 + appointments.length) % appointments.length
       );
-      resetAutoSlide();
     }
   };
 
+  // Resets auto-slide interval
   const resetAutoSlide = () => {
     if (autoSlide) clearInterval(autoSlide);
+    if (appointments.length <= 1) return; // Don't auto-slide if 1 or no appointments
+
     const interval = setInterval(() => {
       setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
     }, 7000);
+
     setAutoSlide(interval);
   };
 
-  //   const parseDate = (dateStr) => {
-  //     if (!dateStr) return null;
-  //     const [day, month, year] = dateStr.split("-").map(Number);
-  //     return new Date(year, month - 1, day);
-  //   };
-
+  // Fetches future appointments when the component mounts
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const today = new Date();
         const futureAppointments = await getFutureDocAppointment(
           loggedDoc.doctorId
         );
-        // Here there is a Bug
-        // Data in futureApp but not in simple App
-        // SetApp not working
         setAppointments(futureAppointments);
 
-        console.log(futureAppointments);
-        console.log(appointments);
-        // if (futureAppointments.length > 1) {
-        //   resetAutoSlide();
-        // }
+        if (futureAppointments.length > 1) {
+          resetAutoSlide();
+        }
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }
@@ -69,6 +75,7 @@ const FutureScheduleList = () => {
     fetchAppointments();
   }, []);
 
+  // Reset auto-slide whenever the appointments change
   useEffect(() => {
     if (appointments.length > 1) {
       resetAutoSlide();
@@ -84,28 +91,20 @@ const FutureScheduleList = () => {
             onClick={prevSlide}
             className={`${styles.navButton} ${styles.prevButton}`}
           >
-            <img src="image/prev.svg"></img>
+            <img src="image/prev.svg" alt="Previous" />
           </button>
-          {appointments
-            .slice(startIndex, startIndex + visibleCount)
-            .concat(
-              appointments.slice(
-                0,
-                Math.max(0, startIndex + visibleCount - appointments.length)
-              )
-            )
-            .map((appointment) => (
-              <FutureSchedule
-                key={appointment.appId}
-                appointment={appointment}
-                className={styles.appointmentCard}
-              />
-            ))}
+          {visibleAppointments.map((appointment) => (
+            <FutureSchedule
+              key={appointment.appId}
+              appointment={appointment}
+              className={styles.appointmentCard}
+            />
+          ))}
           <button
             onClick={nextSlide}
             className={`${styles.navButton} ${styles.nextButton}`}
           >
-            <img src="image/next.svg"></img>
+            <img src="image/next.svg" alt="Next" />
           </button>
         </div>
       ) : (

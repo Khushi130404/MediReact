@@ -29,8 +29,9 @@ const Welcome = () => {
                 Welcome to MediCure
               </div>
               <p className={styles.divWelcome}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Assumenda, voluptatum!
+                Revolutionizing healthcare management with seamless integration,
+                efficiency, and care – Medicure, where technology meets
+                wellness.
               </p>
             </div>
             {!loggedDoc && (
