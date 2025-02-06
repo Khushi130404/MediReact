@@ -9,7 +9,6 @@ const PastScheduleList = () => {
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 3;
 
-  // Calculate visible appointments, if the total appointments are less than visibleCount, show all appointments
   const visibleAppointments =
     appointments.length > visibleCount
       ? [
@@ -23,14 +22,12 @@ const PastScheduleList = () => {
 
   const [autoSlide, setAutoSlide] = useState(null);
 
-  // Next slide function, adjusts the start index
   const nextSlide = () => {
     if (appointments.length > visibleCount) {
       setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
     }
   };
 
-  // Previous slide function, adjusts the start index
   const prevSlide = () => {
     if (appointments.length > visibleCount) {
       setStartIndex(
@@ -40,10 +37,9 @@ const PastScheduleList = () => {
     }
   };
 
-  // Resets auto-slide interval
   const resetAutoSlide = () => {
     if (autoSlide) clearInterval(autoSlide);
-    if (appointments.length <= 1) return; // Don't auto-slide if 1 or no appointments
+    if (appointments.length <= 1) return;
 
     const interval = setInterval(() => {
       setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
@@ -52,7 +48,6 @@ const PastScheduleList = () => {
     setAutoSlide(interval);
   };
 
-  // Fetches past appointments when the component mounts
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
@@ -72,7 +67,6 @@ const PastScheduleList = () => {
     fetchAppointments();
   }, []);
 
-  // Reset auto-slide whenever the appointments change
   useEffect(() => {
     if (appointments.length > 1) {
       resetAutoSlide();
