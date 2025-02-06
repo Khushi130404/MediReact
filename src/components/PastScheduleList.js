@@ -1,0 +1,117 @@
+import { useEffect, useState } from "react";
+import {
+  getPastDocAppointment,
+  getPastDocAppointment,
+} from "../services/AppointmentService";
+import PastSchedule from "./PastSchedule";
+import styles from "./PastScheduleList.module.css";
+
+const PastScheduleList = () => {
+  const [appointments, setAppointments] = useState([]);
+  const loggedDoc = JSON.parse(localStorage.getItem("logged_doc"));
+  const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = 3;
+
+  // Calculate visible appointments, if the total appointments are less than visibleCount, show all appointments
+  const visibleAppointments =
+    appointments.length > visibleCount
+      ? [
+          ...appointments.slice(startIndex, startIndex + visibleCount),
+          ...appointments.slice(
+            0,
+            Math.max(0, startIndex + visibleCount - appointments.length)
+          ),
+        ]
+      : appointments;
+
+  const [autoSlide, setAutoSlide] = useState(null);
+
+  // Next slide function, adjusts the start index
+  const nextSlide = () => {
+    if (appointments.length > visibleCount) {
+      setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
+    }
+  };
+
+  // Previous slide function, adjusts the start index
+  const prevSlide = () => {
+    if (appointments.length > visibleCount) {
+      setStartIndex(
+        (prevIndex) =>
+          (prevIndex - 1 + appointments.length) % appointments.length
+      );
+    }
+  };
+
+  // Resets auto-slide interval
+  const resetAutoSlide = () => {
+    if (autoSlide) clearInterval(autoSlide);
+    if (appointments.length <= 1) return; // Don't auto-slide if 1 or no appointments
+
+    const interval = setInterval(() => {
+      setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
+    }, 7000);
+
+    setAutoSlide(interval);
+  };
+
+  // Fetches past appointments when the component mounts
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const pastAppointments = await getPastDocAppointment(
+          loggedDoc.doctorId
+        );
+        setAppointments(pastAppointments);
+
+        if (pastAppointments.length > 1) {
+          resetAutoSlide();
+        }
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      }
+    };
+
+    fetchAppointments();
+  }, []);
+
+  // Reset auto-slide whenever the appointments change
+  useEffect(() => {
+    if (appointments.length > 1) {
+      resetAutoSlide();
+    }
+  }, [appointments.length]);
+
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.heading}>Upcoming Appointments</h2>
+      {appointments.length > 0 ? (
+        <div className={styles.appointmentsWrapper}>
+          <button
+            onClick={prevSlide}
+            className={`${styles.navButton} ${styles.prevButton}`}
+          >
+            <img src="image/prev.svg" alt="Previous" />
+          </button>
+          {visibleAppointments.map((appointment) => (
+            <PastSchedule
+              key={appointment.appId}
+              appointment={appointment}
+              className={styles.appointmentCard}
+            />
+          ))}
+          <button
+            onClick={nextSlide}
+            className={`${styles.navButton} ${styles.nextButton}`}
+          >
+            <img src="image/next.svg" alt="Next" />
+          </button>
+        </div>
+      ) : (
+        <p className={styles.noAppointments}>No past appointments found.</p>
+      )}
+    </div>
+  );
+};
+
+export default PastScheduleList;
