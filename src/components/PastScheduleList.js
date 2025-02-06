@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
 import { getPastDocAppointment } from "../services/AppointmentService";
 import PastSchedule from "./PastSchedule";
+import { useNavigate } from "react-router-dom";
 import styles from "./PastScheduleList.module.css";
 
 const PastScheduleList = () => {
+  const navigate = useNavigate();
   const [appointments, setAppointments] = useState([]);
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doc"));
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 3;
+
+  const handleNavigate = (path) => {
+    navigate(`${path}`);
+  };
 
   const visibleAppointments =
     appointments.length > visibleCount
@@ -101,9 +107,12 @@ const PastScheduleList = () => {
       ) : (
         <p className={styles.noAppointments}>No past appointments found.</p>
       )}
-      <a className={styles.moreAppLink}>
+      <button
+        className={styles.moreAppLink}
+        onClick={() => handleNavigate("/allPast")}
+      >
         Checkout all past appointments here...
-      </a>
+      </button>
     </div>
   );
 };
