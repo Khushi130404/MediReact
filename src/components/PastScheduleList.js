@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getFutureDocAppointment } from "../services/AppointmentService";
-import FutureSchedule from "./FutureSchedule";
-import styles from "./FutureScheduleList.module.css";
+import { getPastDocAppointment } from "../services/AppointmentService";
+import PastSchedule from "./PastSchedule";
+import styles from "./PastScheduleList.module.css";
 
-const FutureScheduleList = () => {
+const PastScheduleList = () => {
   const [appointments, setAppointments] = useState([]);
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doc"));
   const [startIndex, setStartIndex] = useState(0);
@@ -51,12 +51,12 @@ const FutureScheduleList = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const futureAppointments = await getFutureDocAppointment(
+        const pastAppointments = await getPastDocAppointment(
           loggedDoc.doctorId
         );
-        setAppointments(futureAppointments);
+        setAppointments(pastAppointments);
 
-        if (futureAppointments.length > 1) {
+        if (pastAppointments.length > 1) {
           resetAutoSlide();
         }
       } catch (error) {
@@ -75,7 +75,7 @@ const FutureScheduleList = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Upcoming Appointments</h2>
+      <h2 className={styles.heading}>Past Appointments</h2>
       {appointments.length > 0 ? (
         <div className={styles.appointmentsWrapper}>
           <button
@@ -85,7 +85,7 @@ const FutureScheduleList = () => {
             <img src="image/prev.svg" alt="Previous" />
           </button>
           {visibleAppointments.map((appointment) => (
-            <FutureSchedule
+            <PastSchedule
               key={appointment.appId}
               appointment={appointment}
               className={styles.appointmentCard}
@@ -99,10 +99,10 @@ const FutureScheduleList = () => {
           </button>
         </div>
       ) : (
-        <p className={styles.noAppointments}>No future appointments found.</p>
+        <p className={styles.noAppointments}>No past appointments found.</p>
       )}
     </div>
   );
 };
 
-export default FutureScheduleList;
+export default PastScheduleList;
