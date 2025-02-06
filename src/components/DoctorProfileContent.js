@@ -1,5 +1,6 @@
 import styles from "./DoctorProfileContent.module.css";
 import FutureScheduleList from "./FutureScheduleList";
+import PastScheduleList from "./PastScheduleList";
 
 const DoctorProfileContent = () => {
   return (
@@ -8,7 +9,7 @@ const DoctorProfileContent = () => {
         <FutureScheduleList></FutureScheduleList>
       </div>
       <div className={styles.profContentDiv}>
-        {/* <PastAppointmentList></PastAppointmentList> */}
+        <PastScheduleList></PastScheduleList>
       </div>
     </div>
   );

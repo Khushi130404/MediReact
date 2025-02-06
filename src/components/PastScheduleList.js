@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  getPastDocAppointment,
-  getPastDocAppointment,
-} from "../services/AppointmentService";
+import { getPastDocAppointment } from "../services/AppointmentService";
 import PastSchedule from "./PastSchedule";
 import styles from "./PastScheduleList.module.css";
 
