@@ -75,7 +75,7 @@ const PastScheduleList = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Upcoming Appointments</h2>
+      <h2 className={styles.heading}>Past Appointments</h2>
       {appointments.length > 0 ? (
         <div className={styles.appointmentsWrapper}>
           <button
