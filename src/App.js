@@ -12,6 +12,7 @@ import Appointment from "./components/Appointment";
 import UserProfile from "./components/UserProfile";
 import Schedule from "./components/Schedule";
 import DoctorProfile from "./components/DoctorProfile";
+import AllPastSchedule from "./components/AllPastSchedule";
 
 function App() {
   const AppointmentWrapper = () => {
@@ -60,6 +61,10 @@ function App() {
             element={<RegisterForm></RegisterForm>}
           />
           <Route path="/doctor/login" element={<LoginForm></LoginForm>} />
+          <Route
+            path="/doctor/allPast"
+            element={<AllPastSchedule></AllPastSchedule>}
+          />
         </Routes>
       </div>
     </Router>
