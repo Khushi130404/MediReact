@@ -3,6 +3,7 @@ import { getAllPastDocAppointment } from "../services/AppointmentService";
 import styles from "./AllPastScheduleList.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import AllPastSchedule from "./AllPastSchedule";
 
 const AllPastScheduleList = () => {
   const [appointments, setAppointments] = useState([]);
@@ -41,21 +42,10 @@ const AllPastScheduleList = () => {
         {appointments.length > 0 ? (
           <ul className={styles.appointmentList}>
             {appointments.map((appointment) => (
-              <li key={appointment.appId} className={styles.appointmentCard}>
-                <p>
-                  <strong>Patient:</strong> {appointment.patientName}
-                </p>
-                <p>
-                  <strong>Date:</strong> {appointment.date}
-                </p>
-                <p>
-                  <strong>Time:</strong> {appointment.startTime}
-                </p>
-                <p>
-                  <strong>Notes:</strong>
-                  {appointment.notes || "No additional notes"}
-                </p>
-              </li>
+              <AllPastSchedule
+                key={appointment.appId}
+                appointment={appointment}
+              />
             ))}
           </ul>
         ) : (
