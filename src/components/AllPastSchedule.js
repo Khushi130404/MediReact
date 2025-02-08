@@ -1,53 +1,41 @@
 import { useEffect, useState } from "react";
-import { getPastDocAppointment } from "../services/AppointmentService";
 import styles from "./AllPastSchedule.module.css";
+import { findUserById } from "../services/UserService";
 
-const AllPastSchedule = () => {
-  const [appointments, setAppointments] = useState([]);
-  const loggedDoc = JSON.parse(localStorage.getItem("logged_doc"));
+const AllPastSchedule = ({ appointment }) => {
+  const [user, setUser] = useState();
 
   useEffect(() => {
-    const fetchPastAppointments = async () => {
+    const getUser = async () => {
       try {
-        const pastAppointments = await getPastDocAppointment(
-          loggedDoc.doctorId
-        );
-        setAppointments(pastAppointments);
+        const userFetch = await findUserById(appointment.userId);
+        setUser(userFetch);
       } catch (error) {
         console.error("Error fetching past appointments:", error);
       }
     };
 
-    fetchPastAppointments();
+    getUser();
   }, []);
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.heading}>Past Appointments</h2>
-      {appointments.length > 0 ? (
-        <ul className={styles.appointmentList}>
-          {appointments.map((appointment) => (
-            <li key={appointment.appId} className={styles.appointmentCard}>
-              <p>
-                <strong>Patient:</strong> {appointment.patientName}
-              </p>
-              <p>
-                <strong>Date:</strong> {appointment.date}
-              </p>
-              <p>
-                <strong>Time:</strong> {appointment.time}
-              </p>
-              <p>
-                <strong>Notes:</strong>{" "}
-                {appointment.notes || "No additional notes"}
-              </p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className={styles.noAppointments}>No past appointments found.</p>
-      )}
-    </div>
+    <>
+      <li key={appointment.appId} className={styles.appointmentCard}>
+        <p>
+          <strong>Patient:</strong> {user.userName}
+        </p>
+        <p>
+          <strong>Date:</strong> {appointment.date}
+        </p>
+        <p>
+          <strong>Time:</strong> {appointment.startTime}
+        </p>
+        <p>
+          <strong>Notes:</strong>
+          {appointment.notes || " No additional notes"}
+        </p>
+      </li>
+    </>
   );
 };
 

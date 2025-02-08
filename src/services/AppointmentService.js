@@ -7,6 +7,7 @@ const DELET_APPOINTMENT_API = `${BASE_URL}/appointment/delete`;
 const DOCID_APPOINTMENT_API = `${BASE_URL}/appointment/docApp`;
 const DOC_PAST_APPOINTMENT_API = `${BASE_URL}/appointment/pastDocApp`;
 const DOC_FUTURE_APPOINTMENT_API = `${BASE_URL}/appointment/futureDocApp`;
+const DOC_ALL_PAST_APPOINTMENT_API = `${BASE_URL}/appointment/allPastDocApp`;
 
 export const getAppointment = async () => {
   try {
@@ -62,6 +63,18 @@ export const getDoctorAppointment = async (docId) => {
 export const getPastDocAppointment = async (docId) => {
   try {
     const response = await axios.post(`${DOC_PAST_APPOINTMENT_API}/${docId}`);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : "Something went wrong!";
+  }
+};
+
+export const getAllPastDocAppointment = async (docId) => {
+  try {
+    const response = await axios.post(
+      `${DOC_ALL_PAST_APPOINTMENT_API}/${docId}`
+    );
     console.log(response);
     return response.data;
   } catch (error) {

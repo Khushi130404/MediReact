@@ -1,0 +1,25 @@
+.container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+.heading {
+  text-align: center;
+  color: #2a4752;
+}
+
+.appointmentList {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+.noAppointments {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}

@@ -109,7 +109,7 @@ const PastScheduleList = () => {
       )}
       <button
         className={styles.moreAppLink}
-        onClick={() => handleNavigate("/allPast")}
+        onClick={() => handleNavigate("/doctor/allPast")}
       >
         Checkout all past appointments here...
       </button>
