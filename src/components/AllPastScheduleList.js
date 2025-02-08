@@ -14,7 +14,17 @@ const AllPastScheduleList = () => {
         const pastAppointments = await getAllPastDocAppointment(
           loggedDoc.doctorId
         );
-        setAppointments(pastAppointments);
+        const sortedAppointments = pastAppointments.sort((a, b) => {
+          const [dayA, monthA, yearA] = a.date.split("-").map(Number);
+          const [dayB, monthB, yearB] = b.date.split("-").map(Number);
+
+          const dateA = new Date(yearA, monthA - 1, dayA);
+          const dateB = new Date(yearB, monthB - 1, dayB);
+
+          return dateB - dateA;
+        });
+
+        setAppointments(sortedAppointments);
       } catch (error) {
         console.error("Error fetching past appointments:", error);
       }
@@ -39,7 +49,7 @@ const AllPastScheduleList = () => {
                   <strong>Date:</strong> {appointment.date}
                 </p>
                 <p>
-                  <strong>Time:</strong> {appointment.time}
+                  <strong>Time:</strong> {appointment.startTime}
                 </p>
                 <p>
                   <strong>Notes:</strong>
