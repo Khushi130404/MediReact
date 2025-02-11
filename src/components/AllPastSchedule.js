@@ -4,6 +4,8 @@ import { findUserById } from "../services/UserService";
 
 const AllPastSchedule = ({ appointment }) => {
   const [user, setUser] = useState();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewURL, setPreviewURL] = useState(null);
 
   useEffect(() => {
     const getUser = async () => {
@@ -16,6 +18,15 @@ const AllPastSchedule = ({ appointment }) => {
     };
     getUser();
   }, [appointment.userId]);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setPreviewURL(URL.createObjectURL(file));
+      console.log("Selected File:", file);
+    }
+  };
 
   return (
     <li key={appointment.appId} className={styles.appointmentCard}>
@@ -33,10 +44,40 @@ const AllPastSchedule = ({ appointment }) => {
             <strong>Time: </strong> {appointment.startTime}
           </p>
           <p>
-            <strong>Contact: </strong>
-            {user?.userMobile || " Loading..."}
+            <strong>Contact: </strong> {user?.userMobile || " Loading..."}
           </p>
         </div>
+      </div>
+
+      <div className={styles.diagnosisSection}>
+        <button
+          className={styles.addDiagnosisBtn}
+          onClick={() =>
+            document.getElementById(`fileInput-${appointment.appId}`).click()
+          }
+        >
+          Add Diagnosis
+        </button>
+
+        <input
+          id={`fileInput-${appointment.appId}`}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          onChange={handleFileChange}
+          className={styles.hiddenInput}
+        />
+
+        {selectedFile && (
+          <p className={styles.fileName}>Selected: {selectedFile.name}</p>
+        )}
+
+        <button
+          className={styles.viewDiagnosisBtn}
+          onClick={() => window.open(previewURL, "_blank")}
+        >
+          View Diagnosis
+        </button>
       </div>
     </li>
   );
