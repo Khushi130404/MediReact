@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import styles from "./AllPastSchedule.module.css";
 import { findUserById } from "../services/UserService";
+import { addDiagnosis } from "../services/DiagnosisService";
 
 const AllPastSchedule = ({ appointment }) => {
   const [user, setUser] = useState();
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [selectedByteArray, setSelectedByteArray] = useState(null);
 
   useEffect(() => {
     const getUser = async () => {
@@ -24,7 +27,39 @@ const AllPastSchedule = ({ appointment }) => {
     if (file) {
       setSelectedFile(file);
       setPreviewURL(URL.createObjectURL(file));
-      console.log("Selected File:", file);
+      const reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+      reader.onload = () => {
+        const arrayBuffer = reader.result;
+        const byteArray = new Uint8Array(arrayBuffer);
+        setSelectedByteArray(byteArray);
+        console.log("Byte Array:", byteArray);
+      };
+    }
+  };
+
+  const handleAddDiagnosis = async () => {
+    if (!selectedFile) {
+      alert("Please select a file first.");
+      return;
+    }
+
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("image", selectedFile);
+      formData.append("appointmentId", appointment.appId);
+      console.log("Hey World");
+      await addDiagnosis(appointment.appId, formData);
+      alert("Diagnosis added successfully!");
+      setSelectedFile(null);
+      setPreviewURL(null);
+      setSelectedByteArray(null);
+    } catch (error) {
+      console.error("Error uploading diagnosis:", error);
+      alert("Failed to upload diagnosis.");
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -72,12 +107,24 @@ const AllPastSchedule = ({ appointment }) => {
           <p className={styles.fileName}>Selected: {selectedFile.name}</p>
         )}
 
-        <button
-          className={styles.viewDiagnosisBtn}
-          onClick={() => window.open(previewURL, "_blank")}
-        >
-          View Diagnosis
-        </button>
+        {selectedFile && (
+          <button
+            className={styles.uploadDiagnosisBtn}
+            onClick={handleAddDiagnosis}
+            disabled={uploading}
+          >
+            {uploading ? "Uploading..." : "Upload Diagnosis"}
+          </button>
+        )}
+
+        {previewURL && (
+          <button
+            className={styles.viewDiagnosisBtn}
+            onClick={() => window.open(previewURL, "_blank")}
+          >
+            View Diagnosis
+          </button>
+        )}
       </div>
     </li>
   );
