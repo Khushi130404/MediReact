@@ -1,11 +1,50 @@
 .appointmentCard {
-  background-color: #ffffff;
   padding: 15px;
-  margin: 10px 0;
   border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 }
 
-.appointmentCard p {
-  margin: 5px 0;
+.appointmentDetails {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.leftColumn,
+.rightColumn {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .appointmentDetails {
+    flex-direction: column;
+  }
+}
+
+.addDiagnosisBtn, .viewDiagnosisBtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.addDiagnosisBtn:hover, .viewDiagnosisBtn:hover {
+  background-color: #45a049;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.fileName {
+  font-size: 14px;
+  color: #333;
+  margin-top: 5px;
 }
