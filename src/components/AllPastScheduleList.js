@@ -7,7 +7,7 @@ import AllPastSchedule from "./AllPastSchedule";
 
 const AllPastScheduleList = () => {
   const [appointments, setAppointments] = useState([]);
-  const loggedDoc = JSON.parse(localStorage.getItem("logged_doc"));
+  const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
 
   useEffect(() => {
     const fetchPastAppointments = async () => {

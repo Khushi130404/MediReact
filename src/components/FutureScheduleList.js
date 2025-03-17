@@ -5,7 +5,7 @@ import styles from "./FutureScheduleList.module.css";
 
 const FutureScheduleList = () => {
   const [appointments, setAppointments] = useState([]);
-  const loggedDoc = JSON.parse(localStorage.getItem("logged_doc"));
+  const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 3;
 
