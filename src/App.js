@@ -65,6 +65,13 @@ function App() {
             path="/doctor/allPast"
             element={<AllPastScheduleList></AllPastScheduleList>}
           />
+          <Route path="/admin/login" element={<LoginForm></LoginForm>} />
+          <Route path="/admin/home" element={<HomePage></HomePage>} />
+          <Route path="/admin/about" element={<h2>About Us</h2>} />
+          <Route
+            path="/admin/appointment"
+            element={<AppointmentWrapper></AppointmentWrapper>}
+          />
         </Routes>
       </div>
     </Router>
