@@ -21,6 +21,12 @@ function App() {
     return <Appointment doctor={doctor} />;
   };
 
+  const AppointmentWrapperAdmin = () => {
+    const location = useLocation();
+    const doctor = location.state?.doctor;
+    return <Schedule doctor={doctor} />;
+  };
+
   return (
     <Router>
       <div>
@@ -70,7 +76,7 @@ function App() {
           <Route path="/admin/about" element={<h2>About Us</h2>} />
           <Route
             path="/admin/appointment"
-            element={<AppointmentWrapper></AppointmentWrapper>}
+            element={<AppointmentWrapperAdmin></AppointmentWrapperAdmin>}
           />
         </Routes>
       </div>

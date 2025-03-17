@@ -7,7 +7,7 @@ const FutureAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
   const [startIndex, setStartIndex] = useState(0);
-  const visibleCount = 1;
+  const visibleCount = 3;
   const [autoSlide, setAutoSlide] = useState(null);
 
   const nextSlide = () => {
