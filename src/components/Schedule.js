@@ -5,11 +5,12 @@ import ScheduleTable from "./ScheduleTable";
 
 const Schedule = () => {
   const location = useLocation();
+  const { doctor } = location.state || {};
 
   return (
     <div>
       <Navbar></Navbar>
-      <ScheduleTable></ScheduleTable>
+      <ScheduleTable doctor={doctor}></ScheduleTable>
       <Footer></Footer>
     </div>
   );

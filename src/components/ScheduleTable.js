@@ -3,8 +3,9 @@ import { getDoctorAppointment } from "../services/AppointmentService";
 import Slot from "./Slot";
 import styles from "./ScheduleTable.module.css";
 
-const ScheduleTable = () => {
+const ScheduleTable = ({ doctor }) => {
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
+  const loggedAdmin = JSON.parse(localStorage.getItem("logged_admin"));
   const [timeSlots, setTimeSlots] = useState([]);
   const [weekdays, setWeekdays] = useState([]);
   const [bookedSlots, setBookedSlots] = useState(new Map());
@@ -13,7 +14,9 @@ const ScheduleTable = () => {
     console.log("Khushi : " + loggedDoc);
     const fetchAppointments = async () => {
       try {
-        const response = await getDoctorAppointment(loggedDoc.doctorId);
+        const response = !!loggedAdmin
+          ? await getDoctorAppointment(doctor.doctorId)
+          : await getDoctorAppointment(loggedDoc.doctorId);
         const booked = new Map();
         response.forEach((appointment) => {
           const { startTime, date } = appointment;
@@ -117,7 +120,7 @@ const ScheduleTable = () => {
           {timeSlots.map((slot, index) => (
             <Slot
               key={index}
-              docId={loggedDoc.doctorId}
+              docId={loggedAdmin ? doctor.doctorId : loggedDoc.doctorId}
               slot={slot}
               bookedSlots={bookedSlots}
               weekdays={weekdays}

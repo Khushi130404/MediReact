@@ -21,10 +21,11 @@ const Navbar = () => {
   }, []);
 
   const handleBookingClick = () => {
-    if (!isUserLoggedIn || !isAdminLoggedIn) {
-      navigate("/login");
-    } else {
+    if (isUserLoggedIn || isAdminLoggedIn) {
+      console.log("Booking clicked");
       setShowDocList(true);
+    } else {
+      navigate("/login");
     }
   };
 
@@ -64,27 +65,23 @@ const Navbar = () => {
             </button>
           </li>
 
-          {isUserLoggedIn ||
-            (isAdminLoggedIn && (
-              <>
-                <li>
-                  <button
-                    onClick={() => handleNavigate("/profile")}
-                    className={styles.navItem}
-                  >
-                    Profile
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={handleBookingClick}
-                    className={styles.navItem}
-                  >
-                    Appointment
-                  </button>
-                </li>
-              </>
-            ))}
+          {(isUserLoggedIn || isAdminLoggedIn) && (
+            <>
+              <li>
+                <button
+                  onClick={() => handleNavigate("/profile")}
+                  className={styles.navItem}
+                >
+                  Profile
+                </button>
+              </li>
+              <li>
+                <button onClick={handleBookingClick} className={styles.navItem}>
+                  Appointment
+                </button>
+              </li>
+            </>
+          )}
 
           {isDocLoggedIn && (
             <>

@@ -6,6 +6,7 @@ import styles from "./DocList.module.css";
 const DocList = ({ onSelect }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [docList, setDocList] = useState([]);
+  const admin = JSON.parse(localStorage.getItem("logged_admin"));
 
   const navigate = useNavigate();
 
@@ -32,6 +33,12 @@ const DocList = ({ onSelect }) => {
   const handleSelect = (doctor) => {
     if (doctor === null) {
       onSelect(false);
+    } else if (admin) {
+      const event = new CustomEvent("doctorSelected", { detail: doctor });
+      window.dispatchEvent(event);
+      onSelect(doctor);
+      console.log(doctor);
+      navigate("/admin/appointment", { state: { doctor } });
     } else {
       const event = new CustomEvent("doctorSelected", { detail: doctor });
       window.dispatchEvent(event);

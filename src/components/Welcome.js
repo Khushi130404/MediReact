@@ -8,6 +8,7 @@ const Welcome = () => {
   const navigate = useNavigate();
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
+  const loggedAdmin = JSON.parse(localStorage.getItem("logged_admin"));
 
   const handleBookingClick = () => {
     if (loggedUser) {
@@ -34,7 +35,7 @@ const Welcome = () => {
                 wellness.
               </p>
             </div>
-            {!loggedDoc && (
+            {loggedUser && (
               <div className={styles.buttons}>
                 <div
                   className={styles.containerBook}
@@ -51,6 +52,16 @@ const Welcome = () => {
                   onClick={handleBookingClick}
                 >
                   <p className={styles.animatedWord}>Doctor's Schedule</p>
+                </div>
+              </div>
+            )}
+            {loggedAdmin && (
+              <div className={styles.buttons}>
+                <div
+                  className={styles.containerBook}
+                  onClick={() => navigate("/admin/home")}
+                >
+                  <p className={styles.animatedWord}>Admin Panel</p>
                 </div>
               </div>
             )}
