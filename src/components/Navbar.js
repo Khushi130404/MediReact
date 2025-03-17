@@ -7,18 +7,21 @@ const Navbar = () => {
   const [showDocList, setShowDocList] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isDocLoggedIn, setIsDocLoggedIn] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
     const loggedDoctor = JSON.parse(localStorage.getItem("logged_doctor"));
+    const loggedAdmin = JSON.parse(localStorage.getItem("logged_admin"));
 
     setIsUserLoggedIn(!!loggedUser);
     setIsDocLoggedIn(!!loggedDoctor);
+    setIsAdminLoggedIn(!!loggedAdmin);
   }, []);
 
   const handleBookingClick = () => {
-    if (!isUserLoggedIn) {
+    if (!isUserLoggedIn || !isAdminLoggedIn) {
       navigate("/login");
     } else {
       setShowDocList(true);
@@ -28,14 +31,17 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("logged_user");
     localStorage.removeItem("logged_doctor");
+    localStorage.removeItem("logged_admin");
     setIsUserLoggedIn(false);
     setIsDocLoggedIn(false);
+    setIsAdminLoggedIn(false);
     navigate("/home");
   };
 
   const handleNavigate = (path) => {
     if (isDocLoggedIn) navigate(`/doctor${path}`);
     else if (isUserLoggedIn) navigate(`/user${path}`);
+    else if (isAdminLoggedIn) navigate(`/admin${path}`);
     else navigate(path);
   };
 
@@ -58,23 +64,27 @@ const Navbar = () => {
             </button>
           </li>
 
-          {isUserLoggedIn && (
-            <>
-              <li>
-                <button
-                  onClick={() => handleNavigate("/profile")}
-                  className={styles.navItem}
-                >
-                  Profile
-                </button>
-              </li>
-              <li>
-                <button onClick={handleBookingClick} className={styles.navItem}>
-                  Appointment
-                </button>
-              </li>
-            </>
-          )}
+          {isUserLoggedIn ||
+            (isAdminLoggedIn && (
+              <>
+                <li>
+                  <button
+                    onClick={() => handleNavigate("/profile")}
+                    className={styles.navItem}
+                  >
+                    Profile
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={handleBookingClick}
+                    className={styles.navItem}
+                  >
+                    Appointment
+                  </button>
+                </li>
+              </>
+            ))}
 
           {isDocLoggedIn && (
             <>
@@ -106,7 +116,7 @@ const Navbar = () => {
             </button>
           </li>
 
-          {isUserLoggedIn || isDocLoggedIn ? (
+          {isUserLoggedIn || isDocLoggedIn || isAdminLoggedIn ? (
             <li>
               <button onClick={handleLogout} className={styles.navItem}>
                 Logout
