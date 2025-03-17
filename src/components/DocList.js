@@ -39,12 +39,14 @@ const DocList = ({ onSelect }) => {
       onSelect(doctor);
       console.log(doctor);
       navigate("/admin/appointment", { state: { doctor } });
+      window.location.reload();
     } else {
       const event = new CustomEvent("doctorSelected", { detail: doctor });
       window.dispatchEvent(event);
       onSelect(doctor);
       console.log(doctor);
       navigate("/user/appointment", { state: { doctor } });
+      window.location.reload();
     }
   };
 
