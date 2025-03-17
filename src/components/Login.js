@@ -13,6 +13,14 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      if (email == "admin@gmail.com" && password == "admin123") {
+        localStorage.setItem(
+          "logged_admin",
+          JSON.stringify({ email: email, password: password })
+        );
+        navigate("/admin/home");
+        return;
+      }
       const doctor = await loginDoctor(email, password);
       if (doctor) {
         localStorage.setItem("logged_doctor", JSON.stringify(doctor));
