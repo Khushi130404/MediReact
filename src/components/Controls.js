@@ -1,13 +1,14 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import ControlPanel from "./ControlPanel";
 
 const Controls = () => {
   return (
     <div>
       <Navbar />
       <main>
-        <h1>Controls Page</h1>
+        <ControlPanel></ControlPanel>
       </main>
       <Footer />
     </div>
