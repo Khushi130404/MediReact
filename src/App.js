@@ -13,6 +13,7 @@ import UserProfile from "./components/UserProfile";
 import Schedule from "./components/Schedule";
 import DoctorProfile from "./components/DoctorProfile";
 import AllPastScheduleList from "./components/AllPastScheduleList";
+import Controls from "./components/Controls";
 
 function App() {
   const AppointmentWrapper = () => {
@@ -78,6 +79,7 @@ function App() {
             path="/admin/appointment"
             element={<AppointmentWrapperAdmin></AppointmentWrapperAdmin>}
           />
+          <Route path="/admin/controls" element={<Controls></Controls>} />
         </Routes>
       </div>
     </Router>
