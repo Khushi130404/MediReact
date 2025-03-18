@@ -65,16 +65,30 @@ const Navbar = () => {
             </button>
           </li>
 
+          {isUserLoggedIn && (
+            <li>
+              <button
+                onClick={() => handleNavigate("/profile")}
+                className={styles.navItem}
+              >
+                Profile
+              </button>
+            </li>
+          )}
+
+          {isAdminLoggedIn && (
+            <li>
+              <button
+                onClick={() => handleNavigate("/controls")}
+                className={styles.navItem}
+              >
+                Controls
+              </button>
+            </li>
+          )}
+
           {(isUserLoggedIn || isAdminLoggedIn) && (
             <>
-              <li>
-                <button
-                  onClick={() => handleNavigate("/profile")}
-                  className={styles.navItem}
-                >
-                  Profile
-                </button>
-              </li>
               <li>
                 <button onClick={handleBookingClick} className={styles.navItem}>
                   Appointment

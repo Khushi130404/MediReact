@@ -18,8 +18,8 @@ export const loginDoctor = async (mail, pass) => {
 export const showDoctor = async () => {
   try {
     const docList = await axios.get(DOCTOR_SHOW_API);
+    // console.log(docList);
     return docList.data;
-    console.log(docList);
   } catch (error) {
     throw error.response ? error.response.data : "Something went wrong!";
   }
