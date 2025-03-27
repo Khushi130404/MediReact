@@ -1,23 +1,38 @@
 .docCard {
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 16px;
-  margin: 16px;
+  padding: 20px;
+  margin: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  max-width: 500px;
   background-color: #f9f9f9;
 }
 
 .docTitle {
-  margin: 0 0 8px 0;
+  margin: 0;
   font-size: 1.5em;
   color: #333;
+  text-align: center;
+}
+
+/* Grid layout for doctor details */
+.detailsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 10px;
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.docCard p {
+  margin: 0px 0;
 }
 
 .buttonContainer {
   display: flex;
+  width: 100%;
   justify-content: space-between;
-  margin-top: 16px;
 }
 
 .updateButton,
@@ -25,6 +40,7 @@
   padding: 8px 16px;
   font-size: 1em;
   color: #fff;
+  width: 100%;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -32,6 +48,7 @@
 }
 
 .updateButton {
+  margin-right: 10px;
   background-color: #007bff;
 }
 
@@ -40,6 +57,7 @@
 }
 
 .deleteButton {
+  margin-left: 10px;
   background-color: red;
 }
 
