@@ -1,0 +1,30 @@
+.controlPanel {
+  padding: 10px 50px;
+}
+
+.controlPanel h3 {
+  margin: 20px;
+  font-size: 25px;
+  color: #333;
+  text-align: center;
+}
+
+.docGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .docGrid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .docGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { showDoctor } from "../services/DoctorService";
 import DocCard from "./DocCard";
+import styles from "./ControlPanel.module.css"; // Import CSS Module
 
 const ControlPanel = () => {
   const [doctorInfoList, setDoctorInfoList] = useState([]);
@@ -30,9 +31,9 @@ const ControlPanel = () => {
   }, [doctorInfoList]);
 
   return (
-    <>
+    <div className={styles.controlPanel}>
       <h3>Doctor Info</h3>
-      <div>
+      <div className={styles.docGrid}>
         {doctorInfoList.length > 0 ? (
           doctorInfoList.map((doc, index) => (
             <DocCard key={index} doctor={doc} />
@@ -41,7 +42,7 @@ const ControlPanel = () => {
           <p>No doctors available.</p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

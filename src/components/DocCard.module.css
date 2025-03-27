@@ -49,18 +49,18 @@
 
 .updateButton {
   margin-right: 10px;
-  background-color: #007bff;
+  background-color: #427d9dcd;
 }
 
 .updateButton:hover {
-  background-color: #0056b3;
+  background-color: #427d9d;
 }
 
 .deleteButton {
   margin-left: 10px;
-  background-color: red;
+  background-color: #9bbec8;
 }
 
 .deleteButton:hover {
-  background-color: darkred;
+  background-color: #88abb4;
 }
