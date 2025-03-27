@@ -3,11 +3,10 @@ import styles from "./DocCard.module.css";
 import { updateDoctor, deleteDoctor } from "../services/DoctorService";
 
 const DocCard = ({ doctor, refreshDoctors }) => {
-  // Move hooks to the top
   const [isEditing, setIsEditing] = useState(false);
-  const [editedDoctor, setEditedDoctor] = useState(doctor || {}); // Handle the case when doctor is undefined
+  const [editedDoctor, setEditedDoctor] = useState(doctor || {});
 
-  if (!doctor) return null; // Safe to return here after defining hooks
+  if (!doctor) return null;
 
   const handleUpdate = async () => {
     try {
@@ -17,6 +16,22 @@ const DocCard = ({ doctor, refreshDoctors }) => {
       refreshDoctors();
     } catch (error) {
       alert("Failed to update doctor: " + error);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete Dr. ${doctor.doctorName}?`
+      )
+    ) {
+      try {
+        await deleteDoctor(doctor.doctorId);
+        alert("Doctor deleted successfully!");
+        refreshDoctors();
+      } catch (error) {
+        alert("Failed to delete doctor: " + error);
+      }
     }
   };
 
@@ -52,7 +67,7 @@ const DocCard = ({ doctor, refreshDoctors }) => {
         >
           Update
         </button>
-        <button className={styles.deleteButton} onClick={handleUpdate}>
+        <button className={styles.deleteButton} onClick={handleDelete}>
           Delete
         </button>
       </div>

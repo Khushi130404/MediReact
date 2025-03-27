@@ -48,7 +48,7 @@ export const updateDoctor = async (doctorInfo) => {
 
 export const deleteDoctor = async (doctorId) => {
   try {
-    const response = await axios.delete(`${DOCTOR_DELETE_API}/${doctorId}`);
+    const response = await axios.post(`${DOCTOR_DELETE_API}/${doctorId}`);
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : "Something went wrong!";
