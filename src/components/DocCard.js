@@ -1,11 +1,12 @@
 import React from "react";
+import styles from "./DocCard.module.css";
 
 const DocCard = ({ doctor, onUpdate, onDelete }) => {
-  if (!doctor) return null; // Avoids errors if doctor is undefined
+  if (!doctor) return null;
 
   return (
-    <div style={styles.card}>
-      <h2 style={styles.title}>{doctor.doctorName}</h2>
+    <div className={styles.docCard}>
+      <h2 className={styles.docTitle}>{doctor.doctorName}</h2>
       <p>
         <strong>Email:</strong> {doctor.doctorMail}
       </p>
@@ -24,12 +25,15 @@ const DocCard = ({ doctor, onUpdate, onDelete }) => {
       <p>
         <strong>Specialist:</strong> {doctor.specialist}
       </p>
-      <div style={styles.buttonContainer}>
-        <button style={styles.button} onClick={() => onUpdate(doctor)}>
+      <div className={styles.buttonContainer}>
+        <button
+          className={styles.updateButton}
+          onClick={() => onUpdate(doctor)}
+        >
           Update
         </button>
         <button
-          style={{ ...styles.button, backgroundColor: "red" }}
+          className={styles.deleteButton}
           onClick={() => onDelete(doctor)}
         >
           Delete
@@ -37,38 +41,6 @@ const DocCard = ({ doctor, onUpdate, onDelete }) => {
       </div>
     </div>
   );
-};
-
-const styles = {
-  card: {
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    padding: "16px",
-    margin: "16px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    maxWidth: "400px",
-    backgroundColor: "#f9f9f9",
-  },
-  title: {
-    margin: "0 0 8px 0",
-    fontSize: "1.5em",
-    color: "#333",
-  },
-  buttonContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "16px",
-  },
-  button: {
-    padding: "8px 16px",
-    fontSize: "1em",
-    color: "#fff",
-    backgroundColor: "#007BFF",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-    transition: "background 0.3s ease",
-  },
 };
 
 export default DocCard;
