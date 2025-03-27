@@ -64,3 +64,72 @@
 .deleteButton:hover {
   background-color: #88abb4;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.modalContent h3 {
+  margin-bottom: 15px;
+}
+
+.modalContent label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.modalContent input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.saveButton {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background-color: #0056b3;
+}
+
+.cancelButton {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: darkred;
+}
