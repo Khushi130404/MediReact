@@ -14,6 +14,7 @@ import Schedule from "./components/Schedule";
 import DoctorProfile from "./components/DoctorProfile";
 import AllPastScheduleList from "./components/AllPastScheduleList";
 import Controls from "./components/Controls";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   const AppointmentWrapper = () => {
@@ -44,7 +45,7 @@ function App() {
           <Route path="/login" element={<LoginForm></LoginForm>} />
           <Route path="/user" element={<HomePage></HomePage>} />
           <Route path="/user/home" element={<HomePage></HomePage>} />
-          <Route path="/user/about" element={<h2>About Us</h2>} />
+          <Route path="/user/about" element={<AboutUs></AboutUs>} />
           <Route
             path="/user/appointment"
             element={<AppointmentWrapper></AppointmentWrapper>}
@@ -57,7 +58,7 @@ function App() {
           <Route path="/user/login" element={<LoginForm></LoginForm>} />
           <Route path="/doctor" element={<HomePage></HomePage>} />
           <Route path="/doctor/home" element={<HomePage></HomePage>} />
-          <Route path="/doctor/about" element={<h2>About Us</h2>} />
+          <Route path="/doctor/about" element={<AboutUs></AboutUs>} />
           <Route path="/doctor/schedule" element={<Schedule></Schedule>} />
           <Route
             path="/doctor/profile"
@@ -74,7 +75,7 @@ function App() {
           />
           <Route path="/admin/login" element={<LoginForm></LoginForm>} />
           <Route path="/admin/home" element={<HomePage></HomePage>} />
-          <Route path="/admin/about" element={<h2>About Us</h2>} />
+          <Route path="/admin/about" element={<AboutUs></AboutUs>} />
           <Route
             path="/admin/appointment"
             element={<AppointmentWrapperAdmin></AppointmentWrapperAdmin>}
