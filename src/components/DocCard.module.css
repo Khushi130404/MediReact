@@ -1,0 +1,141 @@
+.docCard {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  background-color: #f9f9f9;
+}
+
+.docTitle {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+  text-align: center;
+}
+
+/* Grid layout for doctor details */
+.detailsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 10px;
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.docCard p {
+  margin: 0px 0;
+}
+
+.buttonContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.updateButton,
+.deleteButton {
+  padding: 8px 16px;
+  font-size: 1em;
+  color: #fff;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.updateButton {
+  margin-right: 10px;
+  background-color: #427d9dcd;
+}
+
+.updateButton:hover {
+  background-color: #427d9d;
+}
+
+.deleteButton {
+  margin-left: 10px;
+  background-color: #9bbec8;
+}
+
+.deleteButton:hover {
+  background-color: #88abb4;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.modalContent h3 {
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.modalContent label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.modalContent input {
+  width: 95%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.saveButton {
+  background-color: #427d9dcd;
+  color: white;
+  width: 100%;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background-color: #427d9d;
+}
+
+.cancelButton {
+  background-color: #9bbec8;
+  color: white;
+  width: 100%;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: #88abb4;
+}

@@ -59,7 +59,7 @@ const Welcome = () => {
               <div className={styles.buttons}>
                 <div
                   className={styles.containerBook}
-                  onClick={() => navigate("/admin/home")}
+                  onClick={() => navigate("/admin/controls")}
                 >
                   <p className={styles.animatedWord}>Admin Panel</p>
                 </div>

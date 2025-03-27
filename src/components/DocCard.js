@@ -1,74 +1,152 @@
-import React from "react";
+import React, { useState } from "react";
+import styles from "./DocCard.module.css";
+import { updateDoctor, deleteDoctor } from "../services/DoctorService";
 
-const DocCard = ({ doctor, onUpdate, onDelete }) => {
-  if (!doctor) return null; // Avoids errors if doctor is undefined
+const DocCard = ({ doctor, refreshDoctors }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedDoctor, setEditedDoctor] = useState(doctor || {});
+
+  if (!doctor) return null;
+
+  const handleUpdate = async () => {
+    try {
+      await updateDoctor(editedDoctor);
+      alert("Doctor updated successfully!");
+      setIsEditing(false);
+      refreshDoctors();
+    } catch (error) {
+      alert("Failed to update doctor: " + error);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete Dr. ${doctor.doctorName}?`
+      )
+    ) {
+      try {
+        await deleteDoctor(doctor.doctorId);
+        alert("Doctor deleted successfully!");
+        refreshDoctors();
+      } catch (error) {
+        alert("Failed to delete doctor: " + error);
+      }
+    }
+  };
 
   return (
-    <div style={styles.card}>
-      <h2 style={styles.title}>{doctor.doctorName}</h2>
-      <p>
-        <strong>Email:</strong> {doctor.doctorMail}
-      </p>
-      <p>
-        <strong>Age:</strong> {doctor.doctorAge}
-      </p>
-      <p>
-        <strong>Gender:</strong> {doctor.doctorGender}
-      </p>
-      <p>
-        <strong>Mobile:</strong> {doctor.doctorMobile}
-      </p>
-      <p>
-        <strong>Address:</strong> {doctor.doctorAddress}
-      </p>
-      <p>
-        <strong>Specialist:</strong> {doctor.specialist}
-      </p>
-      <div style={styles.buttonContainer}>
-        <button style={styles.button} onClick={() => onUpdate(doctor)}>
+    <div className={styles.docCard}>
+      <h2 className={styles.docTitle}>{doctor.doctorName}</h2>
+
+      <div className={styles.detailsContainer}>
+        <p>
+          <strong>Email:</strong> {doctor.doctorMail}
+        </p>
+        <p>
+          <strong>Age:</strong> {doctor.doctorAge}
+        </p>
+        <p>
+          <strong>Gender:</strong> {doctor.doctorGender}
+        </p>
+        <p>
+          <strong>Mobile:</strong> {doctor.doctorMobile}
+        </p>
+        <p>
+          <strong>Address:</strong> {doctor.doctorAddress}
+        </p>
+        <p>
+          <strong>Specialist:</strong> {doctor.specialist}
+        </p>
+      </div>
+
+      <div className={styles.buttonContainer}>
+        <button
+          className={styles.updateButton}
+          onClick={() => setIsEditing(true)}
+        >
           Update
         </button>
-        <button
-          style={{ ...styles.button, backgroundColor: "red" }}
-          onClick={() => onDelete(doctor)}
-        >
+        <button className={styles.deleteButton} onClick={handleDelete}>
           Delete
         </button>
       </div>
+
+      {isEditing && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <h3>Edit Doctor Details</h3>
+            <label>Name:</label>
+            <input
+              type="text"
+              value={editedDoctor.doctorName || ""}
+              onChange={(e) =>
+                setEditedDoctor({ ...editedDoctor, doctorName: e.target.value })
+              }
+            />
+            <label>Email:</label>
+            <input
+              type="email"
+              value={editedDoctor.doctorMail || ""}
+              onChange={(e) =>
+                setEditedDoctor({ ...editedDoctor, doctorMail: e.target.value })
+              }
+            />
+            <label>Age:</label>
+            <input
+              type="number"
+              value={editedDoctor.doctorAge || ""}
+              onChange={(e) =>
+                setEditedDoctor({ ...editedDoctor, doctorAge: e.target.value })
+              }
+            />
+            <label>Mobile:</label>
+            <input
+              type="text"
+              value={editedDoctor.doctorMobile || ""}
+              onChange={(e) =>
+                setEditedDoctor({
+                  ...editedDoctor,
+                  doctorMobile: e.target.value,
+                })
+              }
+            />
+            <label>Address:</label>
+            <input
+              type="text"
+              value={editedDoctor.doctorAddress || ""}
+              onChange={(e) =>
+                setEditedDoctor({
+                  ...editedDoctor,
+                  doctorAddress: e.target.value,
+                })
+              }
+            />
+            <label>Specialist:</label>
+            <input
+              type="text"
+              value={editedDoctor.specialist || ""}
+              onChange={(e) =>
+                setEditedDoctor({ ...editedDoctor, specialist: e.target.value })
+              }
+            />
+
+            <div className={styles.modalButtons}>
+              <button className={styles.saveButton} onClick={handleUpdate}>
+                Save
+              </button>
+              <button
+                className={styles.cancelButton}
+                onClick={() => setIsEditing(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
-};
-
-const styles = {
-  card: {
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    padding: "16px",
-    margin: "16px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    maxWidth: "400px",
-    backgroundColor: "#f9f9f9",
-  },
-  title: {
-    margin: "0 0 8px 0",
-    fontSize: "1.5em",
-    color: "#333",
-  },
-  buttonContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "16px",
-  },
-  button: {
-    padding: "8px 16px",
-    fontSize: "1em",
-    color: "#fff",
-    backgroundColor: "#007BFF",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-    transition: "background 0.3s ease",
-  },
 };
 
 export default DocCard;

@@ -63,16 +63,7 @@ const DocProfileSidebar = () => {
             readOnly={!isEditable}
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={docMail}
-            onChange={(e) => setdocMail(e.target.value)}
-            readOnly={!isEditable}
-          />
-        </div>
+
         <div className={styles.formGroup}>
           <label htmlFor="age">Age</label>
           <input
@@ -80,6 +71,16 @@ const DocProfileSidebar = () => {
             id="age"
             value={docAge}
             onChange={(e) => setdocAge(e.target.value)}
+            readOnly={!isEditable}
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={docMail}
+            onChange={(e) => setdocMail(e.target.value)}
             readOnly={!isEditable}
           />
         </div>

@@ -5,6 +5,7 @@ const DOCTOR_LOGIN_API = `${BASE_URL}/doctor/login_doctor`;
 const DOCTOR_SHOW_API = `${BASE_URL}/doctor/show_doctor`;
 const DOCTOR_BY_DOCID_API = `${BASE_URL}/doctor/get_doctor`;
 const DOCTOR_UPDATE_API = `${BASE_URL}/doctor/update_doctor`;
+const DOCTOR_DELETE_API = `${BASE_URL}/doctor/delete_doctor`;
 
 export const loginDoctor = async (mail, pass) => {
   try {
@@ -39,6 +40,15 @@ export const updateDoctor = async (doctorInfo) => {
     console.log(doctorInfo);
     const response = await axios.post(DOCTOR_UPDATE_API, doctorInfo);
     console.log("Hello");
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : "Something went wrong!";
+  }
+};
+
+export const deleteDoctor = async (doctorId) => {
+  try {
+    const response = await axios.post(`${DOCTOR_DELETE_API}/${doctorId}`);
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : "Something went wrong!";
