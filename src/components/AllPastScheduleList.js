@@ -42,10 +42,9 @@ const AllPastScheduleList = () => {
         {appointments.length > 0 ? (
           <ul className={styles.appointmentList}>
             {appointments.map((appointment) => (
-              <AllPastSchedule
-                key={appointment.appId}
-                appointment={appointment}
-              />
+              <li key={appointment.appId} className={styles.appointmentItem}>
+                <AllPastSchedule appointment={appointment} />
+              </li>
             ))}
           </ul>
         ) : (

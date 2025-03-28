@@ -3,7 +3,7 @@
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+  width: 100%;
   margin: auto;
 }
 
@@ -13,10 +13,18 @@
 }
 
 .appointmentList {
-  list-style-type: none;
-  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
 }
 
+.appointmentItem {
+  flex: 1 1 calc(33.33% - 20px);
+  max-width: 300px;
+  min-width: 250px;
+}
 
 .noAppointments {
   text-align: center;
