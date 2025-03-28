@@ -4,12 +4,16 @@
   background: #f9f9f9;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
+  padding-top: 0;
+  width: 100%;
+  max-width: 600px;
+  margin: 10px 0px;
 }
 
 .appointmentDetails {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 10px;
 }
 
 .leftColumn,
@@ -17,14 +21,20 @@
   flex: 1;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .appointmentCard {
+    width: 95%;
+    max-width: none;
+  }
+
   .appointmentDetails {
     flex-direction: column;
   }
 }
 
-.addDiagnosisBtn, .viewDiagnosisBtn {
-  background-color: #4CAF50;
+.addDiagnosisBtn,
+.viewDiagnosisBtn {
+  background-color: #4caf50;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -32,10 +42,10 @@
   cursor: pointer;
   font-size: 14px;
   margin-top: 10px;
-  margin-right: 10px;
 }
 
-.addDiagnosisBtn:hover, .viewDiagnosisBtn:hover {
+.addDiagnosisBtn:hover,
+.viewDiagnosisBtn:hover {
   background-color: #45a049;
 }
 

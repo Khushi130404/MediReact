@@ -4,6 +4,7 @@ import styles from "./Menu.module.css";
 const Menu = () => {
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
+  const loggedAdmin = JSON.parse(localStorage.getItem("logged_admin"));
 
   return (
     <div className={styles.menu}>
@@ -101,8 +102,8 @@ const Menu = () => {
                     <div className={styles.ellipse}></div>
                     <img
                       className={styles.timesheet}
-                      src="image/schedule.svg"
-                      alt="Appointment Icon"
+                      src="/image/schedule.svg"
+                      alt="App"
                     />
                   </div>
                 </div>
@@ -121,7 +122,7 @@ const Menu = () => {
               </div>
             </div>
           )}
-          {loggedDoc && (
+          {(loggedDoc || loggedAdmin) && (
             <div className={styles.divWrapper}>
               <div className={styles.text2}>
                 <div className={styles.icon}>
@@ -129,7 +130,7 @@ const Menu = () => {
                     <div className={styles.ellipse}></div>
                     <img
                       className={styles.timesheet}
-                      src="image/schedule.svg"
+                      src="/image/schedule.svg"
                       alt="Appointment Icon"
                     />
                   </div>

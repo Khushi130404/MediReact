@@ -82,7 +82,7 @@ const FutureScheduleList = () => {
             onClick={prevSlide}
             className={`${styles.navButton} ${styles.prevButton}`}
           >
-            <img src="image/prev.svg" alt="Previous" />
+            <img src="/image/prev.svg" alt="Previous" />
           </button>
           {visibleAppointments.map((appointment) => (
             <FutureSchedule
@@ -95,7 +95,7 @@ const FutureScheduleList = () => {
             onClick={nextSlide}
             className={`${styles.navButton} ${styles.nextButton}`}
           >
-            <img src="image/next.svg" alt="Next" />
+            <img src="/image/next.svg" alt="Next" />
           </button>
         </div>
       ) : (
