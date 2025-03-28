@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { showDoctor } from "../services/DoctorService";
+import { showDoctor, addDoctor } from "../services/DoctorService";
 import DocCard from "./DocCard";
 import styles from "./ControlPanel.module.css";
 
@@ -7,9 +7,12 @@ const ControlPanel = () => {
   const [doctorInfoList, setDoctorInfoList] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
   const [newDoctor, setNewDoctor] = useState({
+    doctorId: 0,
     doctorName: "",
     doctorMail: "",
+    doctorPass: "",
     doctorAge: "",
+    doctorGender: "",
     doctorMobile: "",
     doctorAddress: "",
     specialist: "",
@@ -33,10 +36,34 @@ const ControlPanel = () => {
   }, []);
 
   const handleAddDoctor = async () => {
-    // Implement the API call to add the new doctor here
-    // After adding, refresh the doctor list
-    fetchDoctorInfo();
-    setIsAdding(false);
+    try {
+      const newDoctor2 = {
+        doctorName: newDoctor.doctorName,
+        doctorMail: newDoctor.doctorMail,
+        doctorPass: newDoctor.doctorPass,
+        doctorAge: parseInt(newDoctor.doctorAge),
+        doctorGender: newDoctor.doctorGender,
+        doctorMobile: newDoctor.doctorMobile,
+        doctorAddress: newDoctor.doctorAddress,
+        specialist: newDoctor.specialist,
+      };
+      await addDoctor(newDoctor2);
+      await fetchDoctorInfo();
+      setIsAdding(false);
+      setNewDoctor({
+        doctorId: "",
+        doctorName: "",
+        doctorMail: "",
+        doctorPass: "",
+        doctorAge: "",
+        doctorGender: "",
+        doctorMobile: "",
+        doctorAddress: "",
+        specialist: "",
+      });
+    } catch (error) {
+      console.error("Error adding doctor:", error);
+    }
   };
 
   return (
@@ -82,6 +109,14 @@ const ControlPanel = () => {
                 setNewDoctor({ ...newDoctor, doctorMail: e.target.value })
               }
             />
+            <label>Password:</label>
+            <input
+              type="password"
+              value={newDoctor.doctorPass}
+              onChange={(e) =>
+                setNewDoctor({ ...newDoctor, doctorPass: e.target.value })
+              }
+            />
             <label>Age:</label>
             <input
               type="number"
@@ -90,6 +125,18 @@ const ControlPanel = () => {
                 setNewDoctor({ ...newDoctor, doctorAge: e.target.value })
               }
             />
+            <label>Gender:</label>
+            <select
+              value={newDoctor.doctorGender}
+              onChange={(e) =>
+                setNewDoctor({ ...newDoctor, doctorGender: e.target.value })
+              }
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
             <label>Mobile:</label>
             <input
               type="text"

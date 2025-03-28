@@ -45,10 +45,6 @@
   cursor: pointer;
 }
 
-.addButton:hover {
-  background-color: #45a049;
-}
-
 .modal {
   position: fixed;
   top: 0;
@@ -64,7 +60,7 @@
 
 .modalContent {
   background: white;
-  padding: 30px;
+  padding: 25px;
   border-radius: 8px;
   width: 400px;
 }
@@ -82,7 +78,7 @@
 
 .modalContent input {
   width: 95%;
-  padding: 8px;
+  padding: 4px;
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
