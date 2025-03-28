@@ -92,7 +92,7 @@ const FutureAppointmentList = () => {
             onClick={prevSlide}
             className={`${styles.navButton} ${styles.prevButton}`}
           >
-            <img src="image/prev.svg"></img>
+            <img src="/image/prev.svg"></img>
           </button>
           {appointments
             .slice(startIndex, startIndex + visibleCount)
@@ -113,7 +113,7 @@ const FutureAppointmentList = () => {
             onClick={nextSlide}
             className={`${styles.navButton} ${styles.nextButton}`}
           >
-            <img src="image/next.svg"></img>
+            <img src="/image/next.svg"></img>
           </button>
         </div>
       ) : (
