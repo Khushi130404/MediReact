@@ -13,7 +13,7 @@
 .appointmentDetails {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 0px;
 }
 
 .leftColumn,
@@ -34,19 +34,27 @@
 
 .addDiagnosisBtn,
 .viewDiagnosisBtn {
-  background-color: #4caf50;
+  background-color: #427d9dcd;
   color: white;
   padding: 10px 15px;
+  width: 100%;
+  font-weight: 600;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   margin-top: 10px;
 }
 
-.addDiagnosisBtn:hover,
+.addDiagnosisBtn:hover {
+  background-color: #427d9d;
+}
+
+.viewDiagnosisBtn {
+  background-color: #9bbec8;
+}
 .viewDiagnosisBtn:hover {
-  background-color: #45a049;
+  background-color: #88abb4;
 }
 
 .hiddenInput {
@@ -59,9 +67,8 @@
   margin-top: 5px;
 }
 
-/* Modal Overlay */
 .modalOverlay {
-  display: flex; /* Ensure modal is shown */
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
@@ -111,23 +118,25 @@
 
 .downloadBtn,
 .cancelBtn {
-  background-color: #4caf50;
+  background-color: #427d9dcd;
   color: white;
   padding: 10px 15px;
   border: none;
+  width: 100%;
+  margin: 0 8px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
 }
 
 .cancelBtn {
-  background-color: #f44336;
+  background-color: #9bbec8;
 }
 
 .downloadBtn:hover {
-  background-color: #45a049;
+  background-color: #427d9d;
 }
 
 .cancelBtn:hover {
-  background-color: #d32f2f;
+  background-color: #88abb4;
 }

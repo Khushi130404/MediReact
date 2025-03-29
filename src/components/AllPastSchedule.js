@@ -149,7 +149,7 @@ const AllPastSchedule = ({ appointment }) => {
         ) : (
           <>
             <button
-              className={styles.showDiagnosisBtn}
+              className={styles.viewDiagnosisBtn}
               onClick={() => setShowDiagnosis(!showDiagnosis)}
             >
               {showDiagnosis ? "Hide Diagnosis" : "Show Diagnosis"}
