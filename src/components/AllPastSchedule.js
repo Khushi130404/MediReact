@@ -47,6 +47,15 @@ const AllPastSchedule = ({ appointment }) => {
     }
   };
 
+  const downloadImage = (imageURL) => {
+    const link = document.createElement("a");
+    link.href = imageURL;
+    link.download = "diagnosis.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const handleAddDiagnosis = async () => {
     if (!selectedFile) {
       alert("Please select a file first.");
@@ -155,11 +164,27 @@ const AllPastSchedule = ({ appointment }) => {
                   >
                     &times;
                   </span>
+
                   <img
                     src={diagnosisURL}
                     alt="Diagnosis"
                     className={styles.diagnosisImage}
                   />
+
+                  <div className={styles.modalButtons}>
+                    <button
+                      className={styles.downloadBtn}
+                      onClick={() => downloadImage(diagnosisURL)}
+                    >
+                      Download
+                    </button>
+                    <button
+                      className={styles.cancelBtn}
+                      onClick={() => setShowDiagnosis(false)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
