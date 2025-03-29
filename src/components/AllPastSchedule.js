@@ -9,6 +9,7 @@ const AllPastSchedule = ({ appointment }) => {
   const [previewURL, setPreviewURL] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [selectedByteArray, setSelectedByteArray] = useState(null);
+  const [diagnosisURL, setDiagnosisURL] = useState(null);
 
   useEffect(() => {
     const getUser = async () => {
@@ -60,6 +61,21 @@ const AllPastSchedule = ({ appointment }) => {
       alert("Failed to upload diagnosis.");
     } finally {
       setUploading(false);
+    }
+  };
+
+  const handleShowDiagnosis = async () => {
+    try {
+      // const diagnosis = await getDiagnosis(appointment.appId);
+      // if (diagnosis && diagnosis.imageUrl) {
+      //   setDiagnosisURL(diagnosis.imageUrl);
+      //   window.open(diagnosis.imageUrl, "_blank");
+      // } else {
+      //   alert("No diagnosis available.");
+      // }
+    } catch (error) {
+      console.error("Error fetching diagnosis:", error);
+      alert("Failed to fetch diagnosis.");
     }
   };
 
@@ -125,6 +141,13 @@ const AllPastSchedule = ({ appointment }) => {
             View Diagnosis
           </button>
         )}
+
+        <button
+          className={styles.showDiagnosisBtn}
+          onClick={handleShowDiagnosis}
+        >
+          Show Diagnosis
+        </button>
       </div>
     </li>
   );
