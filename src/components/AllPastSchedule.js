@@ -146,12 +146,22 @@ const AllPastSchedule = ({ appointment }) => {
               {showDiagnosis ? "Hide Diagnosis" : "Show Diagnosis"}
             </button>
 
-            {showDiagnosis && diagnosisURL && (
-              <img
-                src={diagnosisURL}
-                alt="Diagnosis"
-                className={styles.diagnosisImage}
-              />
+            {showDiagnosis && (
+              <div className={styles.modalOverlay}>
+                <div className={styles.modalContent}>
+                  <span
+                    className={styles.closeButton}
+                    onClick={() => setShowDiagnosis(false)}
+                  >
+                    &times;
+                  </span>
+                  <img
+                    src={diagnosisURL}
+                    alt="Diagnosis"
+                    className={styles.diagnosisImage}
+                  />
+                </div>
+              </div>
             )}
           </>
         )}
