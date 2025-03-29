@@ -10,6 +10,7 @@ const AllPastSchedule = ({ appointment }) => {
   const [uploading, setUploading] = useState(false);
   const [diagnosisURL, setDiagnosisURL] = useState(null);
   const [hasDiagnosis, setHasDiagnosis] = useState(false);
+  const [showDiagnosis, setShowDiagnosis] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -61,7 +62,13 @@ const AllPastSchedule = ({ appointment }) => {
       await addDiagnosis(appointment.appId, formData);
       alert("Diagnosis added successfully!");
 
-      setHasDiagnosis(true);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setDiagnosisURL(reader.result);
+        setHasDiagnosis(true);
+      };
+      reader.readAsDataURL(selectedFile);
+
       setSelectedFile(null);
       setPreviewURL(null);
     } catch (error) {
@@ -72,31 +79,23 @@ const AllPastSchedule = ({ appointment }) => {
     }
   };
 
-  const handleShowDiagnosis = () => {
-    if (diagnosisURL) {
-      window.open(diagnosisURL, "_blank");
-    } else {
-      alert("No diagnosis available.");
-    }
-  };
-
   return (
     <li key={appointment.appId} className={styles.appointmentCard}>
       <div className={styles.appointmentDetails}>
         <div className={styles.leftColumn}>
           <p>
-            <strong>Patient: </strong> {user?.userName || " Loading..."}
+            <strong>Patient:</strong> {user?.userName || "Loading..."}
           </p>
           <p>
-            <strong>Date: </strong> {appointment.date}
+            <strong>Date:</strong> {appointment.date}
           </p>
         </div>
         <div className={styles.rightColumn}>
           <p>
-            <strong>Time: </strong> {appointment.startTime}
+            <strong>Time:</strong> {appointment.startTime}
           </p>
           <p>
-            <strong>Contact: </strong> {user?.userMobile || " Loading..."}
+            <strong>Contact:</strong> {user?.userMobile || "Loading..."}
           </p>
         </div>
       </div>
@@ -139,12 +138,22 @@ const AllPastSchedule = ({ appointment }) => {
             )}
           </>
         ) : (
-          <button
-            className={styles.showDiagnosisBtn}
-            onClick={handleShowDiagnosis}
-          >
-            Show Diagnosis
-          </button>
+          <>
+            <button
+              className={styles.showDiagnosisBtn}
+              onClick={() => setShowDiagnosis(!showDiagnosis)}
+            >
+              {showDiagnosis ? "Hide Diagnosis" : "Show Diagnosis"}
+            </button>
+
+            {showDiagnosis && diagnosisURL && (
+              <img
+                src={diagnosisURL}
+                alt="Diagnosis"
+                className={styles.diagnosisImage}
+              />
+            )}
+          </>
         )}
       </div>
     </li>

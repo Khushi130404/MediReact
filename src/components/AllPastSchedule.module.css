@@ -58,3 +58,11 @@
   color: #333;
   margin-top: 5px;
 }
+
+.diagnosisImage {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+}
