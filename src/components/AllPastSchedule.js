@@ -93,18 +93,18 @@ const AllPastSchedule = ({ appointment }) => {
       <div className={styles.appointmentDetails}>
         <div className={styles.leftColumn}>
           <p>
-            <strong>Patient:</strong> {user?.userName || "Loading..."}
+            <strong>👤</strong> {user?.userName || "Loading..."}
           </p>
           <p>
-            <strong>Date:</strong> {appointment.date}
+            <strong>📅</strong> {appointment.date}
           </p>
         </div>
         <div className={styles.rightColumn}>
           <p>
-            <strong>Time:</strong> {appointment.startTime}
+            <strong>🕒</strong> {appointment.startTime}
           </p>
           <p>
-            <strong>Contact:</strong> {user?.userMobile || "Loading..."}
+            <strong>☎️</strong> {user?.userMobile || "Loading..."}
           </p>
         </div>
       </div>
