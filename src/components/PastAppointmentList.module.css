@@ -65,3 +65,18 @@
 .nextButton {
   right: 0;
 }
+
+.moreAppLink {
+  margin-top: 15px;
+  color: #45606b;
+  font-weight: 500;
+  border: none;
+  font-size: 15px;
+  opacity: 0.7;
+  transition: color 0.7s ease-in-out, opacity 0.7s ease-in-out;
+}
+
+.moreAppLink:hover {
+  color: #45606b;
+  opacity: 1;
+}
