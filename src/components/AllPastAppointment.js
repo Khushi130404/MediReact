@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import styles from "./AllPastSchedule.module.css";
-import { getDoctorById } from "../services/DoctorServiceService";
+import styles from "./AllPastAppointment.module.css";
+import { getDoctorById } from "../services/DoctorService";
 import { addDiagnosis, getDiagnosis } from "../services/DiagnosisService";
 
 const AllPastAppointment = ({ appointment }) => {
@@ -90,22 +90,16 @@ const AllPastAppointment = ({ appointment }) => {
 
   return (
     <li key={appointment.appId} className={styles.appointmentCard}>
-      <div className={styles.appointmentDetails}>
-        <div className={styles.leftColumn}>
-          <p>
-            <strong>Patient:</strong> {doctor?.doctorName || "Loading..."}
-          </p>
-          <p>
-            <strong>Date:</strong> {appointment.date}
-          </p>
+      <div>
+        <div className={styles.header}>
+          <strong>{doctor ? doctor.doctorName : "Loading..."}</strong>
+          <span className={styles.specialist}>
+            {doctor ? doctor.specialist : "Loading..."}
+          </span>
         </div>
-        <div className={styles.rightColumn}>
-          <p>
-            <strong>Time:</strong> {appointment.startTime}
-          </p>
-          <p>
-            <strong>Contact:</strong> {doctor?.doctorMobile || "Loading..."}
-          </p>
+        <div className={styles.details}>
+          <span>📅 {appointment.date}</span>
+          <span>🕒 {appointment.startTime}</span>
         </div>
       </div>
 

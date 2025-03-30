@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getAllPastUset } from "../services/AppointmentService";
-import styles from "./AllPastScheduleList.module.css";
+import { getAllPastUserAppointment } from "../services/AppointmentService";
+import styles from "./AllPastAppointmentList.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import AllPastSchedule from "./AllPastSchedule";
+import AllPastAppointment from "./AllPastAppointment";
 
 const AllPastAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
@@ -12,7 +12,7 @@ const AllPastAppointmentList = () => {
   useEffect(() => {
     const fetchPastAppointments = async () => {
       try {
-        const pastAppointments = await getAllPastDocAppointment(
+        const pastAppointments = await getAllPastUserAppointment(
           loggedUser.userId
         );
         const sortedAppointments = pastAppointments.sort((a, b) => {
@@ -38,12 +38,12 @@ const AllPastAppointmentList = () => {
     <div>
       <Navbar></Navbar>
       <div className={styles.container}>
-        <h2 className={styles.heading}>Past Appointments</h2>
+        <h2 className={styles.heading}>Past Appointments of User</h2>
         {appointments.length > 0 ? (
           <ul className={styles.appointmentList}>
             {appointments.map((appointment) => (
               <li key={appointment.appId} className={styles.appointmentItem}>
-                <AllPastSchedule appointment={appointment} />
+                <AllPastAppointment appointment={appointment} />
               </li>
             ))}
           </ul>

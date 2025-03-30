@@ -1,0 +1,164 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.header strong {
+  color: #04364a;
+}
+
+.specialist {
+  font-size: 13px;
+  color: #04364a7e;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.appointmentCard {
+  padding: 15px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin: 10px 0px;
+}
+
+.appointmentDetails {
+  display: flex;
+  justify-content: space-between;
+  gap: 0px;
+}
+
+.leftColumn,
+.rightColumn {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .appointmentCard {
+    width: 95%;
+    max-width: none;
+  }
+
+  .appointmentDetails {
+    flex-direction: column;
+  }
+}
+
+.addDiagnosisBtn,
+.viewDiagnosisBtn {
+  background-color: #427d9dcd;
+  color: white;
+  padding: 10px 15px;
+  width: 100%;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.addDiagnosisBtn:hover {
+  background-color: #427d9d;
+}
+
+.viewDiagnosisBtn {
+  background-color: #9bbec8;
+}
+.viewDiagnosisBtn:hover {
+  background-color: #88abb4;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.fileName {
+  font-size: 14px;
+  color: #333;
+  margin-top: 5px;
+}
+
+.modalOverlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-width: 90%;
+  text-align: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.closeButton:hover {
+  color: #000;
+}
+
+.diagnosisImage {
+  width: 75%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.downloadBtn,
+.cancelBtn {
+  background-color: #427d9dcd;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  width: 100%;
+  margin: 0 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancelBtn {
+  background-color: #9bbec8;
+}
+
+.downloadBtn:hover {
+  background-color: #427d9d;
+}
+
+.cancelBtn:hover {
+  background-color: #88abb4;
+}
