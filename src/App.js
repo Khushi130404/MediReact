@@ -73,6 +73,7 @@ function App() {
             path="/doctor/allPast"
             element={<AllPastScheduleList></AllPastScheduleList>}
           />
+          
           <Route path="/admin/login" element={<LoginForm></LoginForm>} />
           <Route path="/admin/home" element={<HomePage></HomePage>} />
           <Route path="/admin/about" element={<AboutUs></AboutUs>} />
