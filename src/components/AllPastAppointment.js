@@ -106,15 +106,8 @@ const AllPastAppointment = ({ appointment }) => {
       <div className={styles.diagnosisSection}>
         {!hasDiagnosis ? (
           <>
-            <button
-              className={styles.addDiagnosisBtn}
-              onClick={() =>
-                document
-                  .getElementById(`fileInput-${appointment.appId}`)
-                  .click()
-              }
-            >
-              Add Diagnosis
+            <button className={styles.addDiagnosisBtn} disabled>
+              No Diagnosis Uploaded
             </button>
 
             <input

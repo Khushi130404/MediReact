@@ -1,5 +1,5 @@
 .container {
-  background-color: #f8f9fa;
+  background-color: #04364a14;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -9,9 +9,10 @@
 .heading {
   text-align: center;
   color: #2a4752;
-  font-size: 24px;
+  font-size: 27px;
   margin: 0;
-  margin-top: 20px;
+  margin-bottom: -20px;
+  padding-top: 25px;
 }
 
 .appointmentList {
