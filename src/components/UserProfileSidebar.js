@@ -36,7 +36,14 @@ const UserProfileSidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.profilePic}>
-        <img src="placeholder.png" alt="Profile Picture" />
+        <img
+          src={
+            userGender === "male"
+              ? "/image/user_male.jpg"
+              : "/image/user_female.jpg"
+          }
+          alt="Profile Picture"
+        />
       </div>
       <form className={styles.form}>
         <div className={styles.formGroup}>
