@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import styles from "./AllPastSchedule.module.css";
 import { findUserById } from "../services/UserService";
+import { sendMail } from "../services/MailService";
 import { addDiagnosis, getDiagnosis } from "../services/DiagnosisService";
 
 const AllPastSchedule = ({ appointment }) => {
@@ -78,6 +79,17 @@ const AllPastSchedule = ({ appointment }) => {
       };
       reader.readAsDataURL(selectedFile);
 
+      try {
+        const emailDto = {
+          to: user?.userMail,
+          subject: "Diagnosis Added",
+          text: "Your diagnosis has been added successfully. You can view it in your appointment history. If you have any questions, please contact us. Thank you!",
+        };
+        await sendMail(emailDto);
+        console.log("Email notification sent successfully!");
+      } catch (error) {
+        console.error("Failed to send email notification:", error);
+      }
       setSelectedFile(null);
       setPreviewURL(null);
     } catch (error) {
