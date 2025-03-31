@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/UserService";
 import { loginDoctor } from "../services/DoctorService";
+import { sendMail } from "../services/MailService";
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -18,6 +19,18 @@ const Login = () => {
           "logged_admin",
           JSON.stringify({ email: email, password: password })
         );
+        console.log("Admin logged in successfully");
+        const emailDto = {
+          to: "khushipatel134040@gmail.com",
+          subject: "Admin Login Notification",
+          text: "The admin has logged in successfully. If this was not you, please change your password.",
+        };
+        try {
+          await sendMail(emailDto);
+          console.log("Email notification sent successfully!");
+        } catch (error) {
+          console.error("Failed to send email notification:", error);
+        }
         navigate("/admin/home");
         return;
       }
