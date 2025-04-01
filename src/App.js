@@ -16,6 +16,7 @@ import AllPastScheduleList from "./components/AllPastScheduleList";
 import Controls from "./components/Controls";
 import AboutUs from "./components/AboutUs";
 import AllPastAppointmentList from "./components/AllPastAppointmentList";
+import SymptomSelector from "./components/SymptomSelector";
 
 function App() {
   const AppointmentWrapper = () => {
@@ -57,6 +58,10 @@ function App() {
             element={<RegisterForm></RegisterForm>}
           />
           <Route path="/user/login" element={<LoginForm></LoginForm>} />
+          <Route
+            path="/user/help"
+            element={<SymptomSelector></SymptomSelector>}
+          />
           <Route path="/doctor" element={<HomePage></HomePage>} />
           <Route path="/doctor/home" element={<HomePage></HomePage>} />
           <Route path="/doctor/about" element={<AboutUs></AboutUs>} />
@@ -70,6 +75,7 @@ function App() {
             element={<RegisterForm></RegisterForm>}
           />
           <Route path="/doctor/login" element={<LoginForm></LoginForm>} />
+
           <Route
             path="/doctor/allPast"
             element={<AllPastScheduleList></AllPastScheduleList>}
