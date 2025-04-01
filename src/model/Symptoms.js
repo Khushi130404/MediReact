@@ -112,7 +112,6 @@ class Symptoms {
     this.vomiting = 0;
     this.weak_limbs = 0;
     this.weakness = 0;
-    this.specialty = 0;
   }
 }
 

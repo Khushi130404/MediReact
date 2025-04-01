@@ -72,7 +72,7 @@ const DocList = ({ onSelect }) => {
         </ul>
         <button
           className={styles.unknownButton}
-          onClick={() => navigate("/help")}
+          onClick={() => navigate("/user/help")}
         >
           Don't know whom to consult? Click here!
         </button>
