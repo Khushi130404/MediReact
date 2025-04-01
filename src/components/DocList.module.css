@@ -64,3 +64,24 @@
 .menuItem:hover {
   background-color: #f1f1f1;
 }
+
+.unknownButton {
+  color: rgb(29, 86, 118);
+  background-color: #ffffff;
+  font-size: 1rem;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.unknownButton:hover {
+  background-color: #9bbec8;
+  color: white;
+}
+
+.unknownButton:focus {
+  outline: none;
+}

@@ -70,6 +70,12 @@ const DocList = ({ onSelect }) => {
             </li>
           ))}
         </ul>
+        <button
+          className={styles.unknownButton}
+          onClick={() => navigate("/help")}
+        >
+          Don't know whom to consult? Click here!
+        </button>
       </div>
     </div>
   );
