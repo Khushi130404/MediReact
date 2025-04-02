@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showDoctor } from "../services/DoctorService";
 import { predictSpecialist } from "../services/ModelService";
-import styles from "./SymptomSelector.module.css"; // Import CSS module
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import styles from "./SymptomSelector.module.css";
 
 const symptomsList = [
   "chest pain",
@@ -71,11 +73,12 @@ const SymptomSelector = () => {
   const handleSubmit = async () => {
     const symptomClassArray = generateSymptomClass();
     const specialist = await predictSpecialist(symptomClassArray);
-    setResult(`You should consult a specialist in: ${specialist}`);
+    setResult(`You should consult a specialist in ${specialist}`);
   };
 
   return (
     <div>
+      <Navbar />
       <div className={styles.container}>
         <h2>Select Symptoms</h2>
         <div className={styles.symptomGrid}>
@@ -97,10 +100,10 @@ const SymptomSelector = () => {
         </button>
 
         <div className={styles.result}>
-          <h3>Result</h3>
           <p>{result}</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,18 +1,35 @@
 .container {
   text-align: center;
+  height: 83vh;
+  color: #0b2f43;
+  background-color: #04364a14;
   padding: 20px;
+}
+
+.result {
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #2c4553;
 }
 
 .symptomGrid {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  background-color: white;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
+  padding: 27px;
+  border-radius: 20px;
+  width: 70%;
+  margin: 0 auto;
 }
 
 .symptomButton {
-  padding: 10px;
-  background-color: lightgray;
+  padding: 12px;
+  background-color: #04364a1f;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -20,17 +37,19 @@
 }
 
 .symptomButton:hover {
-  background-color: darkgray;
+  background-color: #04364a31;
 }
 
 .selected {
-  background-color: lightgreen !important;
+  background-color: #9bbec8 !important;
+  color: white !important;
 }
 
 .submitButton {
   margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
+  font-size: 17px;
+  padding: 10px 30px;
+  background-color: #164863d0;
   color: white;
   border: none;
   border-radius: 5px;
@@ -39,40 +58,5 @@
 }
 
 .submitButton:hover {
-  background-color: #0056b3;
-}
-
-/* Popup Modal */
-.popupOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.closeButton {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.closeButton:hover {
-  background-color: darkred;
+  background-color: #164863e8;
 }
