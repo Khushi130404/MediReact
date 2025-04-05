@@ -1,0 +1,39 @@
+.docAboutContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #04364a14;
+  padding: 20px 40px;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: #04364a;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.text {
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(140, 144, 145);
+}
+
+.editIcon {
+  position: absolute;
+  top: 110px;
+  right: 40px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: transform 0.5s ease;
+}
+
+.editIcon:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}

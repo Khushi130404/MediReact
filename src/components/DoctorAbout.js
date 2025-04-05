@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { findAboutInfoByDocId } from "../services/AboutService";
+import styles from "./DoctorAbout.module.css";
 
 const DoctorAbout = () => {
   const loggedDoc = JSON.parse(localStorage.getItem("logged_doctor"));
@@ -22,35 +23,17 @@ const DoctorAbout = () => {
   }, [loggedDoc?.doctorId]);
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>About Dr. {loggedDoc?.doctorName}</h1>
-      <p style={styles.text}>{aboutText}</p>
+    <div className={styles.docAboutContainer}>
+      <img
+        src="/image/editDoc.svg"
+        alt="Edit"
+        className={styles.editIcon}
+        onClick={() => alert("Edit coming soon!")}
+      />
+      <h1 className={styles.header}>About Me : {loggedDoc?.doctorName}</h1>
+      <p className={styles.text}>{aboutText}</p>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    maxWidth: "700px",
-    margin: "50px auto",
-    padding: "30px",
-    backgroundColor: "#f4f4f8",
-    borderRadius: "12px",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-    fontFamily: "Arial, sans-serif",
-  },
-  heading: {
-    fontSize: "28px",
-    marginBottom: "20px",
-    color: "#4b0082",
-    textAlign: "center",
-  },
-  text: {
-    fontSize: "18px",
-    lineHeight: "1.6",
-    color: "#333",
-    textAlign: "justify",
-  },
 };
 
 export default DoctorAbout;
