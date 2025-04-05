@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/UserService";
 import { loginDoctor } from "../services/DoctorService";
 import { sendMail } from "../services/MailService";
+import { checkAdminLogin } from "../services/AdminService";
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -14,7 +15,9 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      if (email == "admin@gmail.com" && password == "admin123") {
+      const admin = await checkAdminLogin(email, password);
+
+      if (admin) {
         localStorage.setItem(
           "logged_admin",
           JSON.stringify({ email: email, password: password })
