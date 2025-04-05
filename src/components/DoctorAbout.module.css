@@ -37,3 +37,46 @@
   transform: scale(1.1);
   opacity: 1;
 }
+
+.textarea {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.buttonGroup {
+  margin-top: 10px;
+}
+
+.saveBtn,
+.cancelBtn {
+  padding: 8px 16px;
+  border: none;
+  width: 100px;
+  margin-right: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.saveBtn {
+  background-color: #427d9dcd;
+  color: white;
+}
+
+.cancelBtn {
+  background-color: #9bbec8;
+  color: white;
+}
+
+.saveBtn:hover {
+  background-color: #427d9d;
+}
+
+.cancelBtn:hover {
+  background-color: #88abb4;
+}
