@@ -81,7 +81,7 @@
 .registerLink {
   width: 100%;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
   text-decoration: none;
   color: #176b87;
   font-size: 14px;
@@ -103,4 +103,11 @@
 .inner img {
   height: 100%;
   border-radius: 20px;
+}
+
+.linkPara {
+  text-align: center;
+  padding-top: 10px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

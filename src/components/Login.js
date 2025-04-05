@@ -94,9 +94,15 @@ const Login = () => {
                 Login
               </button>
             </div>
-            <a className={styles.registerLink} href="/register">
-              Click here to Register...
-            </a>
+            <p className={styles.linkPara}>
+              <a className={styles.registerLink} href="/register">
+                Don't have any account?
+              </a>
+              &nbsp;&nbsp;or&nbsp;&nbsp;
+              <a className={styles.registerLink} href="/forgot">
+                Forgot Password?
+              </a>
+            </p>
           </div>
         </div>
       </form>
