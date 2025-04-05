@@ -14,6 +14,6 @@ export const checkAdminLogin = async (adminName, adminPass) => {
     return response.data;
   } catch (error) {
     console.error("Admin login failed:", error);
-    throw error.response?.data || "Something went wrong!";
+    return null;
   }
 };

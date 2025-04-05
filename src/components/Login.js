@@ -16,7 +16,6 @@ const Login = () => {
     e.preventDefault();
     try {
       const admin = await checkAdminLogin(email, password);
-
       if (admin) {
         localStorage.setItem(
           "logged_admin",
@@ -51,9 +50,9 @@ const Login = () => {
         navigate("/user/home");
         return;
       }
-      setError("Invalid credentials or server error.");
+      setError("Invalid credentials");
     } catch (err) {
-      setError("Invalid credentials or server error.");
+      setError("Server error");
     }
   };
 
