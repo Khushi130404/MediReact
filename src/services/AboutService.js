@@ -15,8 +15,11 @@ export const findAboutInfoByDocId = async (doctorId) => {
 
 export const addAboutInfo = async (doctorId, aboutText) => {
   try {
-    const response = await axios.post(`${ADD_ABOUT_API}/${doctorId}`, {
-      about: aboutText,
+    const response = await axios.post(`${BASE_URL}/about/addAbout`, null, {
+      params: {
+        doctorId,
+        about: aboutText,
+      },
     });
     return response.data;
   } catch (error) {
