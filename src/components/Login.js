@@ -10,6 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -99,7 +100,11 @@ const Login = () => {
                 Don't have any account?
               </a>
               &nbsp;&nbsp;or&nbsp;&nbsp;
-              <a className={styles.registerLink} href="/forgot">
+              <a
+                className={styles.registerLink}
+                onClick={() => setShowPopup(true)}
+                style={{ cursor: "pointer" }}
+              >
                 Forgot Password?
               </a>
             </p>
@@ -107,6 +112,42 @@ const Login = () => {
         </div>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      {showPopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popupBox}>
+            <h3 className={styles.popupTitle}>Recover Password</h3>
+            <p className={styles.popupText}>
+              Choose a method to recover your account:
+            </p>
+            <div className={styles.popupOptions}>
+              <button
+                className={styles.popupButton}
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate("/forgot/gmail");
+                }}
+              >
+                Login via Gmail
+              </button>
+              <button
+                className={styles.popupButton}
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate("/forgot/sms");
+                }}
+              >
+                Login via SMS
+              </button>
+            </div>
+            <button
+              className={styles.closeButton}
+              onClick={() => setShowPopup(false)}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
