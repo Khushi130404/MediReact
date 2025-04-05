@@ -2,6 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8080";
 const GET_ABOUT_API = `${BASE_URL}/about/aboutDoc`;
+const ADD_ABOUT_API = `${BASE_URL}/about/addAbout`;
 
 export const findAboutInfoByDocId = async (doctorId) => {
   try {
@@ -12,3 +13,14 @@ export const findAboutInfoByDocId = async (doctorId) => {
   }
 };
 
+export const addAboutInfo = async (doctorId, aboutText) => {
+  try {
+    const response = await axios.post(`${ADD_ABOUT_API}/${doctorId}`, {
+      about: aboutText,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Failed to add About Info:", error);
+    throw error.response?.data || "Something went wrong!";
+  }
+};
