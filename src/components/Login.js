@@ -3,18 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/UserService";
 import { loginDoctor } from "../services/DoctorService";
 import { sendMail } from "../services/MailService";
+import { checkAdminLogin } from "../services/AdminService";
 import styles from "./Login.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      if (email == "admin@gmail.com" && password == "admin123") {
+      const admin = await checkAdminLogin(email, password);
+      if (admin) {
         localStorage.setItem(
           "logged_admin",
           JSON.stringify({ email: email, password: password })
@@ -48,9 +51,9 @@ const Login = () => {
         navigate("/user/home");
         return;
       }
-      setError("Invalid credentials or server error.");
+      setError("Invalid credentials");
     } catch (err) {
-      setError("Invalid credentials or server error.");
+      setError("Server error");
     }
   };
 
@@ -92,13 +95,59 @@ const Login = () => {
                 Login
               </button>
             </div>
-            <a className={styles.registerLink} href="/register">
-              Click here to Register...
-            </a>
+            <p className={styles.linkPara}>
+              <a className={styles.registerLink} href="/register">
+                Don't have any account?
+              </a>
+              &nbsp;&nbsp;or&nbsp;&nbsp;
+              <a
+                className={styles.registerLink}
+                onClick={() => setShowPopup(true)}
+                style={{ cursor: "pointer" }}
+              >
+                Forgot Password?
+              </a>
+            </p>
           </div>
         </div>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      {showPopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popupBox}>
+            <h3 className={styles.popupTitle}>Recover Password</h3>
+            <p className={styles.popupText}>
+              Choose a method to recover your account:
+            </p>
+            <div className={styles.popupOptions}>
+              <button
+                className={styles.popupButton}
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate("/forgot/gmail");
+                }}
+              >
+                Login via Gmail
+              </button>
+              <button
+                className={styles.popupButton}
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate("/forgot/sms");
+                }}
+              >
+                Login via SMS
+              </button>
+            </div>
+            <button
+              className={styles.closeButton}
+              onClick={() => setShowPopup(false)}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
