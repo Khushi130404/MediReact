@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ForgotGmail.module.css";
+import { sendMail } from "../services/MailService";
 
 const ForgotGmail = () => {
   const [username, setUsername] = useState("");
@@ -31,17 +32,15 @@ const ForgotGmail = () => {
     setStage("otp");
 
     try {
-      await fetch("https://your-api-to-send-otp.com/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username,
-          otp: otpToSend,
-        }),
-      });
-      alert("OTP sent to your email!");
+      const emailDto = {
+        to: user?.userMail,
+        subject: "Medicure - OTP Verification",
+        text: `Your OTP is ${otpToSend}. It is valid for 2 minutes.`,
+      };
+      await sendMail(emailDto);
+      console.log("Email notification sent successfully!");
     } catch (error) {
-      alert("Failed to send OTP.");
+      console.error("Failed to send email notification:", error);
     }
   };
 
