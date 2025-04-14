@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ForgotGmail.module.css";
 import { sendMail } from "../services/MailService";
+import { findUserByMail } from "../services/UserService";
+import { useNavigate } from "react-router-dom";
 
 const ForgotGmail = () => {
   const [username, setUsername] = useState("");
@@ -8,6 +10,8 @@ const ForgotGmail = () => {
   const [otp, setOtp] = useState("");
   const [generatedOtp, setGeneratedOtp] = useState("");
   const [timer, setTimer] = useState(120);
+  const [message, setMessage] = useState({ text: "", type: "" });
+  const navigate = useNavigate();
 
   useEffect(() => {
     let countdown;
@@ -15,40 +19,52 @@ const ForgotGmail = () => {
       countdown = setInterval(() => {
         setTimer((prev) => prev - 1);
       }, 1000);
-    } else if (timer === 0) {
-      clearInterval(countdown);
     }
     return () => clearInterval(countdown);
   }, [stage, timer]);
 
-  const generateOtp = () => {
-    return Math.floor(1000 + Math.random() * 9000).toString();
-  };
+  const generateOtp = () => Math.floor(1000 + Math.random() * 9000).toString();
 
   const handleSendOtp = async () => {
-    const otpToSend = generateOtp();
-    setGeneratedOtp(otpToSend);
-    setTimer(120);
-    setStage("otp");
-
     try {
+      const user = await findUserByMail(username);
+      if (!user) {
+        setMessage({ text: "User doesn't exist.", type: "error" });
+        return;
+      }
+
+      const otpToSend = generateOtp();
+      setGeneratedOtp(otpToSend);
+      setTimer(120);
+      setStage("otp");
+      setMessage({ text: "OTP sent to your email.", type: "success" });
+
       const emailDto = {
-        to: user?.userMail,
+        to: username,
         subject: "Medicure - OTP Verification",
         text: `Your OTP is ${otpToSend}. It is valid for 2 minutes.`,
       };
+
       await sendMail(emailDto);
-      console.log("Email notification sent successfully!");
     } catch (error) {
-      console.error("Failed to send email notification:", error);
+      console.error("Error:", error);
+      setMessage({
+        text: "Something went wrong. Please try again.",
+        type: "error",
+      });
     }
   };
 
   const handleVerifyOtp = () => {
     if (otp === generatedOtp && timer > 0) {
       setStage("success");
+      setMessage({
+        text: "OTP verified successfully! Redirecting...",
+        type: "success",
+      });
+      setTimeout(() => navigate("/home"), 2000);
     } else {
-      alert("Invalid OTP or OTP expired");
+      setMessage({ text: "Invalid OTP or OTP expired.", type: "error" });
     }
   };
 
@@ -65,11 +81,11 @@ const ForgotGmail = () => {
       {stage === "input" && (
         <>
           <p className={styles.description}>
-            Please enter your username to receive an OTP.
+            Enter your Gmail to receive an OTP.
           </p>
           <input
-            type="text"
-            placeholder="Enter username"
+            type="email"
+            placeholder="Enter Gmail"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className={styles.input}
@@ -104,19 +120,31 @@ const ForgotGmail = () => {
           >
             Verify OTP
           </button>
-          <p className={timer === 0 ? styles.expired : styles.timer}>
-            {timer === 0 ? "OTP expired. Please try again." : ""}
-          </p>
+          {timer === 0 && (
+            <button onClick={handleSendOtp} className={styles.retryButton}>
+              Retry OTP
+            </button>
+          )}
         </>
       )}
 
       {stage === "success" && (
-        <p className={styles.success}>
-          OTP verified successfully! You are now logged in.
-        </p>
+        <p className={styles.success}>OTP verified successfully!</p>
+      )}
+
+      {message.text && (
+        <div
+          className={`${styles.messagePopup} ${
+            message.type === "error" ? styles.error : styles.successMsg
+          }`}
+        >
+          {message.text}
+        </div>
       )}
     </div>
   );
 };
 
 export default ForgotGmail;
+
+// khushipatel134040@gmail.com
