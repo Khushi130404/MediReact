@@ -1,15 +1,16 @@
-body {
+.containerOuter {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 89vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: #04364a14;
 }
 
 .container {
-  width: 400px;
+  width: 450px;
   margin: auto;
   padding: 2rem 1.5rem;
   background-color: #ffffff;

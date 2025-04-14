@@ -3,6 +3,8 @@ import styles from "./ForgotGmail.module.css";
 import { sendMail } from "../services/MailService";
 import { findUserByMail } from "../services/UserService";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const ForgotGmail = () => {
   const [username, setUsername] = useState("");
@@ -88,71 +90,77 @@ const ForgotGmail = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.heading}>Forgot Gmail</h1>
+    <>
+      <Navbar></Navbar>
+      <div className={styles.containerOuter}>
+        <div className={styles.container}>
+          <h1 className={styles.heading}>Forgot Gmail</h1>
 
-      {stage === "input" && (
-        <>
-          <p className={styles.description}>
-            Enter your Gmail to receive an OTP.
-          </p>
-          <input
-            type="email"
-            placeholder="Enter Gmail"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className={styles.input}
-          />
-          <button
-            onClick={handleSendOtp}
-            disabled={!username}
-            className={styles.button}
-          >
-            Send OTP
-          </button>
-        </>
-      )}
+          {stage === "input" && (
+            <>
+              <p className={styles.description}>
+                Enter your Gmail to receive an OTP.
+              </p>
+              <input
+                type="email"
+                placeholder="Enter Gmail"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className={styles.input}
+              />
+              <button
+                onClick={handleSendOtp}
+                disabled={!username}
+                className={styles.button}
+              >
+                Send OTP
+              </button>
+            </>
+          )}
 
-      {stage === "otp" && (
-        <>
-          <p className={styles.description}>
-            Enter the OTP sent to your email. Time left:{" "}
-            <strong>{formatTime(timer)}</strong>
-          </p>
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            className={styles.input}
-          />
-          <button
-            onClick={handleVerifyOtp}
-            disabled={!otp}
-            className={styles.button}
-          >
-            Verify OTP
-          </button>
-          <button onClick={handleSendOtp} className={styles.retryButton}>
-            Resend OTP
-          </button>
-        </>
-      )}
+          {stage === "otp" && (
+            <>
+              <p className={styles.description}>
+                Time left: <strong>{formatTime(timer)}</strong>
+                <br></br>Enter the OTP sent to your email.
+              </p>
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className={styles.input}
+              />
+              <button
+                onClick={handleVerifyOtp}
+                disabled={!otp}
+                className={styles.button}
+              >
+                Verify OTP
+              </button>
+              <button onClick={handleSendOtp} className={styles.retryButton}>
+                Resend OTP
+              </button>
+            </>
+          )}
 
-      {stage === "success" && (
-        <p className={styles.success}>OTP verified successfully!</p>
-      )}
+          {stage === "success" && (
+            <p className={styles.success}>OTP verified successfully!</p>
+          )}
 
-      {message.text && (
-        <div
-          className={`${styles.messagePopup} ${
-            message.type === "error" ? styles.error : styles.successMsg
-          }`}
-        >
-          {message.text}
+          {message.text && (
+            <div
+              className={`${styles.messagePopup} ${
+                message.type === "error" ? styles.error : styles.successMsg
+              }`}
+            >
+              {message.text}
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+      <Footer></Footer>
+    </>
   );
 };
 
