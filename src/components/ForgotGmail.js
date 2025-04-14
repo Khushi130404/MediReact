@@ -59,7 +59,17 @@ const ForgotGmail = () => {
   };
 
   const handleVerifyOtp = () => {
-    if (otp === generatedOtp && timer > 0) {
+    if (timer <= 0) {
+      setMessage({
+        text: "OTP has expired. Please request a new one.",
+        type: "error",
+      });
+    } else if (otp !== generatedOtp) {
+      setMessage({
+        text: "The OTP you entered is incorrect. Please try again.",
+        type: "error",
+      });
+    } else {
       localStorage.setItem("logged_user", JSON.stringify(user));
       setStage("success");
       setMessage({
@@ -68,8 +78,6 @@ const ForgotGmail = () => {
       });
 
       setTimeout(() => navigate("/user/home"), 2000);
-    } else {
-      setMessage({ text: "Invalid OTP or OTP expired.", type: "error" });
     }
   };
 

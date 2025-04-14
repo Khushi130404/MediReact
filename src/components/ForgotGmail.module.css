@@ -1,66 +1,89 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #04364a14;
+}
+
 .container {
-  max-width: 400px;
+  width: 400px;
   margin: auto;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .heading {
-  font-size: 1.8rem;
+  font-size: 27px;
   text-align: center;
-  margin-bottom: 1rem;
-  color: #3a3a3a;
+  margin-bottom: 1.5rem;
+  color: #164863;
+  margin-top: 0;
+  font-weight: 700;
 }
 
 .description {
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #04364a;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .input {
-  width: 100%;
-  padding: 0.6rem 0.8rem;
+  width: 90%;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 1rem;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input:focus {
-  border-color: #007bff;
+  border-color: #427d9d9d;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.button,
+.retryButton {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .button {
-  width: 100%;
-  padding: 0.6rem;
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #427d9dcd;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #427d9d;
 }
 
 .button:disabled {
-  background-color: #b5d1ff;
+  background-color: #427d9d4d;
   cursor: not-allowed;
 }
 
 .retryButton {
-  margin-top: 10px;
-  padding: 0.6rem;
-  width: 100%;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  background-color: #88aab4;
+  color: #fff;
+}
+
+.retryButton:hover {
+  background-color: #789da7;
 }
 
 .success {
@@ -68,24 +91,29 @@
   font-weight: bold;
   margin-top: 1rem;
   text-align: center;
+  font-size: 1.1rem;
 }
 
 .messagePopup {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  border-radius: 8px;
+  margin-top: 1.2rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
   text-align: center;
   font-weight: 500;
+  font-size: 0.95rem;
   animation: fadeIn 0.3s ease-in-out;
 }
 
 .successMsg {
-  background-color: #e7fbe7;
-  color: #1e824c;
+  background-color: #e6f7e6;
+  color: #1e7e34;
+  border: 1px solid #c3e6cb;
 }
 
 .error {
-  background-color: #ffe5e5;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
   color: #b30000;
 }
 
@@ -97,5 +125,16 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Optional: make mobile spacing even better */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+
+  .heading {
+    font-size: 1.6rem;
   }
 }
