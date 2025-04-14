@@ -1,0 +1,82 @@
+.docAboutContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #04364a14;
+  padding: 20px 40px;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: #04364a;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.text {
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(140, 144, 145);
+}
+
+.editIcon {
+  position: absolute;
+  top: 110px;
+  right: 40px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: transform 0.5s ease;
+}
+
+.editIcon:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.textarea {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.buttonGroup {
+  margin-top: 10px;
+}
+
+.saveBtn,
+.cancelBtn {
+  padding: 8px 16px;
+  border: none;
+  width: 100px;
+  margin-right: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.saveBtn {
+  background-color: #427d9dcd;
+  color: white;
+}
+
+.cancelBtn {
+  background-color: #9bbec8;
+  color: white;
+}
+
+.saveBtn:hover {
+  background-color: #427d9d;
+}
+
+.cancelBtn:hover {
+  background-color: #88abb4;
+}

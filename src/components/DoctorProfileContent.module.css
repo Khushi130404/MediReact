@@ -1,0 +1,10 @@
+.profileContent {
+  flex-grow: 1;
+  height: 89vh;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.profContentDiv {
+  padding-bottom: 20px;
+}

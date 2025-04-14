@@ -1,0 +1,10 @@
+.slot .break {
+  color: #164863;
+  column-span: all;
+  font-weight: bold;
+}
+
+.slot td {
+  padding: 3px;
+  text-align: center;
+}

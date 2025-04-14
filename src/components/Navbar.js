@@ -1,8 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./Navbar.module.css"; // Import styles
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Navbar.module.css";
+import DocList from "./DocList";
 
 const Navbar = () => {
+  const [showDocList, setShowDocList] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isDocLoggedIn, setIsDocLoggedIn] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
+    const loggedDoctor = JSON.parse(localStorage.getItem("logged_doctor"));
+    const loggedAdmin = JSON.parse(localStorage.getItem("logged_admin"));
+
+    setIsUserLoggedIn(!!loggedUser);
+    setIsDocLoggedIn(!!loggedDoctor);
+    setIsAdminLoggedIn(!!loggedAdmin);
+  }, []);
+
+  const handleBookingClick = () => {
+    if (isUserLoggedIn || isAdminLoggedIn) {
+      console.log("Booking clicked");
+      setShowDocList(true);
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("logged_user");
+    localStorage.removeItem("logged_doctor");
+    localStorage.removeItem("logged_admin");
+    setIsUserLoggedIn(false);
+    setIsDocLoggedIn(false);
+    setIsAdminLoggedIn(false);
+    navigate("/home");
+  };
+
+  const handleNavigate = (path) => {
+    if (isDocLoggedIn) navigate(`/doctor${path}`);
+    else if (isUserLoggedIn) navigate(`/user${path}`);
+    else if (isAdminLoggedIn) navigate(`/admin${path}`);
+    else navigate(path);
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContainer}>
@@ -14,38 +57,105 @@ const Navbar = () => {
         </h1>
         <ul className={styles.navLinks}>
           <li>
-            <Link to="/" className={styles.navItem}>
+            <button
+              onClick={() => handleNavigate("/home")}
+              className={styles.navItem}
+            >
               Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className={styles.navItem}>
-              Profile
-            </Link>
-          </li>
-          <li>
-            <Link to="/appointment" className={styles.navItem}>
-              Appointment
-            </Link>
+            </button>
           </li>
 
+          {isUserLoggedIn && (
+            <li>
+              <button
+                onClick={() => handleNavigate("/profile")}
+                className={styles.navItem}
+              >
+                Profile
+              </button>
+            </li>
+          )}
+
+          {isAdminLoggedIn && (
+            <li>
+              <button
+                onClick={() => handleNavigate("/controls")}
+                className={styles.navItem}
+              >
+                Controls
+              </button>
+            </li>
+          )}
+
+          {(isUserLoggedIn || isAdminLoggedIn) && (
+            <>
+              <li>
+                <button onClick={handleBookingClick} className={styles.navItem}>
+                  Appointment
+                </button>
+              </li>
+            </>
+          )}
+
+          {isDocLoggedIn && (
+            <>
+              <li>
+                <button
+                  onClick={() => handleNavigate("/profile")}
+                  className={styles.navItem}
+                >
+                  Profile
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavigate("/schedule")}
+                  className={styles.navItem}
+                >
+                  Schedule
+                </button>
+              </li>
+            </>
+          )}
+
           <li>
-            <Link to="/register" className={styles.navItem}>
-              Register
-            </Link>
-          </li>
-          <li>
-            <Link to="/login" className={styles.navItem}>
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/profile" className={styles.navItem}>
+            <button
+              onClick={() => handleNavigate("/about")}
+              className={styles.navItem}
+            >
               About Us
-            </Link>
+            </button>
           </li>
+
+          {isUserLoggedIn || isDocLoggedIn || isAdminLoggedIn ? (
+            <li>
+              <button onClick={handleLogout} className={styles.navItem}>
+                Logout
+              </button>
+            </li>
+          ) : (
+            <>
+              <li>
+                <button
+                  onClick={() => navigate("/register")}
+                  className={styles.navItem}
+                >
+                  Register
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigate("/login")}
+                  className={styles.navItem}
+                >
+                  Login
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </div>
+      {showDocList && <DocList onSelect={() => setShowDocList(false)} />}
     </nav>
   );
 };

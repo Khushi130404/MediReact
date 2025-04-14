@@ -1,0 +1,132 @@
+.booked {
+  background-color: #f0dbd9;
+  color: #be1300;
+  overflow: hidden;
+  text-align: center;
+  padding: 5px;
+}
+
+.available {
+  background-color: #dbf0e3;
+  color: #00a83e;
+  text-align: center;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.my_slot {
+  background-color: #cce1e6;
+  color: #06637a;
+  text-align: center;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 300px;
+  text-align: center;
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.popup p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.confirmBtn,
+.cancelBtn {
+  width: 100px;
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmBtn {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancelBtn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.confirmBtn:hover {
+  background-color: #218838;
+}
+
+.cancelBtn:hover {
+  background-color: #c82333;
+}
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.deleteBtn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.deleteBtn:hover {
+  background-color: darkred;
+}
+
+.popupContentDoc p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.popupContentDoc h3 {
+  margin-bottom: 20px;
+}
+
+.popupContentDoc {
+  padding: 15px;
+}
+
+.popupContent p {
+  margin: 4px 0; 
+  font-size: 14px; 
+}
+
+.popupContent h3 {
+  margin-bottom: 8px; 
+}
+
+.popupContentDoc button {
+  margin-top: 15px;
+}

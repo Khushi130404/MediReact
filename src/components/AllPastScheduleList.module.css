@@ -1,0 +1,46 @@
+.container {
+  background-color: #04364a14;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  text-align: center;
+  color: #2a4752;
+  font-size: 24px;
+  margin: 0;
+  padding-top: 25px;
+}
+
+.appointmentList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  padding-right: 30px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.appointmentList li {
+  list-style: none;
+  margin: 8px 25px;
+}
+
+.appointmentItem {
+  flex: 1 1 260px;
+  max-width: 320px;
+}
+
+.noAppointments {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}

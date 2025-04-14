@@ -47,18 +47,22 @@ const Footer = () => {
           <p>&copy; 2025 All rights reserved | Block is made by Khushi Patel</p>
           <div className={styles.footer_socialIcons}>
             <img
-              src="image/facebook.svg"
+              src="/image/facebook.svg"
               alt="Facebook"
               className="socialIcon"
             />
-            <img src="image/twitter.svg" alt="Twitter" className="socialIcon" />
             <img
-              src="image/instagram.svg"
+              src="/image/twitter.svg"
+              alt="Twitter"
+              className="socialIcon"
+            />
+            <img
+              src="/image/instagram.svg"
               alt="Instagram"
               className="socialIcon"
             />
             <img
-              src="image/linkedin.svg"
+              src="/image/linkedin.svg"
               alt="LinkedIn"
               className="socialIcon"
             />
