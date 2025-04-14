@@ -11,6 +11,7 @@ const ForgotGmail = () => {
   const [generatedOtp, setGeneratedOtp] = useState("");
   const [timer, setTimer] = useState(120);
   const [message, setMessage] = useState({ text: "", type: "" });
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,8 +28,8 @@ const ForgotGmail = () => {
 
   const handleSendOtp = async () => {
     try {
-      const user = await findUserByMail(username);
-      if (!user) {
+      const foundUser = await findUserByMail(username);
+      if (!foundUser) {
         setMessage({ text: "User doesn't exist.", type: "error" });
         return;
       }
@@ -37,7 +38,9 @@ const ForgotGmail = () => {
       setGeneratedOtp(otpToSend);
       setTimer(120);
       setStage("otp");
-      setMessage({ text: "OTP sent to your email.", type: "success" });
+      setOtp("");
+      setMessage({ text: "", type: "success" });
+      setUser(foundUser);
 
       const emailDto = {
         to: username,
@@ -57,12 +60,14 @@ const ForgotGmail = () => {
 
   const handleVerifyOtp = () => {
     if (otp === generatedOtp && timer > 0) {
+      localStorage.setItem("logged_user", JSON.stringify(user));
       setStage("success");
       setMessage({
         text: "OTP verified successfully! Redirecting...",
         type: "success",
       });
-      setTimeout(() => navigate("/home"), 2000);
+
+      setTimeout(() => navigate("/user/home"), 2000);
     } else {
       setMessage({ text: "Invalid OTP or OTP expired.", type: "error" });
     }
@@ -120,11 +125,9 @@ const ForgotGmail = () => {
           >
             Verify OTP
           </button>
-          {timer === 0 && (
-            <button onClick={handleSendOtp} className={styles.retryButton}>
-              Retry OTP
-            </button>
-          )}
+          <button onClick={handleSendOtp} className={styles.retryButton}>
+            Resend OTP
+          </button>
         </>
       )}
 
