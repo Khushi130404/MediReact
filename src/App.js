@@ -18,6 +18,7 @@ import AboutUs from "./components/AboutUs";
 import AllPastAppointmentList from "./components/AllPastAppointmentList";
 import SymptomSelector from "./components/SymptomSelector";
 import ForgotGmail from "./components/ForgotGmail";
+import ForgotSMS from "./components/ForgotSMS";
 
 function App() {
   const AppointmentWrapper = () => {
@@ -95,6 +96,7 @@ function App() {
           />
           <Route path="/admin/controls" element={<Controls></Controls>} />
           <Route path="/forgot/gmail" element={<ForgotGmail></ForgotGmail>} />
+          <Route path="/forgot/sms" element={<ForgotSMS></ForgotSMS>} />
         </Routes>
       </div>
     </Router>
