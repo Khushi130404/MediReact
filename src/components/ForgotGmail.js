@@ -94,7 +94,7 @@ const ForgotGmail = () => {
       <Navbar></Navbar>
       <div className={styles.containerOuter}>
         <div className={styles.container}>
-          <h1 className={styles.heading}>Forgot Gmail</h1>
+          <h1 className={styles.heading}>Verification with Gmail</h1>
 
           {stage === "input" && (
             <>
