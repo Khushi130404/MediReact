@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ForgotSMS.module.css";
 import { sendSMS } from "../services/SmsService";
-import { findUserBySMS } from "../services/UserService";
+import { findUserByMobile } from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -30,7 +30,7 @@ const ForgotSMS = () => {
 
   const handleSendOtp = async () => {
     try {
-      const foundUser = await findUserBySMS(phoneNumber);
+      const foundUser = await findUserByMobile(phoneNumber);
       if (!foundUser) {
         setMessage({ text: "User doesn't exist.", type: "error" });
         return;
@@ -44,13 +44,12 @@ const ForgotSMS = () => {
       setMessage({ text: "", type: "success" });
       setUser(foundUser);
 
-      const esmsDto = {
+      const smsDto = {
         to: phoneNumber,
-        subject: "Medicure - OTP Verification",
-        text: `Your OTP is ${otpToSend}. It is valid for 2 minutes.`,
+        message: `Your OTP is ${otpToSend}. It is valid for 2 minutes.`,
       };
 
-      await sendSMS(esmsDto);
+      await sendSMS(smsDto);
     } catch (error) {
       console.error("Error:", error);
       setMessage({

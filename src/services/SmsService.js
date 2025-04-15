@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8080";
-const SEND_SMS_API = `${BASE_URL}/sms/sendMail`;
+const SEND_SMS_API = `${BASE_URL}/sms/sendSMS`;
 
 export const sendSMS = async (smsDto) => {
   try {
