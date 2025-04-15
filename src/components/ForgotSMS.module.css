@@ -1,0 +1,140 @@
+.containerOuter {
+  margin: 0;
+  padding: 0;
+  height: 89vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #04364a14;
+}
+
+.container {
+  width: 450px;
+  margin: auto;
+  padding: 2rem 1.5rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  font-size: 27px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #164863;
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #04364a;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.input {
+  width: 90%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+  border-color: #427d9d9d;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.button,
+.retryButton {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button {
+  background-color: #427d9dcd;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #427d9d;
+}
+
+.button:disabled {
+  background-color: #427d9d4d;
+  cursor: not-allowed;
+}
+
+.retryButton {
+  background-color: #88aab4;
+  color: #fff;
+}
+
+.retryButton:hover {
+  background-color: #789da7;
+}
+
+.success {
+  color: #28a745;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.messagePopup {
+  margin-top: 1.2rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.95rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.successMsg {
+  background-color: #e6f7e6;
+  color: #1e7e34;
+  border: 1px solid #c3e6cb;
+}
+
+.error {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  color: #b30000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+
+  .heading {
+    font-size: 1.6rem;
+  }
+}
