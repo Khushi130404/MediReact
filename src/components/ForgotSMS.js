@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styles from "./ForgotGmail.module.css";
-import { sendMail } from "../services/MailService";
-import { findUserByMail } from "../services/UserService";
+import styles from "./ForgotSMS.module.css";
+import { sendSMS } from "../services/SmsService";
+import { findUserByMobile } from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-const ForgotGmail = () => {
-  const [username, setUsername] = useState("");
+const ForgotSMS = () => {
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [stage, setStage] = useState("input");
   const [otp, setOtp] = useState("");
   const [generatedOtp, setGeneratedOtp] = useState("");
@@ -30,7 +30,7 @@ const ForgotGmail = () => {
 
   const handleSendOtp = async () => {
     try {
-      const foundUser = await findUserByMail(username);
+      const foundUser = await findUserByMobile(phoneNumber);
       if (!foundUser) {
         setMessage({ text: "User doesn't exist.", type: "error" });
         return;
@@ -44,13 +44,12 @@ const ForgotGmail = () => {
       setMessage({ text: "", type: "success" });
       setUser(foundUser);
 
-      const emailDto = {
-        to: username,
-        subject: "Medicure - OTP Verification",
-        text: `Your OTP is ${otpToSend}. It is valid for 2 minutes.`,
+      const smsDto = {
+        to: phoneNumber,
+        message: `Your OTP is ${otpToSend}. It is valid for 2 minutes.`,
       };
 
-      await sendMail(emailDto);
+      await sendSMS(smsDto);
     } catch (error) {
       console.error("Error:", error);
       setMessage({
@@ -91,26 +90,26 @@ const ForgotGmail = () => {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar />
       <div className={styles.containerOuter}>
         <div className={styles.container}>
-          <h1 className={styles.heading}>Verification with Gmail</h1>
+          <h1 className={styles.heading}>SMS OTP Verification</h1>
 
           {stage === "input" && (
             <>
               <p className={styles.description}>
-                Enter your Gmail to receive an OTP.
+                Enter your phone number to receive an OTP via SMS.
               </p>
               <input
-                type="email"
-                placeholder="Enter Gmail"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type="tel"
+                placeholder="Enter phone number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
                 className={styles.input}
               />
               <button
                 onClick={handleSendOtp}
-                disabled={!username}
+                disabled={!phoneNumber}
                 className={styles.button}
               >
                 Send OTP
@@ -122,7 +121,8 @@ const ForgotGmail = () => {
             <>
               <p className={styles.description}>
                 Time left: <strong>{formatTime(timer)}</strong>
-                <br></br>Enter the OTP sent to your email.
+                <br />
+                Enter the OTP sent to your phone via SMS.
               </p>
               <input
                 type="text"
@@ -159,11 +159,9 @@ const ForgotGmail = () => {
           )}
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };
 
-export default ForgotGmail;
-
-// khushipatel134040@gmail.com
+export default ForgotSMS;
