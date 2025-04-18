@@ -40,8 +40,8 @@ function AboutUs() {
       </div>
       <div className={styles.about_container}>
         <div className={styles.section}>
-          <h2>Vision & Mission</h2>
-          <p>
+          <h2 className={styles.sectionh2}>Vision & Mission</h2>
+          <p className={styles.sectionp}>
             Our vision is to be recognized as a leader in healthcare technology,
             committed to improving the lives of patients by making healthcare
             seamless, modern, and accessible to all.
@@ -59,7 +59,7 @@ function AboutUs() {
         </div>
 
         <div className={styles.section}>
-          <h2>Meet Our Expert Doctors</h2>
+          <h2 className={styles.sectionh2}>Meet Our Expert Doctors</h2>
           <div className={styles.doctorDetailsList}>
             {doctors.length > 0 ? (
               doctors.map((doctor) => (

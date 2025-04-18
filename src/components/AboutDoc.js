@@ -16,7 +16,9 @@ const AboutDoc = ({ initialDoctor }) => {
 
   return (
     <div className={styles.aboutDoc}>
-      <h2 className={styles.doctorName}>{doctor.doctorName}</h2>
+      <h2 className={styles.doctorName}>
+        {doctor.doctorName} - {doctor.specialist}
+      </h2>
       <div className={styles.content}>
         <div className={styles.imageContainer}>
           <img
@@ -27,22 +29,10 @@ const AboutDoc = ({ initialDoctor }) => {
         </div>
         <div className={styles.info}>
           <p>
-            <strong>Specialist:</strong> {doctor.specialist}
+            <strong>Specialist:</strong>
           </p>
           <p>
             <strong>Age:</strong> {doctor.doctorAge}
-          </p>
-          <p>
-            <strong>Gender:</strong> {doctor.doctorGender}
-          </p>
-          <p>
-            <strong>Email:</strong> {doctor.doctorMail}
-          </p>
-          <p>
-            <strong>Mobile:</strong> {doctor.doctorMobile}
-          </p>
-          <p>
-            <strong>Address:</strong> {doctor.doctorAddress}
           </p>
         </div>
       </div>

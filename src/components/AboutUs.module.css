@@ -49,14 +49,14 @@
   border-bottom: 1px solid #eee;
 }
 
-.section h2 {
+.sectionh2 {
   font-size: 28px;
   color: #164863;
   margin-bottom: 15px;
   text-align: center;
 }
 
-.section p {
+.sectionp {
   font-size: 17px;
   color: #333;
   line-height: 1.6;
@@ -103,8 +103,7 @@
 
 .hero {
   background-color: transparent;
-  width: 90%;
-  max-width: 800px;
+  width: 45%;
   border-radius: 20px;
   backdrop-filter: blur(30px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
