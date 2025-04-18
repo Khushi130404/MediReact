@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./AboutUs.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Welcome from "./Welcome";
+import AboutDoc from "./AboutDoc";
 
 function AboutUs() {
   const [doctors, setDoctors] = useState([]);
@@ -64,9 +64,8 @@ function AboutUs() {
           <div className={styles.doctorDetailsList}>
             {doctors.length > 0 ? (
               doctors.map((doctor) => (
-                <div key={doctor.doctorId} className={styles.doctorDetails}>
-                  <h3>{doctor.doctorName}</h3>
-                  <p>Specialization: {doctor.specialist}</p>
+                <div key={doctor.doctorId} className={styles.doctorCard}>
+                  <AboutDoc initialDoctor={doctor} />
                 </div>
               ))
             ) : (

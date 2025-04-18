@@ -58,18 +58,6 @@ const AboutDoc = ({ initialDoctor }) => {
           <strong>Address:</strong> {doctor.doctorAddress}
         </p>
       </div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="doctorName">Update Name:</label>
-        <input
-          type="text"
-          id="doctorName"
-          name="doctorName"
-          value={doctor.doctorName}
-          onChange={handleInputChange}
-          placeholder="Enter doctor's name"
-        />
-        <button type="submit">Submit</button>
-      </form>
     </div>
   );
 };

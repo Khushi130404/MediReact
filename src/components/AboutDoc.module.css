@@ -1,0 +1,62 @@
+.aboutDoc {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 15px;
+  background-color: #f9f9ff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #6c63ff;
+}
+
+.info {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.info p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.aboutDoc strong {
+  color: #444;
+}
+
+.aboutDoc form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.aboutDoc input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.aboutDoc button {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #6c63ff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.aboutDoc button:hover {
+  background-color: #5549d5;
+}
