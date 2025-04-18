@@ -60,7 +60,6 @@ function AboutUs() {
 
         <div className={styles.section}>
           <h2>Meet Our Expert Doctors</h2>
-          <br></br>
           <div className={styles.doctorDetailsList}>
             {doctors.length > 0 ? (
               doctors.map((doctor) => (
