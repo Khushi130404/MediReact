@@ -30,11 +30,11 @@ const AboutDoc = ({ initialDoctor }) => {
 
   const getGenderImage = (gender) => {
     if (gender.toLowerCase() === "male") {
-      return "https://via.placeholder.com/150?text=Male+Doctor";
+      return "/image/doc_male.jpg";
     } else if (gender.toLowerCase() === "female") {
-      return "https://via.placeholder.com/150?text=Female+Doctor";
+      return "/image/doc_female.jpg";
     } else {
-      return "https://via.placeholder.com/150?text=Doctor";
+      return "/image/doc_male.jpg";
     }
   };
 

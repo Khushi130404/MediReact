@@ -30,7 +30,7 @@
 .profileImage {
   width: 150px;
   height: 150px;
-  border-radius: 10px;
+  border-radius: 360px;
   object-fit: cover;
   border: 2px solid #ccc;
 }
