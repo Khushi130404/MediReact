@@ -77,17 +77,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 0 20px;
 }
 
 .doctorCard {
-  flex: 1 1 250px;
-  max-width: 300px;
-  background-color: #f9f9f9;
+  width: 90%;
+  margin: 0 auto;
   border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 

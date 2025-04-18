@@ -1,7 +1,7 @@
 .aboutDoc {
-  max-width: 450px;
-  margin: 2rem auto;
-  padding: 2rem;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
   border-radius: 15px;
   background-color: #f9f9ff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
