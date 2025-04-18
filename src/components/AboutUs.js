@@ -39,28 +39,6 @@ function AboutUs() {
         </div>
       </div>
       <div className={styles.about_container}>
-        <div className={styles.header}>
-          <div className={styles.intro}>
-            <h1>About MediCure</h1>
-            <p>Your Trusted Partner in Healthcare</p>
-          </div>
-          <div className={styles.tagline}>
-            Your Health, Our Priority – Every Step of the Way.
-          </div>
-        </div>
-
-        <div className={styles.section}>
-          <h2>Who We Are</h2>
-          <p>
-            At MediCure, we are dedicated to providing high-quality,
-            patient-centered healthcare services. Our innovative platform
-            streamlines hospital operations, enhances patient experiences, and
-            connects you with leading medical professionals. From booking
-            appointments to accessing medical information, MediCure aims to make
-            healthcare efficient, transparent, and accessible.
-          </p>
-        </div>
-
         <div className={styles.section}>
           <h2>Vision & Mission</h2>
           <p>
@@ -82,6 +60,7 @@ function AboutUs() {
 
         <div className={styles.section}>
           <h2>Meet Our Expert Doctors</h2>
+          <br></br>
           <div className={styles.doctorDetailsList}>
             {doctors.length > 0 ? (
               doctors.map((doctor) => (
