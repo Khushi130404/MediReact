@@ -3,15 +3,21 @@ import styles from "./AboutUs.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AboutDoc from "./AboutDoc";
+import { showDoctor } from "../services/DoctorService";
 
 function AboutUs() {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/doctor/show_doctor")
-      .then((res) => res.json())
-      .then((data) => setDoctors(data))
-      .catch((err) => console.error("Error fetching doctor data:", err));
+    const fetchDoctors = async () => {
+      try {
+        const doc = await showDoctor();
+        setDoctors(doc);
+      } catch (error) {
+        console.error("Error in try-catch block:", error);
+      }
+    };
+    fetchDoctors();
   }, []);
 
   return (
