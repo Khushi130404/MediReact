@@ -84,6 +84,14 @@
   border-radius: 4px;
 }
 
+.modalContent select {
+  width: 97%;
+  padding: 4px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .modalButtons {
   display: flex;
   justify-content: space-between;
