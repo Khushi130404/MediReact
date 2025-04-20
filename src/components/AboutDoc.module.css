@@ -1,0 +1,64 @@
+.aboutDoc {
+  padding: 20px;
+  margin: 15px auto;
+  max-width: 800px;
+  color: #164863;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #427d9d5d, #ffffff, #9bbec897);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 1s ease;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.aboutDoc:hover {
+  transform: scale(1.03);
+}
+
+.doctorName {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #427d9d;
+  margin-bottom: 10px;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.imageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.profileImage {
+  width: 150px;
+  height: 150px;
+  margin: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #9bbec8;
+}
+
+.info {
+  flex: 2;
+  margin-left: 0;
+  font-size: 1rem;
+  color: #164863;
+  line-height: 1.6;
+}
+
+.info p {
+  margin: 12px 0;
+  margin-right: 30px;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}

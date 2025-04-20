@@ -40,7 +40,14 @@ const DocProfileSidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.profilePic}>
-        <img src="placeholder.png" alt="Profile Picture" />
+        <img
+          src={
+            docGender === "male"
+              ? "/image/doc_male.jpg"
+              : "/image/doc_female.jpg"
+          }
+          alt="Profile Picture"
+        />
       </div>
       <form className={styles.form}>
         <div className={styles.formGroup}>

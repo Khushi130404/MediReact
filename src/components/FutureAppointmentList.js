@@ -66,9 +66,9 @@ const FutureAppointmentList = () => {
           });
 
         setAppointments(futureAppointments);
-        // if (futureAppointments.length > 1) {
-        //   resetAutoSlide();
-        // }
+        if (futureAppointments.length > 1) {
+          resetAutoSlide();
+        }
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }
@@ -83,6 +83,16 @@ const FutureAppointmentList = () => {
     }
   }, [appointments.length]);
 
+  // ✅ Fix: Prevent duplicate appointments when wrapping
+  const getVisibleAppointments = () => {
+    const visible = [];
+    for (let i = 0; i < Math.min(visibleCount, appointments.length); i++) {
+      const index = (startIndex + i) % appointments.length;
+      visible.push(appointments[index]);
+    }
+    return visible;
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Upcoming Appointments</h2>
@@ -92,28 +102,22 @@ const FutureAppointmentList = () => {
             onClick={prevSlide}
             className={`${styles.navButton} ${styles.prevButton}`}
           >
-            <img src="image/prev.svg"></img>
+            <img src="/image/prev.svg" alt="Previous" />
           </button>
-          {appointments
-            .slice(startIndex, startIndex + visibleCount)
-            .concat(
-              appointments.slice(
-                0,
-                Math.max(0, startIndex + visibleCount - appointments.length)
-              )
-            )
-            .map((appointment) => (
-              <FutureAppointment
-                key={appointment.appId}
-                appointment={appointment}
-                className={styles.appointmentCard}
-              />
-            ))}
+
+          {getVisibleAppointments().map((appointment) => (
+            <FutureAppointment
+              key={appointment.appId}
+              appointment={appointment}
+              className={styles.appointmentCard}
+            />
+          ))}
+
           <button
             onClick={nextSlide}
             className={`${styles.navButton} ${styles.nextButton}`}
           >
-            <img src="image/next.svg"></img>
+            <img src="/image/next.svg" alt="Next" />
           </button>
         </div>
       ) : (

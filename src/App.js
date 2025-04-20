@@ -14,6 +14,11 @@ import Schedule from "./components/Schedule";
 import DoctorProfile from "./components/DoctorProfile";
 import AllPastScheduleList from "./components/AllPastScheduleList";
 import Controls from "./components/Controls";
+import AboutUs from "./components/AboutUs";
+import AllPastAppointmentList from "./components/AllPastAppointmentList";
+import SymptomSelector from "./components/SymptomSelector";
+import ForgotGmail from "./components/ForgotGmail";
+import ForgotSMS from "./components/ForgotSMS";
 
 function App() {
   const AppointmentWrapper = () => {
@@ -34,7 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage></HomePage>} />
           <Route path="/home" element={<HomePage></HomePage>} />
-          <Route path="/about" element={<h2>About Us</h2>} />
+          <Route path="/about" element={<AboutUs></AboutUs>} />
           <Route
             path="/appointment"
             element={<AppointmentWrapper></AppointmentWrapper>}
@@ -44,7 +49,7 @@ function App() {
           <Route path="/login" element={<LoginForm></LoginForm>} />
           <Route path="/user" element={<HomePage></HomePage>} />
           <Route path="/user/home" element={<HomePage></HomePage>} />
-          <Route path="/user/about" element={<h2>About Us</h2>} />
+          <Route path="/user/about" element={<AboutUs></AboutUs>} />
           <Route
             path="/user/appointment"
             element={<AppointmentWrapper></AppointmentWrapper>}
@@ -55,9 +60,13 @@ function App() {
             element={<RegisterForm></RegisterForm>}
           />
           <Route path="/user/login" element={<LoginForm></LoginForm>} />
+          <Route
+            path="/user/help"
+            element={<SymptomSelector></SymptomSelector>}
+          />
           <Route path="/doctor" element={<HomePage></HomePage>} />
           <Route path="/doctor/home" element={<HomePage></HomePage>} />
-          <Route path="/doctor/about" element={<h2>About Us</h2>} />
+          <Route path="/doctor/about" element={<AboutUs></AboutUs>} />
           <Route path="/doctor/schedule" element={<Schedule></Schedule>} />
           <Route
             path="/doctor/profile"
@@ -68,18 +77,26 @@ function App() {
             element={<RegisterForm></RegisterForm>}
           />
           <Route path="/doctor/login" element={<LoginForm></LoginForm>} />
+
           <Route
             path="/doctor/allPast"
             element={<AllPastScheduleList></AllPastScheduleList>}
           />
+          <Route
+            path="/user/allPast"
+            element={<AllPastAppointmentList></AllPastAppointmentList>}
+          />
+
           <Route path="/admin/login" element={<LoginForm></LoginForm>} />
           <Route path="/admin/home" element={<HomePage></HomePage>} />
-          <Route path="/admin/about" element={<h2>About Us</h2>} />
+          <Route path="/admin/about" element={<AboutUs></AboutUs>} />
           <Route
             path="/admin/appointment"
             element={<AppointmentWrapperAdmin></AppointmentWrapperAdmin>}
           />
           <Route path="/admin/controls" element={<Controls></Controls>} />
+          <Route path="/forgot/gmail" element={<ForgotGmail></ForgotGmail>} />
+          <Route path="/forgot/sms" element={<ForgotSMS></ForgotSMS>} />
         </Routes>
       </div>
     </Router>

@@ -4,6 +4,7 @@ import styles from "./DoctorProfile.module.css";
 import DocProfileSidebar from "./DocProfileSidebar";
 import DoctorProfileContent from "./DoctorProfileContent";
 
+
 const DoctorProfile = () => {
   return (
     <div className={styles.container}>

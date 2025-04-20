@@ -3,8 +3,9 @@
 }
 
 .controlPanel h3 {
-  margin: 20px;
-  font-size: 25px;
+  margin: 15px;
+  margin-bottom: -50px;
+  font-size: 27px;
   color: #333;
   text-align: center;
 }
@@ -27,4 +28,102 @@
   .docGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.controlPanel {
+  padding: 20px;
+}
+
+.addButton {
+  color: white;
+  width: 40px;
+  height: 40px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.modalContent h3 {
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.modalContent label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.modalContent input {
+  width: 95%;
+  padding: 4px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalContent select {
+  width: 97%;
+  padding: 4px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.saveButton {
+  background-color: #427d9dcd;
+  color: white;
+  width: 100%;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background-color: #427d9d;
+}
+
+.cancelButton {
+  background-color: #9bbec8;
+  color: white;
+  width: 100%;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: #88abb4;
 }

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAppointment } from "../services/AppointmentService";
 import PastAppointment from "./PastAppointment";
+import { useNavigate } from "react-router-dom";
 import styles from "./PastAppointmentList.module.css";
 
 const PastAppointmentList = () => {
+  const navigate = useNavigate();
   const [appointments, setAppointments] = useState([]);
   const loggedUser = JSON.parse(localStorage.getItem("logged_user"));
   const [startIndex, setStartIndex] = useState(0);
@@ -15,6 +17,10 @@ const PastAppointmentList = () => {
       setStartIndex((prevIndex) => (prevIndex + 1) % appointments.length);
       resetAutoSlide();
     }
+  };
+
+  const handleNavigate = (path) => {
+    navigate(`${path}`);
   };
 
   const prevSlide = () => {
@@ -92,7 +98,7 @@ const PastAppointmentList = () => {
             onClick={prevSlide}
             className={`${styles.navButton} ${styles.prevButton}`}
           >
-            <img src="image/prev.svg"></img>
+            <img src="/image/prev.svg"></img>
           </button>
           {appointments
             .slice(startIndex, startIndex + visibleCount)
@@ -113,12 +119,18 @@ const PastAppointmentList = () => {
             onClick={nextSlide}
             className={`${styles.navButton} ${styles.nextButton}`}
           >
-            <img src="image/next.svg"></img>
+            <img src="/image/next.svg"></img>
           </button>
         </div>
       ) : (
         <p className={styles.noAppointments}>No Past appointments found.</p>
       )}
+      <button
+        className={styles.moreAppLink}
+        onClick={() => handleNavigate("/user/allPast")}
+      >
+        Checkout all past appointments here...
+      </button>
     </div>
   );
 };

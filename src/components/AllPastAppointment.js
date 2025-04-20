@@ -1,11 +1,10 @@
-import { use, useEffect, useState } from "react";
-import styles from "./AllPastSchedule.module.css";
-import { findUserById } from "../services/UserService";
-import { sendMail } from "../services/MailService";
+import { useEffect, useState } from "react";
+import styles from "./AllPastAppointment.module.css";
+import { getDoctorById } from "../services/DoctorService";
 import { addDiagnosis, getDiagnosis } from "../services/DiagnosisService";
 
-const AllPastSchedule = ({ appointment }) => {
-  const [user, setUser] = useState();
+const AllPastAppointment = ({ appointment }) => {
+  const [doctor, setDoctor] = useState();
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -14,16 +13,16 @@ const AllPastSchedule = ({ appointment }) => {
   const [showDiagnosis, setShowDiagnosis] = useState(false);
 
   useEffect(() => {
-    const getUser = async () => {
+    const getDoctor = async () => {
       try {
-        const userFetch = await findUserById(appointment.userId);
-        setUser(userFetch);
+        const doctorFetch = await getDoctorById(appointment.docId);
+        setDoctor(doctorFetch);
       } catch (error) {
         console.error("Error fetching past appointments:", error);
       }
     };
-    getUser();
-  }, [appointment.userId]);
+    getDoctor();
+  }, [appointment.docId]);
 
   useEffect(() => {
     const checkDiagnosis = async () => {
@@ -79,17 +78,6 @@ const AllPastSchedule = ({ appointment }) => {
       };
       reader.readAsDataURL(selectedFile);
 
-      try {
-        const emailDto = {
-          to: user?.userMail,
-          subject: "Diagnosis Added",
-          text: "Your diagnosis has been added successfully. You can view it in your appointment history. If you have any questions, please contact us. Thank you!",
-        };
-        await sendMail(emailDto);
-        console.log("Email notification sent successfully!");
-      } catch (error) {
-        console.error("Failed to send email notification:", error);
-      }
       setSelectedFile(null);
       setPreviewURL(null);
     } catch (error) {
@@ -102,37 +90,24 @@ const AllPastSchedule = ({ appointment }) => {
 
   return (
     <li key={appointment.appId} className={styles.appointmentCard}>
-      <div className={styles.appointmentDetails}>
-        <div className={styles.leftColumn}>
-          <p>
-            <strong>👤</strong> {user?.userName || "Loading..."}
-          </p>
-          <p>
-            <strong>📅</strong> {appointment.date}
-          </p>
+      <div>
+        <div className={styles.header}>
+          <strong>{doctor ? doctor.doctorName : "Loading..."}</strong>
+          <span className={styles.specialist}>
+            {doctor ? doctor.specialist : "Loading..."}
+          </span>
         </div>
-        <div className={styles.rightColumn}>
-          <p>
-            <strong>🕒</strong> {appointment.startTime}
-          </p>
-          <p>
-            <strong>☎️</strong> {user?.userMobile || "Loading..."}
-          </p>
+        <div className={styles.details}>
+          <span>📅 {appointment.date}</span>
+          <span>🕒 {appointment.startTime}</span>
         </div>
       </div>
 
       <div className={styles.diagnosisSection}>
         {!hasDiagnosis ? (
           <>
-            <button
-              className={styles.addDiagnosisBtn}
-              onClick={() =>
-                document
-                  .getElementById(`fileInput-${appointment.appId}`)
-                  .click()
-              }
-            >
-              Add Diagnosis
+            <button className={styles.addDiagnosisBtn} disabled>
+              No Diagnosis Uploaded
             </button>
 
             <input
@@ -207,4 +182,4 @@ const AllPastSchedule = ({ appointment }) => {
   );
 };
 
-export default AllPastSchedule;
+export default AllPastAppointment;
