@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<svg width="800px" height="800px" viewBox="0 -0.94 67.89 67.89" xmlns="http://www.w3.org/2000/svg">
+  <g id="Group_3" data-name="Group 3" transform="translate(-480.94 -158.439)">
+    <line id="Line_1" data-name="Line 1" y1="55.98" x2="55.98" transform="translate(486.895 159.5)" fill="none" stroke="#2c4553" stroke-miterlimit="10" stroke-width="3"/>
+    <path id="Path_9" data-name="Path 9" d="M547.33,197.49c0,9.84-18.39,25.45-32.44,25.45s-32.45-15.61-32.45-25.45,18.39-25.45,32.45-25.45S547.33,187.65,547.33,197.49Z" fill="none" stroke="#2c4553" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" opacity="0.3"/>
+    <path id="Path_10" data-name="Path 10" d="M547.33,187.49c0,9.84-18.39,25.45-32.44,25.45s-32.45-15.61-32.45-25.45,18.39-25.45,32.45-25.45S547.33,177.65,547.33,187.49Z" fill="none" stroke="#2c4553" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+    <circle id="Ellipse_2" data-name="Ellipse 2" cx="11.954" cy="11.954" r="11.954" transform="translate(502.931 185.536)" fill="none" stroke="#2c4553" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" opacity="0.3"/>
+    <circle id="Ellipse_3" data-name="Ellipse 3" cx="11.954" cy="11.954" r="11.954" transform="translate(502.931 175.536)" fill="none" stroke="#2c4553" stroke-miterlimit="10" stroke-width="3"/>
+  </g>
+</svg>
