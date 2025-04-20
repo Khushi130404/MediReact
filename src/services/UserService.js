@@ -7,6 +7,7 @@ const USER_UPDATE_API = `${BASE_URL}/user/update_user`;
 const USER_ID_API = `${BASE_URL}/user/userInfo`;
 const USER_MAIL_API = `${BASE_URL}/user/by_mail`;
 const USER_MOBILE_API = `${BASE_URL}/user/by_mobile`;
+const USER_FAV_DOC_API = `${BASE_URL}/user/fav_doc`;
 
 export const loginUser = async (mail, pass) => {
   try {
@@ -61,6 +62,15 @@ export const findUserByMobile = async (mobile) => {
   try {
     const user = await axios.post(`${USER_MOBILE_API}/${mobile}`);
     return user.data;
+  } catch (error) {
+    throw error.response ? error.response.data : "Something went wrong!";
+  }
+};
+
+export const findFavDocByUserId = async (userId) => {
+  try {
+    const favDocs = await axios.post(`${USER_FAV_DOC_API}/${userId}`);
+    return favDocs.data;
   } catch (error) {
     throw error.response ? error.response.data : "Something went wrong!";
   }
