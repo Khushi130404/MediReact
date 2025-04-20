@@ -1,22 +1,70 @@
-.appointmentCard {
+.container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 12px;
-  border-radius: 10px;
-  background: white;
-  width: 200px;
-  font-size: 14px;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
+  background-color: #04364a14;
+  padding: 20px;
   align-items: center;
-  font-size: 17px;
-  font-weight: bold;
+  border-radius: 20px;
 }
 
-.header strong {
+.heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
   color: #04364a;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.appointmentsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.noAppointments {
+  font-size: 16px;
+  color: rgb(140, 144, 145);
+}
+
+.navButton img {
+  width: 20px;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+}
+
+.prevButton {
+  left: 0;
+}
+
+.nextButton {
+  right: 0;
+}
+
+.docCard {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.docCard h3 {
+  margin: 0 0 10px;
+  color: #04364a;
+}
+
+.docCard p {
+  margin: 5px 0;
+  color: #555;
 }
