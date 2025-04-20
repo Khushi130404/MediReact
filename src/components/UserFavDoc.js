@@ -64,7 +64,7 @@ const UseFavDoc = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Your Favorite Doctors</h2>
+      <h2 className={styles.heading}>Your Trusted Doctors</h2>
       {favoriteDoctors.length > 0 ? (
         <div className={styles.doctorsWrapper}>
           <button
