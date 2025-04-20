@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -82,15 +83,28 @@ const Login = () => {
               <div className={styles.row}>
                 <div className={styles.element}>
                   <label className={styles.label}>Password</label>
-                  <input
-                    type="password"
-                    className={styles.input}
-                    value={password}
-                    placeholder="Enter your password"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                  <div className={styles.passwordWrapper}>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className={styles.input}
+                      value={password}
+                      placeholder="Enter your password"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <img
+                      src={
+                        showPassword
+                          ? "/image/hidden.svg"
+                          : "/image/visible.svg"
+                      }
+                      alt={showPassword ? "Hide password" : "Show password"}
+                      className={styles.passwordToggleIcon}
+                      onClick={() => setShowPassword(!showPassword)}
+                    />
+                  </div>
                 </div>
               </div>
+
               <button type="submit" className={styles.button}>
                 Login
               </button>

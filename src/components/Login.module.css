@@ -52,15 +52,43 @@
   margin-bottom: 6px;
 }
 
-.input {
+.input:nth-child(2) {
+  font-size: 14px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
+}
+
+.input:nth-child(1) {
   font-size: 14px;
+  padding: 0;
+  padding: 10px;
+  border: none;
+  border-left: 1px solid #ccc;
+  border-radius: 20px;
+  margin: 0;
 }
 
 .input:focus {
   outline: none;
+}
+
+.passwordWrapper {
+  width: wrap-content;
+  height: wrap-content;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  position: relative;
+}
+
+.passwordToggleIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  height: 20px;
+  width: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .button {
