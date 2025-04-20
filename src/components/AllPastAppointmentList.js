@@ -38,18 +38,20 @@ const AllPastAppointmentList = () => {
     <div>
       <Navbar></Navbar>
       <div className={styles.container}>
-        <h2 className={styles.heading}>Past Appointments of User</h2>
-        {appointments.length > 0 ? (
-          <ul className={styles.appointmentList}>
-            {appointments.map((appointment) => (
-              <li key={appointment.appId} className={styles.appointmentItem}>
-                <AllPastAppointment appointment={appointment} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className={styles.noAppointments}>No past appointments found.</p>
-        )}
+        <div className={styles.inner_cont}>
+          <h2 className={styles.heading}>Past Appointments of User</h2>
+          {appointments.length > 0 ? (
+            <ul className={styles.appointmentList}>
+              {appointments.map((appointment) => (
+                <li key={appointment.appId} className={styles.appointmentItem}>
+                  <AllPastAppointment appointment={appointment} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className={styles.noAppointments}>No past appointments found.</p>
+          )}
+        </div>
       </div>
       <Footer></Footer>
     </div>

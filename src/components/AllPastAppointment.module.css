@@ -18,13 +18,14 @@
 .details {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
   font-size: 13px;
 }
 
 .appointmentCard {
   padding: 15px;
   border-radius: 8px;
-  background: #ffffff;
+  background: linear-gradient(145deg, #1f688f35, #ffffff, #9bbec868);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
   margin-bottom: 10px;
   width: 100%;
@@ -65,7 +66,7 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .addDiagnosisBtn:disabled {
