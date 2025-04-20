@@ -74,19 +74,18 @@ const UseFavDoc = () => {
             <img src="/image/prev.svg" alt="Previous" />
           </button>
 
-          {favoriteDoctors
-            .slice(startIndex, startIndex + visibleCount)
-            .concat(
-              favoriteDoctors.slice(
-                0,
-                Math.max(0, startIndex + visibleCount - favoriteDoctors.length)
-              )
-            )
-            .map((doctor) => (
+          {[...Array(visibleCount)].map((_, i) => {
+            const actualIndex = (startIndex + i) % favoriteDoctors.length;
+            const doctor = favoriteDoctors[actualIndex];
+
+            return (
               <div key={doctor.id} className={styles.doctorCard}>
-                <p>{doctor}</p>
+                <p>
+                  {actualIndex + 1} - {doctor}
+                </p>
               </div>
-            ))}
+            );
+          })}
 
           <button
             onClick={nextSlide}
