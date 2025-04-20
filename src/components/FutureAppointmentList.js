@@ -9,6 +9,9 @@ const FutureAppointmentList = () => {
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 3;
   const [autoSlide, setAutoSlide] = useState(null);
+  const [refresh, setRefresh] = useState(false);
+
+  const refreshComponent = () => setRefresh((prev) => !prev);
 
   const nextSlide = () => {
     if (appointments.length > 0) {
@@ -75,15 +78,14 @@ const FutureAppointmentList = () => {
     };
 
     fetchAppointments();
-  }, [loggedUser.userId]);
+  }, [loggedUser.userId, refresh]);
 
   useEffect(() => {
     if (appointments.length > 1) {
       resetAutoSlide();
     }
-  }, [appointments.length]);
+  }, [appointments.length, refresh]);
 
-  // ✅ Fix: Prevent duplicate appointments when wrapping
   const getVisibleAppointments = () => {
     const visible = [];
     for (let i = 0; i < Math.min(visibleCount, appointments.length); i++) {
@@ -109,6 +111,10 @@ const FutureAppointmentList = () => {
             <FutureAppointment
               key={appointment.appId}
               appointment={appointment}
+              onDelete={(id) => {
+                refreshComponent();
+                console.log("Deleting appointment with ID:", id);
+              }}
               className={styles.appointmentCard}
             />
           ))}
