@@ -57,7 +57,7 @@
 
 .addDiagnosisBtn,
 .viewDiagnosisBtn {
-  background-color: #427d9dcd;
+  background-color: #9bbec8;
   color: white;
   padding: 10px 15px;
   width: 100%;
@@ -74,14 +74,14 @@
 }
 
 .addDiagnosisBtn:hover {
-  background-color: #427d9d;
+  background-color: #88abb4;
 }
 
 .viewDiagnosisBtn {
-  background-color: #9bbec8;
+  background-color: #427d9dcd;
 }
 .viewDiagnosisBtn:hover {
-  background-color: #88abb4;
+  background-color: #427d9d;
 }
 
 .hiddenInput {
