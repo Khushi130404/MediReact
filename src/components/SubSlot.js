@@ -36,7 +36,7 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
         setPopupType("delete");
         setShowPopupUser(true);
       }
-    } else if (loggedDoc) {
+    } else {
       if (isBooked) {
         displayAppointmentData();
       }

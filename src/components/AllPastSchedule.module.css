@@ -33,6 +33,7 @@
 }
 
 .addDiagnosisBtn,
+.uploadDiagnosisBtn,
 .viewDiagnosisBtn {
   background-color: #427d9dcd;
   color: white;
@@ -50,10 +51,12 @@
   background-color: #427d9d;
 }
 
-.viewDiagnosisBtn {
+.viewDiagnosisBtn,
+.uploadDiagnosisBtn {
   background-color: #9bbec8;
 }
-.viewDiagnosisBtn:hover {
+.viewDiagnosisBtn:hover,
+.uploadDiagnosisBtn:hover {
   background-color: #88abb4;
 }
 
