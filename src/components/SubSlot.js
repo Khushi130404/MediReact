@@ -170,8 +170,11 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
               <p>
                 <b>Date:</b> {appObj?.date}
               </p>
+              <button className={styles.cancelBtn} onClick={handleDelete}>
+                Delete
+              </button>
               <button
-                className={styles.cancelBtn}
+                className={styles.cancel}
                 onClick={() => setShowPopupDoc(false)}
               >
                 Close

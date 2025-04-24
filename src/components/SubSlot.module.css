@@ -54,6 +54,7 @@
 }
 
 .confirmBtn,
+.cancel,
 .cancelBtn {
   width: 100px;
   padding: 8px 12px;
@@ -70,6 +71,11 @@
 
 .cancelBtn {
   background-color: #dc3545;
+  color: white;
+}
+
+.cancel {
+  background-color: #28a745;
   color: white;
 }
 
@@ -119,12 +125,12 @@
 }
 
 .popupContent p {
-  margin: 4px 0; 
-  font-size: 14px; 
+  margin: 4px 0;
+  font-size: 14px;
 }
 
 .popupContent h3 {
-  margin-bottom: 8px; 
+  margin-bottom: 8px;
 }
 
 .popupContentDoc button {
