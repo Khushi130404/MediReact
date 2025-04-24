@@ -3,6 +3,7 @@ import {
   bookAppointment,
   deleteAppointment,
 } from "../services/AppointmentService";
+import { sendMail } from "../services/MailService";
 import { findUserById } from "../services/UserService";
 import styles from "./SubSlot.module.css";
 
@@ -85,6 +86,25 @@ const SubSlot = ({ time, isBooked, date, appObj, docId }) => {
     try {
       await deleteAppointment(appObj.appId);
       setShowPopupUser(false);
+      setShowPopupDoc(false);
+      if (!loggedUser) {
+        const emailDto = {
+          to: user?.userMail,
+          subject: "Appointment Delete Notification",
+          text:
+            "Your appointment on " +
+            date +
+            " at " +
+            time +
+            " has been deleted by Doctor or Admin. You can book a new appointment if needed. Please check your account for more details.",
+        };
+        try {
+          await sendMail(emailDto);
+          console.log("Email notification sent successfully!");
+        } catch (error) {
+          console.error("Failed to send email notification:", error);
+        }
+      }
       if (slotRef.current) slotRef.current.className = styles.available;
     } catch (error) {
       console.error("Error deleting slot:", error);
