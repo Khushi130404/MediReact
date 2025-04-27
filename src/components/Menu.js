@@ -41,7 +41,6 @@ const Menu = () => {
             </div>
           </div>
 
-          {/* Register Section */}
           <div className={styles.divWrapper}>
             <div className={styles.text2}>
               <div className={styles.icon}>
@@ -68,7 +67,6 @@ const Menu = () => {
             </div>
           </div>
 
-          {/* Profile Section */}
           <div className={styles.divWrapper}>
             <div className={styles.text2}>
               <div className={styles.icon}>
@@ -93,7 +91,6 @@ const Menu = () => {
             </div>
           </div>
 
-          {/* Appointment Section */}
           {loggedUser && (
             <div className={styles.divWrapper}>
               <div className={styles.text2}>
