@@ -1,7 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./HerosWithoutCape.module.css";
 
 const HerosWithoutCape = () => {
+  const navigate = useNavigate();
+
+  const logged_admin = localStorage.getItem("logged_admin");
+  const logged_user = localStorage.getItem("logged_user");
+  const logged_doctor = localStorage.getItem("logged_doctor");
+
+  const handleMoreAboutUs = () => {
+    if (logged_admin) {
+      navigate("/admin/about");
+    } else if (logged_user) {
+      navigate("/user/about");
+    } else if (logged_doctor) {
+      navigate("/doctor/about");
+    } else {
+      navigate("/about"); // Fallback for non-logged-in users
+    }
+  };
+
   return (
     <div className={styles.about}>
       <div className={styles.content2}>
@@ -33,7 +52,7 @@ const HerosWithoutCape = () => {
               dolorem, aliquid explicabo iusto deserunt dignissimos culpa
               impedit porro ullam ea odio vitae eligendi in!
             </p>
-            <button className={styles.button}>
+            <button className={styles.button} onClick={handleMoreAboutUs}>
               <div className={styles.getStartedNow}>More About Us</div>
             </button>
           </div>
